@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'LoginController.dart';
+import 'SignUpController.dart';
 import 'package:wskart/ExtraClass/AppColor.dart';
 import 'package:wskart/ExtraClass/AppImage.dart';
 import 'package:wskart/ExtraClass/TextStyle/TestStyle.dart';
 import 'package:wskart/ExtraClass/CustomButton/RoundedButton.dart';
 import 'package:get_storage/get_storage.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+class SignUpView extends GetView<SignUpController> {
+  const SignUpView({Key? key}) : super(key: key);
 
   static final GlobalKey<FormState> formGlobalKey = new GlobalKey<FormState>();
 
@@ -250,7 +250,7 @@ class LoginView extends GetView<LoginController> {
                             middleTextStyle: TextStyle(
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.normal,
-                              fontSize: 14,
+                              fontSize: 16,
                               color: CustomAppColors.lblDarkColor,
                               wordSpacing: 1,
                               height: 1.2,
@@ -329,7 +329,6 @@ class LoginView extends GetView<LoginController> {
                 InkWell(
                   onTap: () {
                     print('Reset Password');
-                    controller.ResetPassword();
                   },
                   child: Container(
                     child: CustomeTextStyle(

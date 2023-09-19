@@ -8,4 +8,5 @@ class CustomAppColors {
   static const Color lblColor = Color(0xFF434B4A);
   static const Color borderColor = Color(0xFFE7EAEB);
   static const Color txtPlaceholderColor = Color(0xFF8E9494);
+  static const Color cardBGColor = Color(0xFFF2F7F7);
 }

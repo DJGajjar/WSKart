@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 
-class LoginController extends GetxController {
+class PasswordOptionController extends GetxController {
   final getStorge = GetStorage();
   @override
   void onInit() {
@@ -31,11 +31,7 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
-  VerifyMobileNumber() {
-    Get.toNamed(Routes.VERIFY);
-  }
-
-  ResetPassword() {
-    Get.toNamed(Routes.RESETPASSWORDOPT);
+  PhoneResetPassword() {
+    Get.toNamed(Routes.RESETPHONEPASS);
   }
 }

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'LoginController.dart';
+import 'PhoneController.dart';
 import 'package:wskart/ExtraClass/AppColor.dart';
 import 'package:wskart/ExtraClass/AppImage.dart';
 import 'package:wskart/ExtraClass/TextStyle/TestStyle.dart';
 import 'package:wskart/ExtraClass/CustomButton/RoundedButton.dart';
 import 'package:get_storage/get_storage.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+class PhoneView extends GetView<PhoneController> {
+  const PhoneView({Key? key}) : super(key: key);
 
   static final GlobalKey<FormState> formGlobalKey = new GlobalKey<FormState>();
 
@@ -30,32 +30,41 @@ class LoginView extends GetView<LoginController> {
             child: Column(
               children: [
                 44.heightBox,
-                Container(
-                  alignment: Alignment.center,
-                  child: CustomeTextStyle(
-                    text: "SIGN IN",
-                    size: 13,
-                    fontWeight: FontWeight.w700,
-                    color: CustomAppColors.lblDarkColor,
-                    wordSpacing: 1,
-                  ),
+                Stack(
+                  alignment: AlignmentDirectional.centerStart,
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                            icon: Image.asset(AppImages.BackIcon),
+                            iconSize: 28,
+                            onPressed: () {
+                              Get.back();
+                            },
+                          ),
+                          Spacer(),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: CustomeTextStyle(
+                        text: "Reset password",
+                        size: 13,
+                        fontWeight: FontWeight.w700,
+                        color: CustomAppColors.lblDarkColor,
+                        wordSpacing: 1,
+                      ),
+                    ),
+                  ],
                 ),
-                46.heightBox,
+                44.heightBox,
                 Container(
-                  alignment: Alignment.center,
-                  width: (MediaQuery.of(context).size.width - 48),
-                  child: CustomeTextStyle(
-                    text: "WELCOME",
-                    size: 13,
-                    fontWeight: FontWeight.w700,
-                    color: CustomAppColors.lblDarkColor,
-                    wordSpacing: 4,
-                  ),
-                ),
-                24.heightBox,
-                Container(
-                  width: 69,
-                  height: 55,
+                  width: 124,
+                  height: 92,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -63,43 +72,37 @@ class LoginView extends GetView<LoginController> {
                     ),
                   ),
                 ),
-                24.heightBox,
+                44.heightBox,
                 Container(
+                  width: MediaQuery.of(context).size.width - 48,
+                  height: 1,
+                  color: CustomAppColors.borderColor,
+                ),
+                32.heightBox,
+                Container(
+                  alignment: Alignment.center,
                   width: (MediaQuery.of(context).size.width - 48),
-                  height: 120,
-                  // color: Colors.red,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: CustomeTextStyle(
-                          text: "Sign up for the",
-                          size: 28,
-                          fontWeight: FontWeight.w600,
-                          color: CustomAppColors.lblDarkColor,
-                          wordSpacing: 0.5,
-                        ),
-                      ),
-                      Center(
-                        child: CustomeTextStyle(
-                          text: "Best Shopping",
-                          size: 28,
-                          fontWeight: FontWeight.w600,
-                          color: CustomAppColors.lblOrgColor,
-                          wordSpacing: 0.5,
-                        ),
-                      ),
-                      Center(
-                        child: CustomeTextStyle(
-                          text: "Experience",
-                          size: 28,
-                          fontWeight: FontWeight.w600,
-                          color: CustomAppColors.lblOrgColor,
-                          wordSpacing: 0.5,
-                        ),
-                      ),
-                    ],
+                  child: CustomeTextStyle(
+                    text: "Verification code",
+                    size: 18,
+                    fontWeight: FontWeight.w600,
+                    color: CustomAppColors.lblDarkColor,
+                    wordSpacing: 4,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                20.heightBox,
+                Container(
+                  alignment: Alignment.center,
+                  width: (MediaQuery.of(context).size.width - 48),
+                  child: CustomeTextStyle(
+                    text:
+                        "Enter your phone number associated with your account",
+                    size: 16,
+                    fontWeight: FontWeight.normal,
+                    color: CustomAppColors.txtPlaceholderColor,
+                    wordSpacing: 4,
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 32.heightBox,
@@ -201,35 +204,17 @@ class LoginView extends GetView<LoginController> {
                               ),
                             ),
                           ),
-                          /*TextField(
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(vertical: 11),
-                              filled: true,
-                              fillColor: CustomAppColors.appWhiteColor,
-                              // border: OutlineInputBorder(),
-                              hintStyle: TextStyle(
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14,
-                                color: CustomAppColors.txtPlaceholderColor,
-                                wordSpacing: 1,
-                                height: 1.5,
-                              ),
-                              border: InputBorder.none,
-                              hintText: 'Enter your phone number',
-                            ),
-                          ),*/
                         ),
                       ),
                     ],
                   ),
                 ),
-                32.heightBox,
+                16.heightBox,
                 SizedBox(
                   width: MediaQuery.of(context).size.width - 48,
                   height: 56,
                   child: RoundedButton(
-                    btnName: 'Sign In',
+                    btnName: 'Verify',
                     btnBGColor: Colors.transparent,
                     btnStyle: TextStyle(
                       fontFamily: 'Inter',
@@ -267,7 +252,7 @@ class LoginView extends GetView<LoginController> {
                         } else {
                           if (strMobileNumber.trim() != '') {
                             mobileNumber.write('MobileNumber', strMobileNumber);
-                            controller.VerifyMobileNumber();
+                            controller.ResetPhoneVerification();
                           } else {
                             Get.defaultDialog(
                               title: 'Validation',
@@ -317,28 +302,6 @@ class LoginView extends GetView<LoginController> {
                         );
                       }
                     },
-                  ),
-                ),
-                32.heightBox,
-                Container(
-                  width: MediaQuery.of(context).size.width - 48,
-                  height: 1,
-                  color: CustomAppColors.borderColor,
-                ),
-                32.heightBox,
-                InkWell(
-                  onTap: () {
-                    print('Reset Password');
-                    controller.ResetPassword();
-                  },
-                  child: Container(
-                    child: CustomeTextStyle(
-                      text: "Reset password",
-                      size: 15,
-                      fontWeight: FontWeight.w400,
-                      color: CustomAppColors.lblOrgColor,
-                      wordSpacing: 1,
-                    ),
                   ),
                 ),
               ],

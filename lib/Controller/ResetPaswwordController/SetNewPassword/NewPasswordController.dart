@@ -4,12 +4,27 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 
-class LoginController extends GetxController {
+class NewPasswordController extends GetxController {
   final getStorge = GetStorage();
+
+  var isNewPasswordVisible = true.obs;
+  var isAgainPasswordVisible = true.obs;
+
   @override
   void onInit() {
     super.onInit();
   }
+
+  // CheckNewPasswordVisobleStatus() {
+  //   if (isNewPasswordVisible) {
+  //     isNewPasswordVisible = false;
+  //     print('Vlaue Aeaa caklf F: $isNewPasswordVisible');
+  //   } else {
+  //     isNewPasswordVisible = true;
+  //     print('Vlaue Aeaa caklf T: $isNewPasswordVisible');
+  //   }
+  //   update();
+  // }
 
   @override
   void onReady() {
@@ -31,11 +46,7 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
-  VerifyMobileNumber() {
-    Get.toNamed(Routes.VERIFY);
-  }
-
-  ResetPassword() {
-    Get.toNamed(Routes.RESETPASSWORDOPT);
+  ResetPhoneVerification() {
+    Get.toNamed(Routes.RESETOTP);
   }
 }

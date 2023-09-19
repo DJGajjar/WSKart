@@ -71,6 +71,9 @@ flutter:
     - assets/Welcome/WSKartIcon.png
     - assets/Welcome/StartIcon.png
     - assets/LoginSignup/DownArrow.png
+    - assets/LoginSignup/backIcon.png
+    - assets/ResetPassword/MailIcon.png
+    - assets/ResetPassword/PhoneIcon.png
 
   fonts:
     - family: Inter

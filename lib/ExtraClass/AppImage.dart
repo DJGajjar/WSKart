@@ -12,4 +12,9 @@ class AppImages {
 
   //Login-Signup
   static const String DownArrowIcon = 'assets/LoginSignup/DownArrow.png';
+  static const String BackIcon = 'assets/LoginSignup/backIcon.png';
+
+  //Reset Password
+  static const String MailIcon = 'assets/ResetPassword/MailIcon.png';
+  static const String PhoneIcon = 'assets/ResetPassword/PhoneIcon.png';
 }
