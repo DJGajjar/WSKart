@@ -13,6 +13,8 @@ class AppImages {
   //Login-Signup
   static const String DownArrowIcon = 'assets/LoginSignup/DownArrow.png';
   static const String BackIcon = 'assets/LoginSignup/backIcon.png';
+  static const String UNCheckIcon = 'assets/LoginSignup/UnCheckboxIcon.png';
+  static const String CheckIcon = 'assets/LoginSignup/CheckboxIcon.png';
 
   //Reset Password
   static const String MailIcon = 'assets/ResetPassword/MailIcon.png';

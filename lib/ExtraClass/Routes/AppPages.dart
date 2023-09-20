@@ -21,6 +21,8 @@ import 'package:wskart/Controller/ResetPaswwordController/ResetPasswordPhone/Ver
 import 'package:wskart/Controller/ResetPaswwordController/ResetPasswordPhone/VerificationOTP/VerificationOTPView.dart';
 import 'package:wskart/Controller/ResetPaswwordController/SetNewPassword/NewPasswordBindiing.dart';
 import 'package:wskart/Controller/ResetPaswwordController/SetNewPassword/NewPasswordView.dart';
+import 'package:wskart/Controller/TermsAndServiceController/TermServiceBinding.dart';
+import 'package:wskart/Controller/TermsAndServiceController/TermServiceView.dart';
 
 part 'AppRoutes.dart';
 
@@ -52,6 +54,16 @@ class AppPages {
       binding: StartBinding(),
     ),
     GetPage(
+      name: _Paths.SIGNUP,
+      page: () => const SignUpView(),
+      binding: SignUpBinding(),
+    ),
+    GetPage(
+      name: _Paths.TERMSSERVICE,
+      page: () => const TermServiceView(),
+      binding: TermServicenBinding(),
+    ),
+    GetPage(
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
@@ -80,11 +92,6 @@ class AppPages {
       name: _Paths.NEWPASSWORDSET,
       page: () => const NewPasswordView(),
       binding: NewPasswordBinding(),
-    ),
-    GetPage(
-      name: _Paths.SIGNUP,
-      page: () => const SignUpView(),
-      binding: SignUpBinding(),
     ),
   ];
 }

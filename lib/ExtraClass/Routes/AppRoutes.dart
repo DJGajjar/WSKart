@@ -15,6 +15,7 @@ abstract class Routes {
   static const RESETMAILPASS = _Paths.RESETMAILPASSWORD;
   static const RESETOTP = _Paths.RESETPHONEOTP;
   static const NEWPASSWORD = _Paths.NEWPASSWORDSET;
+  static const TERMSPRIVACY = _Paths.TERMSSERVICE;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const RESETPHONEOTP = '/ResetPhoneOTP';
   static const RESETMAILPASSWORD = '/ResetMailPassword';
   static const NEWPASSWORDSET = '/NewPassword';
+  static const TERMSSERVICE = '/TermsService';
 }

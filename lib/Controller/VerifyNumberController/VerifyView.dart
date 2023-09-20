@@ -214,22 +214,102 @@ class VerifyView extends GetView<VerifyController> {
                     height: 1.2,
                   ),
                   callback: () {
-                    print('Click Sign In');
+                    print('Verify Completed');
                   },
                 ),
               ),
               32.heightBox,
               InkWell(
-                onTap: () {
-                  print('Resend OTP');
+                onTap: () async {
+                  print('Verify OTP');
+                  if (formGlobalKey.currentState!.validate()) {
+                    print('Enter mobile number: $strMobileNumber');
+                    if (isOTPNull == false) {
+                      Get.defaultDialog(
+                        title: 'Validation',
+                        backgroundColor: CustomAppColors.appWhiteColor,
+                        middleText: 'Please Enter OTP',
+                        middleTextStyle: TextStyle(
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16,
+                          color: CustomAppColors.lblDarkColor,
+                          wordSpacing: 1,
+                          height: 1.2,
+                        ),
+                        titleStyle: TextStyle(
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: CustomAppColors.lblOrgColor,
+                          wordSpacing: 1,
+                          height: 1.2,
+                        ),
+                      );
+                    } else {
+                      if (strOTP.trim() != '') {
+                        // Navigation Set
+                      } else {
+                        Get.defaultDialog(
+                          title: 'Validation',
+                          backgroundColor: CustomAppColors.appWhiteColor,
+                          middleText: 'Please Enter OTP',
+                          middleTextStyle: TextStyle(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.normal,
+                            fontSize: 16,
+                            color: CustomAppColors.lblDarkColor,
+                            wordSpacing: 1,
+                            height: 1.2,
+                          ),
+                          titleStyle: TextStyle(
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: CustomAppColors.lblOrgColor,
+                            wordSpacing: 1,
+                            height: 1.2,
+                          ),
+                        );
+                      }
+                    }
+                  } else {
+                    print('Validation mobile number');
+                    Get.defaultDialog(
+                      title: 'Validation',
+                      backgroundColor: CustomAppColors.appWhiteColor,
+                      middleText: 'Please Enter OTP',
+                      middleTextStyle: TextStyle(
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.normal,
+                        fontSize: 16,
+                        color: CustomAppColors.lblDarkColor,
+                        wordSpacing: 1,
+                        height: 1.2,
+                      ),
+                      titleStyle: TextStyle(
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: CustomAppColors.lblOrgColor,
+                        wordSpacing: 1,
+                        height: 1.2,
+                      ),
+                    );
+                  }
                 },
-                child: Container(
-                  child: CustomeTextStyle(
-                    text: "Resend",
-                    size: 15,
-                    fontWeight: FontWeight.w400,
-                    color: CustomAppColors.lblOrgColor,
-                    wordSpacing: 1,
+                child: InkWell(
+                  onTap: () {
+                    print('Resend OTP');
+                  },
+                  child: Container(
+                    child: CustomeTextStyle(
+                      text: "Resend",
+                      size: 15,
+                      fontWeight: FontWeight.w400,
+                      color: CustomAppColors.lblOrgColor,
+                      wordSpacing: 1,
+                    ),
                   ),
                 ),
               ),

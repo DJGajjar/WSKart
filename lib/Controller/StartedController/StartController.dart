@@ -33,6 +33,6 @@ class StartController extends GetxController {
 
   GetStarted() {
     getStorge.write("id", 1);
-    Get.offAllNamed(Routes.LOGIN);
+    Get.offAllNamed(Routes.SIGNUP);
   }
 }

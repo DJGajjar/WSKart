@@ -30,7 +30,38 @@ class LoginView extends GetView<LoginController> {
             child: Column(
               children: [
                 44.heightBox,
-                Container(
+                Stack(
+                  alignment: AlignmentDirectional.centerStart,
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                            icon: Image.asset(AppImages.BackIcon),
+                            iconSize: 28,
+                            onPressed: () {
+                              Get.back();
+                            },
+                          ),
+                          Spacer(),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: CustomeTextStyle(
+                        text: "SIGN IN",
+                        size: 13,
+                        fontWeight: FontWeight.w700,
+                        color: CustomAppColors.lblDarkColor,
+                        wordSpacing: 1,
+                      ),
+                    ),
+                  ],
+                ),
+                /*Container(
                   alignment: Alignment.center,
                   child: CustomeTextStyle(
                     text: "SIGN IN",
@@ -39,7 +70,7 @@ class LoginView extends GetView<LoginController> {
                     color: CustomAppColors.lblDarkColor,
                     wordSpacing: 1,
                   ),
-                ),
+                ),*/
                 46.heightBox,
                 Container(
                   alignment: Alignment.center,

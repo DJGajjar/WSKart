@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'SignUpController.dart';
+import 'package:flutter/gestures.dart';
 import 'package:wskart/ExtraClass/AppColor.dart';
 import 'package:wskart/ExtraClass/AppImage.dart';
 import 'package:wskart/ExtraClass/TextStyle/TestStyle.dart';
@@ -19,6 +20,13 @@ class SignUpView extends GetView<SignUpController> {
 
     String strMobileNumber = '';
     bool isMobileNumberNull = false;
+    String strEmailAddress = '';
+    bool isEmailAddressNull = false;
+    String strOTP = '';
+    bool isOTPNull = false;
+
+    final screenSize = MediaQuery.of(context).size;
+    final widthS = screenSize.width - 48;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -30,17 +38,6 @@ class SignUpView extends GetView<SignUpController> {
             child: Column(
               children: [
                 44.heightBox,
-                Container(
-                  alignment: Alignment.center,
-                  child: CustomeTextStyle(
-                    text: "SIGN IN",
-                    size: 13,
-                    fontWeight: FontWeight.w700,
-                    color: CustomAppColors.lblDarkColor,
-                    wordSpacing: 1,
-                  ),
-                ),
-                46.heightBox,
                 Container(
                   alignment: Alignment.center,
                   width: (MediaQuery.of(context).size.width - 48),
@@ -224,12 +221,271 @@ class SignUpView extends GetView<SignUpController> {
                     ],
                   ),
                 ),
+                Obx(
+                  () => Container(
+                    height: controller.isDisplayOTP.value == true ? 124 : 0,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        16.heightBox,
+                        Container(
+                          width: MediaQuery.of(context).size.width - 48,
+                          height: 56,
+                          padding: const EdgeInsets.all(12.0),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 1, color: CustomAppColors.borderColor),
+                            borderRadius: BorderRadius.all(Radius.circular(14)),
+                          ),
+                          child: TextFormField(
+                            validator: (PhoneOTP) {
+                              if (PhoneOTP == null || PhoneOTP.isEmpty) {
+                                strOTP = 'No';
+                                isOTPNull = false;
+                                return null;
+                              } else {
+                                strOTP = PhoneOTP;
+                                isOTPNull = true;
+                                return null;
+                              }
+                            },
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            obscureText: false,
+                            controller: null,
+                            keyboardType: TextInputType.number,
+                            cursorColor: CustomAppColors.txtPlaceholderColor,
+                            cursorWidth: 2,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: CustomAppColors.txtPlaceholderColor,
+                            ),
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(
+                                  top: 4,
+                                  left: 10,
+                                  bottom: 0), // add padding to adjust text
+                              isDense: true,
+                              border: InputBorder.none,
+                              hintText: 'Enter OTP',
+                              hintStyle: const TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.normal,
+                                fontSize: 14,
+                                color: CustomAppColors.txtPlaceholderColor,
+                                wordSpacing: 1,
+                                height: 1.5,
+                              ),
+                            ),
+                          ),
+                        ),
+                        16.heightBox,
+                        Container(
+                          height: 35,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 10, top: 5),
+                                  child: Container(
+                                    height: 30,
+                                    child: CustomeTextStyle(
+                                      text: '',
+                                      textAlign: TextAlign.left,
+                                      size: 14,
+                                      fontWeight: FontWeight.w600,
+                                      wordSpacing: 1,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  alignment: AlignmentDirectional.centerEnd,
+                                  height: 35,
+                                  // color: CustomAppColors.appBGColor,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          CustomAppColors.appBGColor,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      print('Click E Verify');
+                                      controller.isOTPVerify.value = true;
+                                    },
+                                    child: Text(
+                                      'Verify',
+                                      style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        color: CustomAppColors.appWhiteColor,
+                                        wordSpacing: 1,
+                                        height: 1.2,
+                                      ),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                16.heightBox,
+                Container(
+                  width: MediaQuery.of(context).size.width - 48,
+                  height: 56,
+                  padding: const EdgeInsets.all(12.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        width: 1, color: CustomAppColors.borderColor),
+                    borderRadius: BorderRadius.all(Radius.circular(14)),
+                  ),
+                  child: TextFormField(
+                    validator: (EmailAddress) {
+                      if (EmailAddress == null || EmailAddress.isEmpty) {
+                        strEmailAddress = 'No';
+                        isEmailAddressNull = false;
+                        return null;
+                      } else {
+                        strEmailAddress = EmailAddress;
+                        isEmailAddressNull = true;
+                        return null;
+                      }
+                    },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    obscureText: false,
+                    controller: null,
+                    keyboardType: TextInputType.emailAddress,
+                    cursorColor: CustomAppColors.txtPlaceholderColor,
+                    cursorWidth: 2,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: CustomAppColors.txtPlaceholderColor,
+                    ),
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(
+                          top: 4,
+                          left: 10,
+                          bottom: 0), // add padding to adjust text
+                      isDense: true,
+                      border: InputBorder.none,
+                      hintText: 'Email address',
+                      hintStyle: const TextStyle(
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.normal,
+                        fontSize: 14,
+                        color: CustomAppColors.txtPlaceholderColor,
+                        wordSpacing: 1,
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+                ),
+                16.heightBox,
+                Container(
+                  height: 40,
+                  // color: CustomAppColors.appBGColor,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Obx(
+                        () => InkWell(
+                          focusColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          onTap: () {
+                            print('Check Mark Condition');
+                            if (controller.isConditionCheckMark.value ==
+                                false) {
+                              controller.isConditionCheckMark.value = true;
+                            } else {
+                              controller.isConditionCheckMark.value = false;
+                            }
+                          },
+                          child: Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 8, 16),
+                              child: Container(
+                                height: 24,
+                                width: 24,
+                                child: Image.asset(
+                                  controller.isConditionCheckMark.value == false
+                                      ? AppImages.UNCheckIcon
+                                      : AppImages.CheckIcon,
+                                  height: 24,
+                                  width: 24,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 10,
+                        child: Container(
+                          height: 40,
+                          width: double.infinity,
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'By signing up, you agree to our ',
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    color: CustomAppColors.lblDarkColor,
+                                    wordSpacing: 1,
+                                    height: 1.2,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: ' Term of Service & Privacy Policy',
+                                  style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    color: CustomAppColors.lblOrgColor,
+                                    wordSpacing: 1,
+                                    height: 1.2,
+                                  ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      print('Call Term and service');
+                                      controller.TermsAndServiceScrren();
+                                    },
+                                ),
+                              ],
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 32.heightBox,
                 SizedBox(
                   width: MediaQuery.of(context).size.width - 48,
                   height: 56,
                   child: RoundedButton(
-                    btnName: 'Sign In',
+                    btnName: 'Sign up',
                     btnBGColor: Colors.transparent,
                     btnStyle: TextStyle(
                       fontFamily: 'Inter',
@@ -266,8 +522,133 @@ class SignUpView extends GetView<SignUpController> {
                           );
                         } else {
                           if (strMobileNumber.trim() != '') {
-                            mobileNumber.write('MobileNumber', strMobileNumber);
-                            controller.VerifyMobileNumber();
+                            if (controller.isDisplayOTP.value == false) {
+                              controller.isDisplayOTP.value = true;
+                            } else {
+                              if (isOTPNull == false) {
+                                Get.defaultDialog(
+                                  title: 'Validation',
+                                  backgroundColor:
+                                      CustomAppColors.appWhiteColor,
+                                  middleText: 'Please Enter Verify OTP',
+                                  middleTextStyle: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 14,
+                                    color: CustomAppColors.lblDarkColor,
+                                    wordSpacing: 1,
+                                    height: 1.2,
+                                  ),
+                                  titleStyle: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                    color: CustomAppColors.lblOrgColor,
+                                    wordSpacing: 1,
+                                    height: 1.2,
+                                  ),
+                                );
+                              } else if (controller.isOTPVerify.value ==
+                                  false) {
+                                Get.defaultDialog(
+                                  title: 'Validation',
+                                  backgroundColor:
+                                      CustomAppColors.appWhiteColor,
+                                  middleText: 'First Verify OTP.',
+                                  middleTextStyle: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 14,
+                                    color: CustomAppColors.lblDarkColor,
+                                    wordSpacing: 1,
+                                    height: 1.2,
+                                  ),
+                                  titleStyle: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                    color: CustomAppColors.lblOrgColor,
+                                    wordSpacing: 1,
+                                    height: 1.2,
+                                  ),
+                                );
+                              } else if (isEmailAddressNull == false) {
+                                Get.defaultDialog(
+                                  title: 'Validation',
+                                  backgroundColor:
+                                      CustomAppColors.appWhiteColor,
+                                  middleText: 'Please Enter Email Address',
+                                  middleTextStyle: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 14,
+                                    color: CustomAppColors.lblDarkColor,
+                                    wordSpacing: 1,
+                                    height: 1.2,
+                                  ),
+                                  titleStyle: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                    color: CustomAppColors.lblOrgColor,
+                                    wordSpacing: 1,
+                                    height: 1.2,
+                                  ),
+                                );
+                              } else if (GetUtils.isEmail(strEmailAddress!) ==
+                                  false) {
+                                Get.defaultDialog(
+                                  title: 'Validation',
+                                  backgroundColor:
+                                      CustomAppColors.appWhiteColor,
+                                  middleText:
+                                      'Please Enter Valid Email Address',
+                                  middleTextStyle: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 14,
+                                    color: CustomAppColors.lblDarkColor,
+                                    wordSpacing: 1,
+                                    height: 1.2,
+                                  ),
+                                  titleStyle: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                    color: CustomAppColors.lblOrgColor,
+                                    wordSpacing: 1,
+                                    height: 1.2,
+                                  ),
+                                );
+                              } else if (controller
+                                      .isConditionCheckMark.value ==
+                                  false) {
+                                Get.defaultDialog(
+                                  title: 'Validation',
+                                  backgroundColor:
+                                      CustomAppColors.appWhiteColor,
+                                  middleText: 'Please Check Terms & Privacy',
+                                  middleTextStyle: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 14,
+                                    color: CustomAppColors.lblDarkColor,
+                                    wordSpacing: 1,
+                                    height: 1.2,
+                                  ),
+                                  titleStyle: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                    color: CustomAppColors.lblOrgColor,
+                                    wordSpacing: 1,
+                                    height: 1.2,
+                                  ),
+                                );
+                              } else {
+                                controller.LoginScreen();
+                              }
+                            }
                           } else {
                             Get.defaultDialog(
                               title: 'Validation',
@@ -276,7 +657,7 @@ class SignUpView extends GetView<SignUpController> {
                               middleTextStyle: TextStyle(
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.normal,
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: CustomAppColors.lblDarkColor,
                                 wordSpacing: 1,
                                 height: 1.2,
@@ -284,7 +665,7 @@ class SignUpView extends GetView<SignUpController> {
                               titleStyle: TextStyle(
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: CustomAppColors.lblOrgColor,
                                 wordSpacing: 1,
                                 height: 1.2,
@@ -301,7 +682,7 @@ class SignUpView extends GetView<SignUpController> {
                           middleTextStyle: TextStyle(
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.normal,
-                            fontSize: 16,
+                            fontSize: 14,
                             color: CustomAppColors.lblDarkColor,
                             wordSpacing: 1,
                             height: 1.2,
@@ -309,7 +690,7 @@ class SignUpView extends GetView<SignUpController> {
                           titleStyle: TextStyle(
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                            fontSize: 14,
                             color: CustomAppColors.lblOrgColor,
                             wordSpacing: 1,
                             height: 1.2,
@@ -328,14 +709,15 @@ class SignUpView extends GetView<SignUpController> {
                 32.heightBox,
                 InkWell(
                   onTap: () {
-                    print('Reset Password');
+                    print('Skip Now');
+                    controller.LoginScreen();
                   },
                   child: Container(
                     child: CustomeTextStyle(
-                      text: "Reset password",
+                      text: "Skip for now",
                       size: 15,
                       fontWeight: FontWeight.w400,
-                      color: CustomAppColors.lblOrgColor,
+                      color: CustomAppColors.lblDarkColor,
                       wordSpacing: 1,
                     ),
                   ),

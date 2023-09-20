@@ -4,13 +4,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 
-class SignUpController extends GetxController {
+class TermServiceController extends GetxController {
   final getStorge = GetStorage();
-
-  var isDisplayOTP = false.obs;
-  var isOTPVerify = false.obs;
-  var isConditionCheckMark = false.obs;
-
   @override
   void onInit() {
     super.onInit();
@@ -34,13 +29,5 @@ class SignUpController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-  }
-
-  LoginScreen() {
-    Get.toNamed(Routes.LOGIN);
-  }
-
-  TermsAndServiceScrren() {
-    Get.toNamed(Routes.TERMSPRIVACY);
   }
 }

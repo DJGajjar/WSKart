@@ -74,6 +74,8 @@ flutter:
     - assets/LoginSignup/backIcon.png
     - assets/ResetPassword/MailIcon.png
     - assets/ResetPassword/PhoneIcon.png
+    - assets/LoginSignup/UnCheckboxIcon.png
+    - assets/LoginSignup/CheckboxIcon.png
 
   fonts:
     - family: Inter
