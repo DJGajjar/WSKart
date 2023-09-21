@@ -78,6 +78,16 @@ flutter:
     - assets/LoginSignup/UnCheckboxIcon.png
     - assets/LoginSignup/CheckboxIcon.png
     - assets/HomeIcon/ic_User.png
+    - assets/ProfileIcon/ic_Avatar.png
+    - assets/ProfileIcon/ic_Box.png
+    - assets/ProfileIcon/ic_CallHelp.png
+    - assets/ProfileIcon/ic_Cart.png
+    - assets/ProfileIcon/ic_Heart.png
+    - assets/ProfileIcon/ic_Location.png
+    - assets/ProfileIcon/ic_Payment.png
+    - assets/ProfileIcon/ic_Setting.png
+    - assets/ProfileIcon/MyProfile/ic_Camera.png
+    - assets/ProfileIcon/ContactUs/ic_ContactLocation.png
 
   fonts:
     - family: Inter
