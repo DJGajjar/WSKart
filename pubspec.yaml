@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.6
   get_storage: ^2.1.1
   velocity_x: ^4.1.1
+  flashy_tab_bar2: ^0.0.6
 
 dev_dependencies:
   flutter_test:
@@ -76,19 +77,23 @@ flutter:
     - assets/ResetPassword/PhoneIcon.png
     - assets/LoginSignup/UnCheckboxIcon.png
     - assets/LoginSignup/CheckboxIcon.png
+    - assets/HomeIcon/ic_User.png
 
   fonts:
     - family: Inter
-    - fonts:
-        - asset: font/Inter-Black.ttf
-        - asset: font/Inter-Bold.ttf
-        - asset: font/Inter-ExtraBold.ttf
-        - asset: font/Inter-ExtraLight.ttf
-        - asset: font/Inter-Light.ttf
-        - asset: font/Inter-Medium.ttf
-        - asset: font/Inter-Regular.ttf
-        - asset: font/Inter-SemiBold.ttf
-        - asset: font/Inter-Thin.ttf
+      fonts:
+        - asset: font/Inter/Inter-Black.ttf
+        - asset: font/Inter/Inter-Bold.ttf
+        - asset: font/Inter/Inter-ExtraBold.ttf
+        - asset: font/Inter/Inter-ExtraLight.ttf
+        - asset: font/Inter/Inter-Light.ttf
+        - asset: font/Inter/Inter-Medium.ttf
+        - asset: font/Inter/Inter-Regular.ttf
+        - asset: font/Inter/Inter-SemiBold.ttf
+        - asset: font/Inter/Inter-Thin.ttf
+    - family: WSKartIcon
+      fonts:
+        - asset: font/WSKartIcon/WSKartIcon.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -23,6 +23,16 @@ import 'package:wskart/Controller/ResetPaswwordController/SetNewPassword/NewPass
 import 'package:wskart/Controller/ResetPaswwordController/SetNewPassword/NewPasswordView.dart';
 import 'package:wskart/Controller/TermsAndServiceController/TermServiceBinding.dart';
 import 'package:wskart/Controller/TermsAndServiceController/TermServiceView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/HomeController/HomeBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/HomeController/HomeView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/SearchController/SearchBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/SearchController/SearchView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/NotificationController/NotificationBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/NotificationController/NotificationView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/ProfileBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/ProfileView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/TabBarBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/TabBarView.dart';
 
 part 'AppRoutes.dart';
 
@@ -69,11 +79,6 @@ class AppPages {
       binding: LoginBinding(),
     ),
     GetPage(
-      name: _Paths.VERIFYNUMBER,
-      page: () => const VerifyView(),
-      binding: VerifyBinding(),
-    ),
-    GetPage(
       name: _Paths.RESETPASSWORDOPTION,
       page: () => const PasswordOptionView(),
       binding: PasswordOptionBinding(),
@@ -92,6 +97,36 @@ class AppPages {
       name: _Paths.NEWPASSWORDSET,
       page: () => const NewPasswordView(),
       binding: NewPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.VERIFYNUMBER,
+      page: () => const VerifyView(),
+      binding: VerifyBinding(),
+    ),
+    GetPage(
+      name: _Paths.TABBAR,
+      page: () => const TabBarView(),
+      binding: TabBarBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME,
+      page: () => const HomeView(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH,
+      page: () => const SearchView(),
+      binding: SearchBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATION,
+      page: () => const NotificationView(),
+      binding: NotificationBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }

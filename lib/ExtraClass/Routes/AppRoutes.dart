@@ -16,6 +16,11 @@ abstract class Routes {
   static const RESETOTP = _Paths.RESETPHONEOTP;
   static const NEWPASSWORD = _Paths.NEWPASSWORDSET;
   static const TERMSPRIVACY = _Paths.TERMSSERVICE;
+  static const TABBARROUTES = _Paths.TABBAR;
+  static const HOMEROUTES = _Paths.HOME;
+  static const SEARCHROUTES = _Paths.SEARCH;
+  static const NOTIFICATIONROUTES = _Paths.NOTIFICATION;
+  static const PROFILEROUTES = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -33,4 +38,9 @@ abstract class _Paths {
   static const RESETMAILPASSWORD = '/ResetMailPassword';
   static const NEWPASSWORDSET = '/NewPassword';
   static const TERMSSERVICE = '/TermsService';
+  static const TABBAR = '/TabBar';
+  static const HOME = '/HomeView';
+  static const SEARCH = '/SearchView';
+  static const NOTIFICATION = '/NotificationView';
+  static const PROFILE = '/ProfileView';
 }

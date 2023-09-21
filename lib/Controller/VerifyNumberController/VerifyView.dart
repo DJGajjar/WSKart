@@ -215,6 +215,7 @@ class VerifyView extends GetView<VerifyController> {
                   ),
                   callback: () {
                     print('Verify Completed');
+                    controller.BottomTabBarController();
                   },
                 ),
               ),

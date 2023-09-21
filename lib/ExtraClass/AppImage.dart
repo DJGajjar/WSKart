@@ -19,4 +19,7 @@ class AppImages {
   //Reset Password
   static const String MailIcon = 'assets/ResetPassword/MailIcon.png';
   static const String PhoneIcon = 'assets/ResetPassword/PhoneIcon.png';
+
+  //HomeView
+  static const String HomeProfile = 'assets/HomeIcon/ic_User.png';
 }

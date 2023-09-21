@@ -30,4 +30,9 @@ class VerifyController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
+  BottomTabBarController() {
+    getStorge.write("id", 2);
+    Get.offAllNamed(Routes.TABBARROUTES);
+  }
 }
