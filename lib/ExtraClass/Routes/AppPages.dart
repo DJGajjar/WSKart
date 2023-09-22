@@ -5,6 +5,8 @@ import 'package:wskart/Controller/OfferController/OfferBinding.dart';
 import 'package:wskart/Controller/OfferController/OfferView.dart';
 import 'package:wskart/Controller/StartedController/StartBinding.dart';
 import 'package:wskart/Controller/StartedController/StartView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyFavorite/MyFavoriteBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyFavorite/MyFavoriteView.dart';
 import 'package:wskart/Controller/WelcomeController/WelcomeBinding.dart';
 import 'package:wskart/Controller/WelcomeController/WelcomeView.dart';
 import 'package:wskart/Controller/LoginController/LoginView.dart';
@@ -33,6 +35,14 @@ import 'package:wskart/Controller/WSKartController/TabBarController/ProfileContr
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/ProfileView.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/TabBarBinding.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/TabBarView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyProfile/MyProfileBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyProfile/MyProfileView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/ContactUs/ContactUsBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/ContactUs/ContactUsView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/ProfileSearch/ProfileSearchBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/ProfileSearch/ProfileSearchView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyProfile/MyProfileBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyProfile/MyProfileView.dart';
 
 part 'AppRoutes.dart';
 
@@ -127,6 +137,26 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.MYPROFILE,
+      page: () => const MyProfileView(),
+      binding: MyProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CONTACTUS,
+      page: () => const ContactUsView(),
+      binding: ContactUsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILESETTING,
+      page: () => const ProfileSearchView(),
+      binding: ProfileSearchBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILEFAVORITE,
+      page: () => const MyFavoriteView(),
+      binding: MyFavoriteBinding(),
     ),
   ];
 }

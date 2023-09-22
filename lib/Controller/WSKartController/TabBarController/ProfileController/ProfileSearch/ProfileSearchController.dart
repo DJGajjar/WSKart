@@ -4,7 +4,12 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 
-class ProfileController extends GetxController {
+class ProfileSearchController extends GetxController {
+  final getStorge = GetStorage();
+
+  var notificationOnOff = true.obs;
+  var soundOnOff = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -18,17 +23,5 @@ class ProfileController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-  }
-
-  ContactUsScreen() {
-    Get.toNamed(Routes.CONTACTUSROUTES);
-  }
-
-  ProfileSettingScreen() {
-    Get.toNamed(Routes.PROFILESETTINGROUTES);
-  }
-
-  MyFavoriteScreen() {
-    Get.toNamed(Routes.PROFILEFAVORITEROUTES);
   }
 }

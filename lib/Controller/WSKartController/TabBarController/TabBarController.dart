@@ -10,6 +10,18 @@ class TabBarController extends GetxController {
 
   var navigationTitle = 'Home'.obs;
 
+  // final List<Tab> myTabs1 = <Tab>[
+  //   HomeTabScreen(),
+  //   SearchTabScreen(),
+  //   NotificationTabScreen(),
+  //   ProfileTabScreen(),
+  // ];
+  //
+  // final List<Tab> myTabs = <Tab>[
+  //   Tab(text: 'LEFT'),
+  //   Tab(text: 'RIGHT'),
+  // ];
+
   void changeTabIndex(int index) {
     tabIndex.value = index;
     selectedIndex = index;
@@ -67,6 +79,13 @@ class TabBarController extends GetxController {
   ScrollController listsScrollController = ScrollController();
   ScrollController profileScrollController = ScrollController();
 
+  // Widget build(BuildContext context) {
+  //   const List<Widget> pages = <Widget>[
+  //     HomeView(),
+  //     SearchView(),
+  //     NotificationView(),
+  //     ProfileView(),
+  //   ];
   @override
   void onInit() {
     super.onInit();
@@ -77,29 +96,33 @@ class TabBarController extends GetxController {
     super.onReady();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  // }
 
   @override
   void onClose() {
     super.onClose();
   }
 
-  HomeScreen() {
-    Get.offAllNamed(Routes.HOMEROUTES);
+  HomeTabScreen() {
+    Get.toNamed(Routes.HOMEROUTES);
   }
 
-  SearchBarScreen() {
-    Get.offAllNamed(Routes.SEARCHROUTES);
+  SearchTabScreen() {
+    Get.toNamed(Routes.SEARCHROUTES);
   }
 
-  NotificationScrren() {
-    Get.offAllNamed(Routes.NOTIFICATIONROUTES);
+  NotificationTabScreen() {
+    Get.toNamed(Routes.NOTIFICATIONROUTES);
   }
 
-  ProfileScreen() {
-    Get.offAllNamed(Routes.PROFILEROUTES);
+  ProfileTabScreen() {
+    Get.toNamed(Routes.PROFILEROUTES);
+  }
+
+  MYProfileScreen() {
+    Get.toNamed(Routes.MYPROFILEROUTES);
   }
 }

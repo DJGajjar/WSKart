@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -10,6 +11,7 @@ import 'package:wskart/ExtraClass/TextStyle/TestStyle.dart';
 import 'package:wskart/ExtraClass/CustomButton/RoundedButton.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
+import 'package:badges/src/badge.dart' as badge;
 
 import 'package:wskart/Controller/WSKartController/TabBarController/HomeController/HomeView.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/SearchController/SearchView.dart';
@@ -94,13 +96,14 @@ class TabBarView extends GetView<TabBarController> {
 
   @override
   Widget build(BuildContext context) {
+    // final TabBarController tabController = Get.put(TabBarController(), permanent: false);
+
     const List<Widget> pages = <Widget>[
       HomeView(),
       SearchView(),
       NotificationView(),
       ProfileView(),
     ];
-//isSingleBowler == 'Y' ? GradientsColors.oliveColor : GradientsColors.dollyColor
 
     return GetBuilder<TabBarController>(builder: (_) {
       print('Value oF Tab bar Index: ${_.tabIndex.value}');
@@ -133,17 +136,113 @@ class TabBarView extends GetView<TabBarController> {
                   ),
             elevation: 0.0,
             automaticallyImplyLeading: false,
+            leading: _.tabIndex.value == 3
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Image.asset(AppImages.appLogo),
+                  )
+                : null,
             actions: <Widget>[
-              IconButton(
-                icon: Image.asset(
-                  AppImages.HomeProfile,
-                  fit: BoxFit.contain,
-                  height: 30,
-                  width: 30,
+              _.tabIndex.value == 2
+                  ? Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: IconButton(
+                        icon: badge.Badge(
+                          badgeContent: CustomeTextStyle(
+                            text: "5",
+                            size: 10,
+                            fontWeight: FontWeight.w500,
+                            color: CustomAppColors.appWhiteColor,
+                            wordSpacing: 0.5,
+                          ),
+                          badgeStyle: BadgeStyle(
+                              badgeColor: CustomAppColors.badgeBGColor),
+                          child: Image.asset(
+                            AppImages.ProfileHeart,
+                            fit: BoxFit.contain,
+                            height: 30,
+                            width: 30,
+                          ),
+                        ),
+                        // Icon(Icons.person),
+                        onPressed: () {
+                          print('Click My Favourite');
+                        },
+                      ),
+                    )
+                  : IconButton(
+                      icon: Image.asset(
+                        AppImages.ProfileAvtar,
+                        height: 0,
+                        width: 0,
+                      ),
+                      // Icon(Icons.person),
+                      onPressed: () {
+                        _.MYProfileScreen();
+                      },
+                    ),
+              if (_.tabIndex.value == 0)
+                IconButton(
+                  icon: Image.asset(
+                    AppImages.HomeProfile,
+                    fit: BoxFit.contain,
+                    height: 30,
+                    width: 30,
+                  ),
+                  // Icon(Icons.person),
+                  onPressed: () => null,
                 ),
-                // Icon(Icons.person),
-                onPressed: () => null,
-              ),
+              if (_.tabIndex.value == 1)
+                IconButton(
+                  icon: Image.asset(
+                    AppImages.HomeProfile,
+                    fit: BoxFit.contain,
+                    height: 30,
+                    width: 30,
+                  ),
+                  // Icon(Icons.person),
+                  onPressed: () => null,
+                ),
+              if (_.tabIndex.value == 2)
+                Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: IconButton(
+                    icon: badge.Badge(
+                      badgeContent: CustomeTextStyle(
+                        text: "10",
+                        size: 10,
+                        fontWeight: FontWeight.w500,
+                        color: CustomAppColors.appWhiteColor,
+                        wordSpacing: 0.5,
+                      ),
+                      badgeStyle:
+                          BadgeStyle(badgeColor: CustomAppColors.badgeBGColor),
+                      child: Image.asset(
+                        AppImages.ProfileCart,
+                        fit: BoxFit.contain,
+                        height: 30,
+                        width: 30,
+                      ),
+                    ),
+                    // Icon(Icons.person),
+                    onPressed: () {
+                      print('Click My Cart Btn');
+                    },
+                  ),
+                ),
+              if (_.tabIndex.value == 3)
+                IconButton(
+                  icon: Image.asset(
+                    AppImages.ProfileAvtar,
+                    fit: BoxFit.contain,
+                    height: 38,
+                    width: 38,
+                  ),
+                  // Icon(Icons.person),
+                  onPressed: () {
+                    _.MYProfileScreen();
+                  },
+                ),
             ],
           ),
           /*AppBar(

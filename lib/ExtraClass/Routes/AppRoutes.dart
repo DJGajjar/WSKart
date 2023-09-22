@@ -21,6 +21,10 @@ abstract class Routes {
   static const SEARCHROUTES = _Paths.SEARCH;
   static const NOTIFICATIONROUTES = _Paths.NOTIFICATION;
   static const PROFILEROUTES = _Paths.PROFILE;
+  static const MYPROFILEROUTES = _Paths.MYPROFILE;
+  static const CONTACTUSROUTES = _Paths.CONTACTUS;
+  static const PROFILESETTINGROUTES = _Paths.PROFILESETTING;
+  static const PROFILEFAVORITEROUTES = _Paths.PROFILEFAVORITE;
 }
 
 abstract class _Paths {
@@ -43,4 +47,8 @@ abstract class _Paths {
   static const SEARCH = '/SearchView';
   static const NOTIFICATION = '/NotificationView';
   static const PROFILE = '/ProfileView';
+  static const MYPROFILE = '/MyProfileView';
+  static const CONTACTUS = '/ContactView';
+  static const PROFILESETTING = '/SettingView';
+  static const PROFILEFAVORITE = '/FavoriteView';
 }
