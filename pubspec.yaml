@@ -41,6 +41,7 @@ dependencies:
   flashy_tab_bar2: ^0.0.6
   flutter_switch: ^0.3.2
   badges: ^3.1.2
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -93,6 +94,26 @@ flutter:
     - assets/Notification/icNoNotification.png
     - assets/MyFavorite/ic_FavoriteP.png
     - assets/MyFavorite/icFavorite.png
+    - assets/MyFavorite/icAddToCart.png
+    - assets/HomeIcon/ic_BestSale.png
+    - assets/HomeIcon/icHome.png
+    - assets/HomeIcon/icMoreIcon.png
+    - assets/HomeIcon/ic_CategoriesIcon.png
+    - assets/HomeIcon/icTopBrands1.png
+    - assets/HomeIcon/icTopBrands2.png
+    - assets/HomeIcon/icTopBrands3.png
+    - assets/HomeIcon/icTopBrands4.png
+    - assets/HomeIcon/icTopBrands5.png
+    - assets/HomeIcon/icTopBrands6.png
+    - assets/HomeIcon/icTopBrands7.png
+    - assets/HomeIcon/icTopBrands8.png
+    - assets/ProfileIcon/MyCart/ic_NoCartItem.png
+    - assets/ProfileIcon/MyCart/ic_DeleteIcon.png
+    - assets/ProfileIcon/MyCart/icSearchIcon.png
+    - assets/ProfileIcon/MyCart/icCloseIcon.png
+    - assets/ProfileIcon/MyCart/ic_CreaditCard.png
+    - assets/ProfileIcon/MyCart/icSucessIcon.png
+    - assets/ProfileIcon/MyCart/icBuyingFailed.png
 
   fonts:
     - family: Inter

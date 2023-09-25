@@ -11,4 +11,7 @@ class CustomAppColors {
   static const Color cardBGColor = Color(0xFFF2F7F7);
   static const Color switchOrgColor = Color(0xFFF6E4CD);
   static const Color badgeBGColor = Color(0xFF56BC7A);
+  static const Color cartCountBGColor = Color(0xFFDC9230);
+  static const Color searchBarBGColor = Color(0xFFE6EFFD);
+  static const Color searchBarPlaceholderColor = Color(0xFFA3A3A3);
 }

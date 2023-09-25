@@ -4,8 +4,12 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 
-class MyFavoriteController extends GetxController {
-  var isShowCartIcon = false.obs;
+class CheckoutController extends GetxController {
+  var isDiscountCodeAdd = false.obs;
+  var strDiscount = ''.obs;
+
+  var isBillingAddressAdd = false.obs;
+  var isPaymentMethodAdd = false.obs;
 
   @override
   void onInit() {

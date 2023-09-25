@@ -22,6 +22,19 @@ class AppImages {
 
   //HomeView
   static const String HomeProfile = 'assets/HomeIcon/ic_User.png';
+  static const String HomeBestSale = 'assets/HomeIcon/ic_BestSale.png';
+  static const String HomeMostSale = 'assets/HomeIcon/icHome.png';
+  static const String HomeMoreIcon = 'assets/HomeIcon/icMoreIcon.png';
+  static const String HomeCategoriesIcon =
+      'assets/HomeIcon/ic_CategoriesIcon.png';
+  static const String HomeTopBrands1Icon = 'assets/HomeIcon/icTopBrands1.png';
+  static const String HomeTopBrands2Icon = 'assets/HomeIcon/icTopBrands2.png';
+  static const String HomeTopBrands3Icon = 'assets/HomeIcon/icTopBrands3.png';
+  static const String HomeTopBrands4Icon = 'assets/HomeIcon/icTopBrands4.png';
+  static const String HomeTopBrands5Icon = 'assets/HomeIcon/icTopBrands5.png';
+  static const String HomeTopBrands6Icon = 'assets/HomeIcon/icTopBrands6.png';
+  static const String HomeTopBrands7Icon = 'assets/HomeIcon/icTopBrands7.png';
+  static const String HomeTopBrands8Icon = 'assets/HomeIcon/icTopBrands8.png';
 
   //ProfileView
   static const String ProfileAvtar = 'assets/ProfileIcon/ic_Avatar.png';
@@ -38,6 +51,21 @@ class AppImages {
       'assets/ProfileIcon/ContactUs/ic_ContactLocation.png';
   static const String ProfileMyFavorite = 'assets/MyFavorite/ic_FavoriteP.png';
   static const String ProfileFavoriteIcon = 'assets/MyFavorite/icFavorite.png';
+  static const String ProfileAddToCart = 'assets/MyFavorite/icAddToCart.png';
+  static const String ProfileNoCartItem =
+      'assets/ProfileIcon/MyCart/ic_NoCartItem.png';
+  static const String ProfileDeleteItem =
+      'assets/ProfileIcon/MyCart/ic_DeleteIcon.png';
+  static const String ProfileSearchIcon =
+      'assets/ProfileIcon/MyCart/icSearchIcon.png';
+  static const String ProfileCloseIcon =
+      'assets/ProfileIcon/MyCart/icCloseIcon.png';
+  static const String ProfileCreditCardIcon =
+      'assets/ProfileIcon/MyCart/ic_CreaditCard.png';
+  static const String ProfileBuyingSucessIcon =
+      'assets/ProfileIcon/MyCart/icSucessIcon.png';
+  static const String ProfileBuyingFailedIcon =
+      'assets/ProfileIcon/MyCart/icBuyingFailed.png';
 
   //Notification
   static const String NotificationNotFound =

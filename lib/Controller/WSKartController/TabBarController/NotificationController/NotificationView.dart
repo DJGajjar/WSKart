@@ -85,17 +85,18 @@ class NotificationView extends GetView<NotificationController> {
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
-                                            text: arrNotificationList[index]
-                                                    ['NotificationTitle']
-                                                .toString(),
-                                            style: TextStyle(
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 15,
-                                              color: CustomAppColors.lblColor,
-                                              wordSpacing: 0.5,
-                                              height: 1.2,
-                                            )),
+                                          text: arrNotificationList[index]
+                                                  ['NotificationTitle']
+                                              .toString(),
+                                          style: TextStyle(
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 15,
+                                            color: CustomAppColors.lblColor,
+                                            wordSpacing: 0.5,
+                                            height: 1.2,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                     textAlign: TextAlign.start,

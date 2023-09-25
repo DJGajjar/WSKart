@@ -46,7 +46,8 @@ class ProfileView extends GetView<ProfileController> {
                   hoverColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   onTap: () {
-                    print('Email Password');
+                    print('My Cart Click');
+                    Get.toNamed(Routes.PROFILECARTROUTES);
                   },
                   child: Card(
                     color: CustomAppColors.cardBGColor,

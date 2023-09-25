@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 
-class MyFavoriteController extends GetxController {
+class MyCartController extends GetxController {
   var isShowCartIcon = false.obs;
 
   @override

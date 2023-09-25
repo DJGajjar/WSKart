@@ -5,8 +5,6 @@ import 'package:wskart/Controller/OfferController/OfferBinding.dart';
 import 'package:wskart/Controller/OfferController/OfferView.dart';
 import 'package:wskart/Controller/StartedController/StartBinding.dart';
 import 'package:wskart/Controller/StartedController/StartView.dart';
-import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyFavorite/MyFavoriteBinding.dart';
-import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyFavorite/MyFavoriteView.dart';
 import 'package:wskart/Controller/WelcomeController/WelcomeBinding.dart';
 import 'package:wskart/Controller/WelcomeController/WelcomeView.dart';
 import 'package:wskart/Controller/LoginController/LoginView.dart';
@@ -41,8 +39,16 @@ import 'package:wskart/Controller/WSKartController/TabBarController/ProfileContr
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/ContactUs/ContactUsView.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/ProfileSearch/ProfileSearchBinding.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/ProfileSearch/ProfileSearchView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyFavorite/MyFavoriteBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyFavorite/MyFavoriteView.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyProfile/MyProfileBinding.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyProfile/MyProfileView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/MyCartBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/MyCartView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/Checkout/CheckoutBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/Checkout/CheckoutView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/BuyingStatus/BuyingStatusView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/BuyingStatus/BuyingStatusBinding.dart';
 
 part 'AppRoutes.dart';
 
@@ -157,6 +163,21 @@ class AppPages {
       name: _Paths.PROFILEFAVORITE,
       page: () => const MyFavoriteView(),
       binding: MyFavoriteBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILECART,
+      page: () => const MyCartView(),
+      binding: MyCartBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILECHECKOUT,
+      page: () => const CheckoutView(),
+      binding: CheckoutBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILEBUYSTATUS,
+      page: () => const BuyingStatusView(),
+      binding: BuyingStatusBinding(),
     ),
   ];
 }

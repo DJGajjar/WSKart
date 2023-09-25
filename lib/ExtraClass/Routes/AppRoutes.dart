@@ -25,6 +25,9 @@ abstract class Routes {
   static const CONTACTUSROUTES = _Paths.CONTACTUS;
   static const PROFILESETTINGROUTES = _Paths.PROFILESETTING;
   static const PROFILEFAVORITEROUTES = _Paths.PROFILEFAVORITE;
+  static const PROFILECARTROUTES = _Paths.PROFILECART;
+  static const PROFILECHECKOUTROUTES = _Paths.PROFILECHECKOUT;
+  static const PROFILEBUYSTATUSROUTES = _Paths.PROFILEBUYSTATUS;
 }
 
 abstract class _Paths {
@@ -51,4 +54,7 @@ abstract class _Paths {
   static const CONTACTUS = '/ContactView';
   static const PROFILESETTING = '/SettingView';
   static const PROFILEFAVORITE = '/FavoriteView';
+  static const PROFILECART = '/CartView';
+  static const PROFILECHECKOUT = '/CheckoutView';
+  static const PROFILEBUYSTATUS = '/BuyingStatusView';
 }
