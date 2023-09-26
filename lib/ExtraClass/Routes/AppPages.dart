@@ -49,6 +49,14 @@ import 'package:wskart/Controller/WSKartController/TabBarController/ProfileContr
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/Checkout/CheckoutView.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/BuyingStatus/BuyingStatusView.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/BuyingStatus/BuyingStatusBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/BillingAddress/BillingAddressBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/BillingAddress/BillingAddressView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/CreditCart/CreditCartBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/CreditCart/CreditCartView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/ShippingAddress/ShippingAddressView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/ShippingAddress/ShippingAddressBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/PaymentMethod/PaymentMethodBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/PaymentMethod/PaymentMethodView.dart';
 
 part 'AppRoutes.dart';
 
@@ -178,6 +186,26 @@ class AppPages {
       name: _Paths.PROFILEBUYSTATUS,
       page: () => const BuyingStatusView(),
       binding: BuyingStatusBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILEBILLINGADDRESS,
+      page: () => const BillingAddressView(),
+      binding: BillingAddressBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILENEWCREDITCART,
+      page: () => const CreditCartView(),
+      binding: CreditCartBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILESHIPPINGADDRESS,
+      page: () => const ShippingAddressView(),
+      binding: ShippingAddressBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILEPAYMENTLIST,
+      page: () => const PaymentMethodView(),
+      binding: PaymentMethodBinding(),
     ),
   ];
 }

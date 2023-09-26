@@ -114,6 +114,14 @@ flutter:
     - assets/ProfileIcon/MyCart/ic_CreaditCard.png
     - assets/ProfileIcon/MyCart/icSucessIcon.png
     - assets/ProfileIcon/MyCart/icBuyingFailed.png
+    - assets/ProfileIcon/MyCart/icInfoIcon.png
+    - assets/ProfileIcon/MyCart/ic_DeliveredLocation.png
+    - assets/ProfileIcon/MyCart/ic_UnCheckIcon.png
+    - assets/ProfileIcon/MyCart/ic_CardCheckIcon.png
+    - assets/ProfileIcon/MyCart/icAddCardIcon.png
+    - assets/ProfileIcon/MyCart/icBankingIcon.png
+    - assets/ProfileIcon/MyCart/icPayPalIcon.png
+
 
   fonts:
     - family: Inter

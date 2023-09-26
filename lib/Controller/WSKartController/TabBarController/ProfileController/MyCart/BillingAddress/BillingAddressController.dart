@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 
-class BuyingStatusController extends GetxController {
-  var isSuccessfullBuyItem = false.obs;
+class BillingAddressController extends GetxController {
+  var isShowCartIcon = false.obs;
 
   @override
   void onInit() {

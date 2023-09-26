@@ -28,6 +28,10 @@ abstract class Routes {
   static const PROFILECARTROUTES = _Paths.PROFILECART;
   static const PROFILECHECKOUTROUTES = _Paths.PROFILECHECKOUT;
   static const PROFILEBUYSTATUSROUTES = _Paths.PROFILEBUYSTATUS;
+  static const PROFILEBILLINGADDRESSROUTES = _Paths.PROFILEBILLINGADDRESS;
+  static const PROFILENEWCREDITCARROUTES = _Paths.PROFILENEWCREDITCART;
+  static const PROFILESHIPPINGADDRESSROUTES = _Paths.PROFILESHIPPINGADDRESS;
+  static const PROFILEPAYMENTLISTROUTES = _Paths.PROFILEPAYMENTLIST;
 }
 
 abstract class _Paths {
@@ -57,4 +61,8 @@ abstract class _Paths {
   static const PROFILECART = '/CartView';
   static const PROFILECHECKOUT = '/CheckoutView';
   static const PROFILEBUYSTATUS = '/BuyingStatusView';
+  static const PROFILEBILLINGADDRESS = '/BillingAddressView';
+  static const PROFILENEWCREDITCART = '/CreditCardView';
+  static const PROFILESHIPPINGADDRESS = '/ShippingAddressView';
+  static const PROFILEPAYMENTLIST = '/PaymentView';
 }

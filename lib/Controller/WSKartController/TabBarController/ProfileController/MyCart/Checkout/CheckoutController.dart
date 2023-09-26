@@ -8,8 +8,8 @@ class CheckoutController extends GetxController {
   var isDiscountCodeAdd = false.obs;
   var strDiscount = ''.obs;
 
-  var isBillingAddressAdd = false.obs;
-  var isPaymentMethodAdd = false.obs;
+  var isBillingAddressAdd = true.obs;
+  var isPaymentMethodAdd = true.obs;
 
   @override
   void onInit() {

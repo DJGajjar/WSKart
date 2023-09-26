@@ -66,6 +66,21 @@ class AppImages {
       'assets/ProfileIcon/MyCart/icSucessIcon.png';
   static const String ProfileBuyingFailedIcon =
       'assets/ProfileIcon/MyCart/icBuyingFailed.png';
+  static const String ProfileInfoIcon =
+      'assets/ProfileIcon/MyCart/icInfoIcon.png';
+  static const String ProfileDeliveredLocationIcon =
+      'assets/ProfileIcon/MyCart/ic_DeliveredLocation.png';
+  static const String ProfileUnCheckIconIcon =
+      'assets/ProfileIcon/MyCart/ic_UnCheckIcon.png';
+  static const String ProfileCheckCreditCartIcon =
+      'assets/ProfileIcon/MyCart/ic_CardCheckIcon.png';
+  static const String ProfileAddCardIcon =
+      'assets/ProfileIcon/MyCart/icAddCardIcon.png';
+
+  static const String ProfileBankingIcon =
+      'assets/ProfileIcon/MyCart/icBankingIcon.png';
+  static const String ProfilePayPalIcon =
+      'assets/ProfileIcon/MyCart/icPayPalIcon.png';
 
   //Notification
   static const String NotificationNotFound =

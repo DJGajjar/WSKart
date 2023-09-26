@@ -295,6 +295,8 @@ class CheckoutView extends GetView<CheckoutController> {
                                   splashColor: Colors.transparent,
                                   onTap: () {
                                     print('Click Add Billing Address');
+                                    Get.toNamed(
+                                        Routes.PROFILEBILLINGADDRESSROUTES);
                                   },
                                   child: Container(
                                     width:
@@ -346,48 +348,70 @@ class CheckoutView extends GetView<CheckoutController> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: 82,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    color: CustomAppColors.cardBGColor,
-                                    border: Border.all(
-                                      width: 1,
-                                      color: CustomAppColors.borderColor,
+                                InkWell(
+                                  focusColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  splashColor: Colors.transparent,
+                                  onTap: () {
+                                    print('Change Address');
+                                    Get.toNamed(
+                                        Routes.PROFILESHIPPINGADDRESSROUTES);
+                                  },
+                                  child: Container(
+                                    width: 82,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      color: CustomAppColors.cardBGColor,
+                                      border: Border.all(
+                                        width: 1,
+                                        color: CustomAppColors.borderColor,
+                                      ),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(15)),
                                     ),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(15)),
-                                  ),
-                                  child: Center(
-                                    child: CustomeTextStyle(
-                                      text: "Change",
-                                      size: 14,
-                                      fontWeight: FontWeight.w600,
-                                      color: CustomAppColors.lblOrgColor,
-                                      wordSpacing: 0.5,
+                                    child: Center(
+                                      child: CustomeTextStyle(
+                                        text: "Change",
+                                        size: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: CustomAppColors.lblOrgColor,
+                                        wordSpacing: 0.5,
+                                      ),
                                     ),
                                   ),
                                 ),
                                 12.widthBox,
-                                Container(
-                                  width: 160,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    color: CustomAppColors.cardBGColor,
-                                    border: Border.all(
-                                      width: 1,
-                                      color: CustomAppColors.borderColor,
+                                InkWell(
+                                  focusColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  splashColor: Colors.transparent,
+                                  onTap: () {
+                                    print('Shipping address');
+                                    Get.toNamed(
+                                        Routes.PROFILESHIPPINGADDRESSROUTES);
+                                  },
+                                  child: Container(
+                                    width: 160,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      color: CustomAppColors.cardBGColor,
+                                      border: Border.all(
+                                        width: 1,
+                                        color: CustomAppColors.borderColor,
+                                      ),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(15)),
                                     ),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(15)),
-                                  ),
-                                  child: Center(
-                                    child: CustomeTextStyle(
-                                      text: "Shipping addresses",
-                                      size: 14,
-                                      fontWeight: FontWeight.w600,
-                                      color: CustomAppColors.lblOrgColor,
-                                      wordSpacing: 0.5,
+                                    child: Center(
+                                      child: CustomeTextStyle(
+                                        text: "Shipping addresses",
+                                        size: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: CustomAppColors.lblOrgColor,
+                                        wordSpacing: 0.5,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -524,7 +548,12 @@ class CheckoutView extends GetView<CheckoutController> {
                             hoverColor: Colors.transparent,
                             splashColor: Colors.transparent,
                             onTap: () {
-                              print('Click Add Billing Address');
+                              print('Click Add Payment Method');
+                              controller.isPaymentMethodAdd.value == false
+                                  ? Get.toNamed(
+                                      Routes.PROFILENEWCREDITCARROUTES)
+                                  : Get.toNamed(
+                                      Routes.PROFILEPAYMENTLISTROUTES);
                             },
                             child: Container(
                               width:
@@ -783,7 +812,7 @@ class CheckoutView extends GetView<CheckoutController> {
                       hoverColor: Colors.transparent,
                       splashColor: Colors.transparent,
                       onTap: () {
-                        print('Click Add Billing Address');
+                        print('Click Add Discount Code');
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(right: 10),
