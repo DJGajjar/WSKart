@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 import 'PaymentMethodController.dart';
 import 'package:wskart/ExtraClass/AppColor.dart';
 import 'package:wskart/ExtraClass/AppImage.dart';
@@ -170,6 +171,7 @@ class PaymentMethodView extends GetView<PaymentMethodController> {
                     splashColor: Colors.transparent,
                     onTap: () {
                       print('Credit debit card: ${screenSize.height}');
+                      Get.toNamed(Routes.PROFILENEWCREDITCARROUTES);
                     },
                     child: Container(
                       width: (screenSize.width),

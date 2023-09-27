@@ -121,6 +121,14 @@ flutter:
     - assets/ProfileIcon/MyCart/icAddCardIcon.png
     - assets/ProfileIcon/MyCart/icBankingIcon.png
     - assets/ProfileIcon/MyCart/icPayPalIcon.png
+    - assets/ProfileIcon/MyOrder/ic_CancelledIcon.png
+    - assets/ProfileIcon/MyOrder/ic_CompletedIcon.png
+    - assets/ProfileIcon/MyOrder/ic_DeliveringIcon.png
+    - assets/ProfileIcon/MyOrder/ic_ProcessingIcon.png
+    - assets/ProfileIcon/MyOrder/ic_ReturnedIcon.png
+    - assets/ProfileIcon/MyOrder/icCheckOrderIcon.png
+    - assets/ProfileIcon/MyOrder/icUncheckOrderIcon.png
+    - assets/ProfileIcon/MyOrder/icRightIcon.png
 
 
   fonts:

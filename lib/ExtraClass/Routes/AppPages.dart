@@ -5,6 +5,7 @@ import 'package:wskart/Controller/OfferController/OfferBinding.dart';
 import 'package:wskart/Controller/OfferController/OfferView.dart';
 import 'package:wskart/Controller/StartedController/StartBinding.dart';
 import 'package:wskart/Controller/StartedController/StartView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyOrder/MyOrderView.dart';
 import 'package:wskart/Controller/WelcomeController/WelcomeBinding.dart';
 import 'package:wskart/Controller/WelcomeController/WelcomeView.dart';
 import 'package:wskart/Controller/LoginController/LoginView.dart';
@@ -57,6 +58,14 @@ import 'package:wskart/Controller/WSKartController/TabBarController/ProfileContr
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/ShippingAddress/ShippingAddressBinding.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/PaymentMethod/PaymentMethodBinding.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyCart/PaymentMethod/PaymentMethodView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyOrder/MyOrderController.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyOrder/MyOrderBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyOrder/OrderDetail/OrderDetailView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyOrder/OrderDetail/OrderDetailBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyOrder/CancelOrder/CancelOrderView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyOrder/CancelOrder/CancelOrderBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyOrder/ReturnOrder/ReturnOrderView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyOrder/ReturnOrder/ReturnOrderBinding.dart';
 
 part 'AppRoutes.dart';
 
@@ -206,6 +215,26 @@ class AppPages {
       name: _Paths.PROFILEPAYMENTLIST,
       page: () => const PaymentMethodView(),
       binding: PaymentMethodBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILEMYORDERLIST,
+      page: () => const MyOrderView(),
+      binding: MyOrderBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILEORDERDETAIL,
+      page: () => const OrderDetailView(),
+      binding: OrderDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILEORDERDCANCEL,
+      page: () => const CancelOrderView(),
+      binding: CancelOrderBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILERETURNORDER,
+      page: () => const ReturnOrderView(),
+      binding: ReturnOrderBinding(),
     ),
   ];
 }

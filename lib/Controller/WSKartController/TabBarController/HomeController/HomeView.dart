@@ -459,7 +459,7 @@ class HomeView extends GetView<HomeController> {
                           separatorBuilder: (context, index) {
                             return const SizedBox(width: 20);
                           }),
-                    )
+                    ),
                   ],
                 ),
               ),

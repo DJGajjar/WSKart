@@ -197,6 +197,7 @@ class MyFavoriteView extends GetView<MyFavoriteController> {
                                 height: 154,
                                 width: 156,
                                 decoration: BoxDecoration(
+                                  color: Colors.red,
                                   image: DecorationImage(
                                     image:
                                         AssetImage(AppImages.ProfileMyFavorite),

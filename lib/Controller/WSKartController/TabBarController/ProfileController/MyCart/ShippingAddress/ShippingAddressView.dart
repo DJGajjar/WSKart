@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 import 'ShippingAddressController.dart';
 import 'package:wskart/ExtraClass/AppColor.dart';
 import 'package:wskart/ExtraClass/AppImage.dart';
@@ -307,52 +308,62 @@ class ShippingAddressView extends GetView<ShippingAddressController> {
                   );
                 }),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 15, left: 24, right: 24),
-            child: Container(
-              width: (screenSize.width - 48),
-              height: 56,
-              decoration: BoxDecoration(
-                color: CustomAppColors.borderColor,
-                borderRadius: BorderRadius.all(Radius.circular(14)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 24,
-                    height: 24,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 1,
-                        color: CustomAppColors.lblOrgColor,
+          InkWell(
+            focusColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            onTap: () {
+              print('Click To Open New Billing Address');
+              Get.toNamed(Routes.PROFILEPAYMENTLISTROUTES);
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 15, left: 24, right: 24),
+              child: Container(
+                width: (screenSize.width - 48),
+                height: 56,
+                decoration: BoxDecoration(
+                  color: CustomAppColors.borderColor,
+                  borderRadius: BorderRadius.all(Radius.circular(14)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 24,
+                      height: 24,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 1,
+                          color: CustomAppColors.lblOrgColor,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(24),
+                        ),
                       ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(24),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 6, top: 1),
+                        child: CustomeTextStyle(
+                          text: "+",
+                          size: 16,
+                          fontWeight: FontWeight.w400,
+                          color: CustomAppColors.lblOrgColor,
+                          wordSpacing: 0.5,
+                        ),
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 6, top: 1),
+                    10.widthBox,
+                    Container(
                       child: CustomeTextStyle(
-                        text: "+",
+                        text: "New billing address",
                         size: 16,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w600,
                         color: CustomAppColors.lblOrgColor,
                         wordSpacing: 0.5,
                       ),
                     ),
-                  ),
-                  10.widthBox,
-                  Container(
-                    child: CustomeTextStyle(
-                      text: "New billing address",
-                      size: 16,
-                      fontWeight: FontWeight.w600,
-                      color: CustomAppColors.lblOrgColor,
-                      wordSpacing: 0.5,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

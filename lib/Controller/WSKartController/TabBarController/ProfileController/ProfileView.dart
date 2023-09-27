@@ -248,7 +248,8 @@ class ProfileView extends GetView<ProfileController> {
                   hoverColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   onTap: () {
-                    print('Email Password');
+                    print('My Order');
+                    Get.toNamed(Routes.PROFILEMYORDERROUTES);
                   },
                   child: Card(
                     color: CustomAppColors.cardBGColor,
@@ -355,7 +356,8 @@ class ProfileView extends GetView<ProfileController> {
                   hoverColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   onTap: () {
-                    print('Phone Password');
+                    print('Shipping Address');
+                    Get.toNamed(Routes.PROFILESHIPPINGADDRESSROUTES);
                   },
                   child: Card(
                     color: CustomAppColors.cardBGColor,
@@ -406,7 +408,8 @@ class ProfileView extends GetView<ProfileController> {
                   hoverColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   onTap: () {
-                    print('Email Password');
+                    print('Payment Info');
+                    Get.toNamed(Routes.PROFILEPAYMENTLISTROUTES);
                   },
                   child: Card(
                     color: CustomAppColors.cardBGColor,
