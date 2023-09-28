@@ -4,10 +4,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 
-class MyFavoriteController extends GetxController {
+class ProductDetailController extends GetxController {
   var isShowCartIcon = false.obs;
-
-  var isSlowAnimations = true.obs;
 
   @override
   void onInit() {

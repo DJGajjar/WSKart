@@ -42,6 +42,7 @@ dependencies:
   flutter_switch: ^0.3.2
   badges: ^3.1.2
   flutter_rating_bar: ^4.0.1
+  animations: ^2.0.8
 
 dev_dependencies:
   flutter_test:
@@ -129,7 +130,12 @@ flutter:
     - assets/ProfileIcon/MyOrder/icCheckOrderIcon.png
     - assets/ProfileIcon/MyOrder/icUncheckOrderIcon.png
     - assets/ProfileIcon/MyOrder/icRightIcon.png
-
+    - assets/ProfileIcon/MyOrder/icSelectRating.png
+    - assets/ProfileIcon/MyOrder/icUnSelectRating.png
+    - assets/ProfileIcon/MyOrder/Sparkling heart.png
+    - assets/MyFavorite/icProductIcon.png
+    - assets/MyFavorite/icShareIcon.png
+    - assets/MyFavorite/icRatingIcon.png
 
   fonts:
     - family: Inter

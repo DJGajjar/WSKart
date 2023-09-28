@@ -687,8 +687,12 @@ class MyOrderView extends GetView<MyOrderController> {
                                                 splashColor: Colors.transparent,
                                                 onTap: () {
                                                   print('Cancel order');
-                                                  Get.toNamed(Routes
-                                                      .PROFILEORDERCANCELROUTES);
+                                                  controller.isReturnedIconSelect
+                                                              .value ==
+                                                          false
+                                                      ? Get.toNamed(Routes
+                                                          .PROFILEORDERCANCELROUTES)
+                                                      : ();
                                                 },
                                                 child: Container(
                                                   width: controller
@@ -836,6 +840,8 @@ class MyOrderView extends GetView<MyOrderController> {
                                                       Colors.transparent,
                                                   onTap: () {
                                                     print('Product rating');
+                                                    Get.toNamed(Routes
+                                                        .PROFILEREVIEWROUTES);
                                                   },
                                                   child: Container(
                                                     width: 122,

@@ -97,6 +97,17 @@ class AppImages {
       'assets/ProfileIcon/MyOrder/icUncheckOrderIcon.png';
   static const String ProfileRightIcon =
       'assets/ProfileIcon/MyOrder/icRightIcon.png';
+  static const String ProfileSelectRatingIcon =
+      'assets/ProfileIcon/MyOrder/icSelectRating.png';
+  static const String ProfileUnSelectRatingIcon =
+      'assets/ProfileIcon/MyOrder/icUnSelectRating.png';
+  static const String ProfileSparkingIcon =
+      'assets/ProfileIcon/MyOrder/Sparkling heart.png';
+  static const String ProfileProductItemIcon =
+      'assets/MyFavorite/icProductIcon.png';
+  static const String ProfileShareIconIcon =
+      'assets/MyFavorite/icShareIcon.png';
+  static const String ProfileRatingIcon = 'assets/MyFavorite/icRatingIcon.png';
 
   //Notification
   static const String NotificationNotFound =

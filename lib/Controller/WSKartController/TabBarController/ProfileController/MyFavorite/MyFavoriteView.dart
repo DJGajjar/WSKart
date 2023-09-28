@@ -11,6 +11,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'dart:ui';
+import 'package:animations/animations.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyFavorite/ProductDetail/ProductDetailView.dart';
 
 class MyFavoriteView extends GetView<MyFavoriteController> {
   const MyFavoriteView({Key? key}) : super(key: key);
@@ -59,6 +61,8 @@ class MyFavoriteView extends GetView<MyFavoriteController> {
     /*24 is for notification bar on Android*/
     final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
     final double itemWidth = size.width / 2;
+
+    ContainerTransitionType _transitionType = ContainerTransitionType.fade;
 
     return Scaffold(
       appBar: AppBar(
@@ -180,78 +184,446 @@ class MyFavoriteView extends GetView<MyFavoriteController> {
                       mainAxisSpacing: 24,
                     ),
                     itemCount: arrMyFavoriteLis.length,
+                    // itemBuilder: (context, index) => ProductTileAnimation(
+                    //   itemNo: index,
+                    //   product: products[index],
+                    // ),
+                    /*
+                    focusColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        splashColor: Colors.transparent,
+                        onTap: () async {
+                          print('Click Show Product Detail');
+                          Get.toNamed(Routes.PROFILEPRODUCTDETAILROUTES);
+                        },
+                     */
                     itemBuilder: (context, index) {
-                      return Card(
-                        color: CustomAppColors.cardBGColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(12)),
-                        ),
-                        child: Container(
-                          // width: 156,
-                          // height: 270,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 154,
-                                width: 156,
-                                decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  image: DecorationImage(
-                                    image:
-                                        AssetImage(AppImages.ProfileMyFavorite),
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 40,
-                                      width: 156,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 0, left: 6),
-                                            child: Container(
-                                              width: 36,
-                                              height: 16,
-                                              // color: CustomAppColors.lblOrgColor,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    CustomAppColors.lblOrgColor,
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(8)),
-                                              ),
-                                              child: Center(
-                                                child: CustomeTextStyle(
-                                                  text: "63%",
-                                                  size: 10,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: CustomAppColors
-                                                      .appWhiteColor,
-                                                  wordSpacing: 0.5,
+                      return OpenContainer<bool>(
+                        closedElevation: 0,
+                        closedColor: Colors.transparent,
+                        openColor: Colors.transparent,
+                        middleColor: Colors.transparent,
+                        openElevation: 0,
+                        transitionType: _transitionType,
+                        openBuilder:
+                            (BuildContext _, VoidCallback openContainer) {
+                          return ProductDetailView(); //Get.toNamed(Routes.PROFILEPRODUCTDETAILROUTES);
+                        },
+                        closedBuilder:
+                            (BuildContext _, VoidCallback openContainer) {
+                          return Card(
+                            color: CustomAppColors.cardBGColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(12)),
+                            ),
+                            child: Container(
+                              // width: 156,
+                              // height: 270,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    height: 154,
+                                    width: 156,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            AppImages.ProfileMyFavorite),
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          height: 40,
+                                          width: 156,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 0, left: 6),
+                                                child: Container(
+                                                  width: 36,
+                                                  height: 16,
+                                                  // color: CustomAppColors.lblOrgColor,
+                                                  decoration: BoxDecoration(
+                                                    color: CustomAppColors
+                                                        .lblOrgColor,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(8)),
+                                                  ),
+                                                  child: Center(
+                                                    child: CustomeTextStyle(
+                                                      text: "63%",
+                                                      size: 10,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: CustomAppColors
+                                                          .appWhiteColor,
+                                                      wordSpacing: 0.5,
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(right: 6),
-                                            child: Container(
-                                              width: 28,
-                                              height: 28,
-                                              decoration: const BoxDecoration(
-                                                color: CustomAppColors
-                                                    .appWhiteColor,
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(28)),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 6),
+                                                child: Container(
+                                                  width: 28,
+                                                  height: 28,
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    color: CustomAppColors
+                                                        .appWhiteColor,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                28)),
+                                                  ),
+                                                  child: Center(
+                                                    child: Container(
+                                                      width: 16,
+                                                      height: 16,
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                        image: DecorationImage(
+                                                          image: AssetImage(
+                                                              AppImages
+                                                                  .ProfileFavoriteIcon),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
-                                              child: Center(
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(9, 4, 9, 2),
+                                    child: Container(
+                                      child: CustomeTextStyle(
+                                        text: "Sofa Furniture Leg 3",
+                                        size: 12,
+                                        fontWeight: FontWeight.w400,
+                                        color: CustomAppColors.lblDarkColor,
+                                        wordSpacing: 0.5,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(9, 4, 9, 2),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        RatingBarIndicator(
+                                          rating: 2.5,
+                                          itemCount: 5,
+                                          itemSize: 12.0,
+                                          itemBuilder: (context, _) =>
+                                              const Icon(
+                                            Icons.star,
+                                            color: CustomAppColors.lblOrgColor,
+                                          ),
+                                        ),
+                                        4.widthBox,
+                                        CustomeTextStyle(
+                                          text: "(25)",
+                                          size: 10,
+                                          fontWeight: FontWeight.w400,
+                                          color: CustomAppColors
+                                              .txtPlaceholderColor,
+                                          wordSpacing: 0.5,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(10, 2, 9, 2),
+                                    child: Container(
+                                      width: 120,
+                                      height: 10,
+                                      child: CustomeTextStyle(
+                                        text: "In Stock",
+                                        size: 10,
+                                        fontWeight: FontWeight.w400,
+                                        color: CustomAppColors.lblDarkColor,
+                                        wordSpacing: 0.5,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(9, 10, 9, 2),
+                                    child: Container(
+                                      width: 120,
+                                      height: 10,
+                                      child: RichText(
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: '₹1000',
+                                              style: TextStyle(
+                                                decoration:
+                                                    TextDecoration.lineThrough,
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 10,
+                                                color: CustomAppColors
+                                                    .txtPlaceholderColor,
+                                                wordSpacing: 1,
+                                                height: 0.5,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: ' ₹599',
+                                              style: TextStyle(
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 10,
+                                                color:
+                                                    CustomAppColors.lblOrgColor,
+                                                wordSpacing: 1,
+                                                height: 0.5,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(left: 7, top: 2),
+                                    child: Container(
+                                      height: 30,
+                                      width: 142,
+                                      decoration: BoxDecoration(
+                                        color: CustomAppColors.lblOrgColor,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(8)),
+                                      ),
+                                      child: arrMyFavoriteLis[index]
+                                                      ['favoriteID']
+                                                  .toString() ==
+                                              '1'
+                                          ? Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Container(
+                                                    height: 30,
+                                                    decoration: BoxDecoration(
+                                                      color: CustomAppColors
+                                                          .cartCountBGColor,
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                        topLeft:
+                                                            Radius.circular(8),
+                                                        bottomLeft:
+                                                            Radius.circular(8),
+                                                      ),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        InkWell(
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          onTap: () {
+                                                            print(
+                                                                'Remove Item into cart Count: $index');
+                                                          },
+                                                          child: Expanded(
+                                                            flex: 1,
+                                                            child: Container(
+                                                              height: 30,
+                                                              width: 25,
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                        top: 6),
+                                                                child:
+                                                                    CustomeTextStyle(
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  text: "-",
+                                                                  size: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w800,
+                                                                  color: CustomAppColors
+                                                                      .appWhiteColor,
+                                                                  wordSpacing:
+                                                                      0.5,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Expanded(
+                                                          flex: 1,
+                                                          child: Container(
+                                                            height: 30,
+                                                            child: Center(
+                                                              child:
+                                                                  CustomeTextStyle(
+                                                                text: "10",
+                                                                size: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w800,
+                                                                color: CustomAppColors
+                                                                    .appWhiteColor,
+                                                                wordSpacing:
+                                                                    0.5,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        InkWell(
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          onTap: () {
+                                                            print(
+                                                                'Add Item into cart Count: $index');
+                                                          },
+                                                          child: Expanded(
+                                                            flex: 1,
+                                                            child: Container(
+                                                              height: 30,
+                                                              width: 25,
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                        top: 6),
+                                                                child:
+                                                                    CustomeTextStyle(
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  text: "+",
+                                                                  size: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w800,
+                                                                  color: CustomAppColors
+                                                                      .appWhiteColor,
+                                                                  wordSpacing:
+                                                                      0.5,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                InkWell(
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  onTap: () {
+                                                    print(
+                                                        'Add To Cart Item: $index');
+                                                  },
+                                                  child: Expanded(
+                                                    flex: 1,
+                                                    child: Container(
+                                                      height: 30,
+                                                      width: 71,
+                                                      decoration: BoxDecoration(
+                                                        color: CustomAppColors
+                                                            .lblOrgColor,
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  8),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  8),
+                                                        ),
+                                                      ),
+                                                      child: Center(
+                                                        child: Container(
+                                                          width: 16,
+                                                          height: 16,
+                                                          decoration:
+                                                              const BoxDecoration(
+                                                            image:
+                                                                DecorationImage(
+                                                              image: AssetImage(
+                                                                  AppImages
+                                                                      .ProfileAddToCart),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          : Center(
+                                              child: InkWell(
+                                                focusColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                splashColor: Colors.transparent,
+                                                onTap: () {
+                                                  print(
+                                                      'Add To Cart Item: $index');
+                                                },
                                                 child: Container(
                                                   width: 16,
                                                   height: 16,
@@ -259,257 +631,19 @@ class MyFavoriteView extends GetView<MyFavoriteController> {
                                                       const BoxDecoration(
                                                     image: DecorationImage(
                                                       image: AssetImage(AppImages
-                                                          .ProfileFavoriteIcon),
+                                                          .ProfileAddToCart),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
                                     ),
-                                  ],
-                                ),
+                                  )
+                                ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(9, 4, 9, 2),
-                                child: Container(
-                                  child: CustomeTextStyle(
-                                    text: "Sofa Furniture Leg 3",
-                                    size: 12,
-                                    fontWeight: FontWeight.w400,
-                                    color: CustomAppColors.lblDarkColor,
-                                    wordSpacing: 0.5,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(9, 4, 9, 2),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    RatingBarIndicator(
-                                      rating: 2.5,
-                                      itemCount: 5,
-                                      itemSize: 12.0,
-                                      itemBuilder: (context, _) => const Icon(
-                                        Icons.star,
-                                        color: CustomAppColors.lblOrgColor,
-                                      ),
-                                    ),
-                                    4.widthBox,
-                                    CustomeTextStyle(
-                                      text: "(25)",
-                                      size: 10,
-                                      fontWeight: FontWeight.w400,
-                                      color:
-                                          CustomAppColors.txtPlaceholderColor,
-                                      wordSpacing: 0.5,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(10, 2, 9, 2),
-                                child: Container(
-                                  width: 120,
-                                  height: 10,
-                                  child: CustomeTextStyle(
-                                    text: "In Stock",
-                                    size: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: CustomAppColors.lblDarkColor,
-                                    wordSpacing: 0.5,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(9, 10, 9, 2),
-                                child: Container(
-                                  width: 120,
-                                  height: 10,
-                                  child: RichText(
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: '₹1000',
-                                          style: TextStyle(
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 10,
-                                            color: CustomAppColors
-                                                .txtPlaceholderColor,
-                                            wordSpacing: 1,
-                                            height: 0.5,
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: ' ₹599',
-                                          style: TextStyle(
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 10,
-                                            color: CustomAppColors.lblOrgColor,
-                                            wordSpacing: 1,
-                                            height: 0.5,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    textAlign: TextAlign.left,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 7, top: 2),
-                                child: Container(
-                                  height: 30,
-                                  width: 142,
-                                  decoration: BoxDecoration(
-                                    color: CustomAppColors.lblOrgColor,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8)),
-                                  ),
-                                  child: arrMyFavoriteLis[index]['favoriteID']
-                                              .toString() ==
-                                          '1'
-                                      ? Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Expanded(
-                                              flex: 1,
-                                              child: Container(
-                                                height: 30,
-                                                decoration: BoxDecoration(
-                                                  color: CustomAppColors
-                                                      .cartCountBGColor,
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                    topLeft: Radius.circular(8),
-                                                    bottomLeft:
-                                                        Radius.circular(8),
-                                                  ),
-                                                ),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Expanded(
-                                                      flex: 1,
-                                                      child: Container(
-                                                        height: 30,
-                                                        child: Center(
-                                                          child:
-                                                              CustomeTextStyle(
-                                                            text: "-",
-                                                            size: 12,
-                                                            fontWeight:
-                                                                FontWeight.w800,
-                                                            color: CustomAppColors
-                                                                .appWhiteColor,
-                                                            wordSpacing: 0.5,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 1,
-                                                      child: Container(
-                                                        height: 30,
-                                                        child: Center(
-                                                          child:
-                                                              CustomeTextStyle(
-                                                            text: "1",
-                                                            size: 12,
-                                                            fontWeight:
-                                                                FontWeight.w800,
-                                                            color: CustomAppColors
-                                                                .appWhiteColor,
-                                                            wordSpacing: 0.5,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 1,
-                                                      child: Container(
-                                                        height: 30,
-                                                        child: Center(
-                                                          child:
-                                                              CustomeTextStyle(
-                                                            text: "+",
-                                                            size: 12,
-                                                            fontWeight:
-                                                                FontWeight.w800,
-                                                            color: CustomAppColors
-                                                                .appWhiteColor,
-                                                            wordSpacing: 0.5,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 1,
-                                              child: Container(
-                                                height: 30,
-                                                decoration: BoxDecoration(
-                                                  color: CustomAppColors
-                                                      .lblOrgColor,
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                    topRight:
-                                                        Radius.circular(8),
-                                                    bottomRight:
-                                                        Radius.circular(8),
-                                                  ),
-                                                ),
-                                                child: Center(
-                                                  child: Container(
-                                                    width: 16,
-                                                    height: 16,
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      image: DecorationImage(
-                                                        image: AssetImage(AppImages
-                                                            .ProfileAddToCart),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      : Center(
-                                          child: Container(
-                                            width: 16,
-                                            height: 16,
-                                            decoration: const BoxDecoration(
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    AppImages.ProfileAddToCart),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
+                            ),
+                          );
+                        },
                       );
                     }),
               ),

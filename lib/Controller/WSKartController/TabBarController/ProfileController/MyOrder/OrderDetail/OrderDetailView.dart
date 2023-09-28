@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 import 'OrderDetailController.dart';
 import 'package:wskart/ExtraClass/AppColor.dart';
 import 'package:wskart/ExtraClass/AppImage.dart';
@@ -663,6 +664,7 @@ class OrderDetailView extends GetView<OrderDetailController> {
                           splashColor: Colors.transparent,
                           onTap: () {
                             print('Product rating');
+                            Get.toNamed(Routes.PROFILEREVIEWROUTES);
                           },
                           child: Container(
                             width: 160,
@@ -695,6 +697,7 @@ class OrderDetailView extends GetView<OrderDetailController> {
                           splashColor: Colors.transparent,
                           onTap: () {
                             print('Cancel order');
+                            Get.toNamed(Routes.PROFILEORDERCANCELROUTES);
                           },
                           child: Container(
                             width: 150,

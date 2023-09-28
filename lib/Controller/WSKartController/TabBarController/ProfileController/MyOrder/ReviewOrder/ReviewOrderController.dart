@@ -4,10 +4,18 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 
-class MyFavoriteController extends GetxController {
-  var isShowCartIcon = false.obs;
+class ReviewOrderController extends GetxController {
+  var strMessage = ''.obs;
+  var isMessage = false.obs;
 
-  var isSlowAnimations = true.obs;
+  var strReviewTitle = ''.obs;
+  var isReviewTitle = false.obs;
+
+  var isSelectStar1 = false.obs;
+  var isSelectStar2 = false.obs;
+  var isSelectStar3 = false.obs;
+  var isSelectStar4 = false.obs;
+  var isSelectStar5 = false.obs;
 
   @override
   void onInit() {

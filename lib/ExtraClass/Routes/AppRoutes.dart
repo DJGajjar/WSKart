@@ -36,6 +36,8 @@ abstract class Routes {
   static const PROFILEORDERDETAILROUTES = _Paths.PROFILEORDERDETAIL;
   static const PROFILEORDERCANCELROUTES = _Paths.PROFILEORDERDCANCEL;
   static const PROFILERETURNORDERROUTES = _Paths.PROFILERETURNORDER;
+  static const PROFILEREVIEWROUTES = _Paths.PROFILEREVIEW;
+  static const PROFILEPRODUCTDETAILROUTES = _Paths.PROFILEPRODUCTDETAIL;
 }
 
 abstract class _Paths {
@@ -73,4 +75,6 @@ abstract class _Paths {
   static const PROFILEORDERDETAIL = '/OrdersDetailView';
   static const PROFILEORDERDCANCEL = '/OrdersCancelView';
   static const PROFILERETURNORDER = '/ReturnOrderView';
+  static const PROFILEREVIEW = '/ReviewView';
+  static const PROFILEPRODUCTDETAIL = '/ProductDetailView';
 }
