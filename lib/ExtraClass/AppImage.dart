@@ -109,6 +109,11 @@ class AppImages {
       'assets/MyFavorite/icShareIcon.png';
   static const String ProfileRatingIcon = 'assets/MyFavorite/icRatingIcon.png';
 
+  //My_Shop
+  static const String ProductFilterIcon = 'assets/MyShop/ic_FilterIcon.png';
+  static const String ProductColorSelectIcon =
+      'assets/MyShop/ic_CircleIcon.png';
+
   //Notification
   static const String NotificationNotFound =
       'assets/Notification/icNoNotification.png';

@@ -41,7 +41,7 @@ class TabBarController extends GetxController {
       if (index == 1) {
         // Search page may sometimes doesn't have a scroll controller, so we need to check it
         print('Search');
-        navigationTitle = 'Search'.obs;
+        navigationTitle = 'Shop'.obs;
         try {
           searchScrollController.animateTo(0,
               duration: const Duration(milliseconds: 200),
@@ -124,5 +124,9 @@ class TabBarController extends GetxController {
 
   MYProfileScreen() {
     Get.toNamed(Routes.MYPROFILEROUTES);
+  }
+
+  ProductFilterScreen() {
+    Get.toNamed(Routes.PRODUCTFILTERROUTES);
   }
 }

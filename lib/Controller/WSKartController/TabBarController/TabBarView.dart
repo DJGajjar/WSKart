@@ -170,17 +170,45 @@ class TabBarView extends GetView<TabBarController> {
                         },
                       ),
                     )
-                  : IconButton(
-                      icon: Image.asset(
-                        AppImages.ProfileAvtar,
-                        height: 0,
-                        width: 0,
-                      ),
-                      // Icon(Icons.person),
-                      onPressed: () {
-                        _.MYProfileScreen();
-                      },
-                    ),
+                  : _.tabIndex.value == 1
+                      ? Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: IconButton(
+                            icon: badge.Badge(
+                              badgeContent: CustomeTextStyle(
+                                text: "2",
+                                size: 10,
+                                fontWeight: FontWeight.w500,
+                                color: CustomAppColors.appWhiteColor,
+                                wordSpacing: 0.5,
+                              ),
+                              badgeStyle: BadgeStyle(
+                                  badgeColor: CustomAppColors.badgeBGColor),
+                              child: Image.asset(
+                                AppImages.ProductFilterIcon,
+                                fit: BoxFit.contain,
+                                height: 30,
+                                width: 30,
+                              ),
+                            ),
+                            // Icon(Icons.person),
+                            onPressed: () {
+                              print('Click Filter');
+                              _.ProductFilterScreen();
+                            },
+                          ),
+                        )
+                      : IconButton(
+                          icon: Image.asset(
+                            AppImages.ProfileAvtar,
+                            height: 0,
+                            width: 0,
+                          ),
+                          // Icon(Icons.person),
+                          onPressed: () {
+                            _.MYProfileScreen();
+                          },
+                        ),
               if (_.tabIndex.value == 0)
                 IconButton(
                   icon: Image.asset(
@@ -193,15 +221,31 @@ class TabBarView extends GetView<TabBarController> {
                   onPressed: () => null,
                 ),
               if (_.tabIndex.value == 1)
-                IconButton(
-                  icon: Image.asset(
-                    AppImages.HomeProfile,
-                    fit: BoxFit.contain,
-                    height: 30,
-                    width: 30,
+                Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: IconButton(
+                    icon: badge.Badge(
+                      badgeContent: CustomeTextStyle(
+                        text: "5",
+                        size: 10,
+                        fontWeight: FontWeight.w500,
+                        color: CustomAppColors.appWhiteColor,
+                        wordSpacing: 0.5,
+                      ),
+                      badgeStyle:
+                          BadgeStyle(badgeColor: CustomAppColors.badgeBGColor),
+                      child: Image.asset(
+                        AppImages.ProfileHeart,
+                        fit: BoxFit.contain,
+                        height: 30,
+                        width: 30,
+                      ),
+                    ),
+                    // Icon(Icons.person),
+                    onPressed: () {
+                      print('Click My Favourite');
+                    },
                   ),
-                  // Icon(Icons.person),
-                  onPressed: () => null,
                 ),
               if (_.tabIndex.value == 2)
                 Padding(
@@ -306,14 +350,13 @@ class TabBarView extends GetView<TabBarController> {
               ),
               FlashyTabBarItem(
                 icon: const Icon(
-                  // Icons.search_sharp,
-                  WSKartIcon.active,
+                  WSKartIcon.shop,
                   size: 16,
                 ),
                 activeColor: CustomAppColors.lblOrgColor,
                 inactiveColor: CustomAppColors.txtPlaceholderColor,
                 title: const Text(
-                  'Search',
+                  'Shop',
                   style: TextStyle(
                     fontSize: 13,
                   ),
@@ -321,7 +364,6 @@ class TabBarView extends GetView<TabBarController> {
               ),
               FlashyTabBarItem(
                 icon: const Icon(
-                  // Icons.notifications_none_sharp,
                   WSKartIcon.notification,
                   size: 16,
                 ),

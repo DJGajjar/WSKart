@@ -136,6 +136,8 @@ flutter:
     - assets/MyFavorite/icProductIcon.png
     - assets/MyFavorite/icShareIcon.png
     - assets/MyFavorite/icRatingIcon.png
+    - assets/MyShop/ic_FilterIcon.png
+    - assets/MyShop/ic_CircleIcon.png
 
   fonts:
     - family: Inter
