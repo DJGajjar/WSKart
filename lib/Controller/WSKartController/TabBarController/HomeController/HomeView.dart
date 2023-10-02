@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 import 'HomeController.dart';
 import 'package:wskart/ExtraClass/AppColor.dart';
 import 'package:wskart/ExtraClass/AppImage.dart';
@@ -81,6 +82,7 @@ class HomeView extends GetView<HomeController> {
                         splashColor: Colors.transparent,
                         onTap: () {
                           print('Click Search Bar Open');
+                          Get.toNamed(Routes.SEARCHRESULTROUTES);
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20, top: 10),

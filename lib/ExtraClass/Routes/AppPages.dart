@@ -71,6 +71,8 @@ import 'package:wskart/Controller/WSKartController/TabBarController/ProfileContr
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyFavorite/ProductDetail/ProductDetailBinding.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/SearchController/FilterProduct/FilterView.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/SearchController/FilterProduct/FilterBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/SearchController/SearchResult/SearchResultBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/SearchController/SearchResult/SearchResultView.dart';
 
 part 'AppRoutes.dart';
 
@@ -255,6 +257,11 @@ class AppPages {
       name: _Paths.PRODUCTFILTER,
       page: () => const FilterView(),
       binding: FilterBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCHRESULT,
+      page: () => const SearchResultView(),
+      binding: SearchResultBinding(),
     ),
   ];
 }

@@ -43,6 +43,14 @@ dependencies:
   badges: ^3.1.2
   flutter_rating_bar: ^4.0.1
   animations: ^2.0.8
+  dio: ^5.3.3
+  shared_preferences: ^2.2.1
+  crypto: ^3.0.3
+  convert: ^3.1.1
+  json_annotation: ^4.8.1
+  json_serializable: ^6.7.1
+  html_unescape: ^2.0.0
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
