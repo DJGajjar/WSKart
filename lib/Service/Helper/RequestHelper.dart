@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:wskart/Service/Helper/APIHelper.dart';
 import 'package:wskart/Service/Modules/NetworkModule.dart';
 import 'package:wskart/Constants/ServiceList.dart';
 import 'package:wskart/Service/Model/ProductModel/Product.dart';
@@ -7,11 +8,11 @@ import 'package:wskart/Service/Model/brand/brand.dart';
 import 'package:wskart/Service/Model/Post/post_category.dart';
 
 class RequestHelper {
-  final DioClient _dioClient;
+  //final DioClient _dioClient;
 
-  RequestHelper(this._dioClient);
+  RequestHelper(/*this._dioClient*/);
 
-  Future<Map<String, dynamic>> getSettings() async {
+  /*Future<Map<String, dynamic>> getSettings() async {
     try {
       final res = await _dioClient.get(AppService.getSettings);
 
@@ -23,30 +24,40 @@ class RequestHelper {
     } on DioException {
       rethrow;
     }
-  }
+  }*/
+
+  final APIHelper _apiHelper = APIHelper();
 
   // ---------------------------------------------- Product ------------------------------------------------------------
 
   /// Returns list of product in response
-  Future<List<Product>?> getProducts(
+  Future<List<Product>?> getWSKartProductsItemList(
       {Map<String, dynamic>? queryParameters, CancelToken? cancelToken}) async {
+    print('API Method Call in this');
     try {
-      final data = await _dioClient.get(
+      final data = await _apiHelper.get(
         AppService.getProducts,
         queryParameters: queryParameters,
         cancelToken: cancelToken,
       );
+
+      print('Product API Responce : $data');
+
       List<Product>? products = <Product>[];
+
       products = data
           .map((product) => Product.fromJson(product))
           .toList()
           .cast<Product>();
+
+      print('List Of Product Data: $products');
       return products;
     } on DioException {
       rethrow;
     }
   }
 
+  /*
   /// Retrieve a product in response
   Future<Product> getProduct(
       {int? id,
@@ -1006,6 +1017,7 @@ class RequestHelper {
       rethrow;
     }
   }
+
 /*
   /// Coupon list
   Future<List<Coupon>> getCouponList({Map<String, dynamic>? query}) async {
@@ -1236,6 +1248,7 @@ class RequestHelper {
       rethrow;
     }
   }
+
 /*
   Future<AddressData> getAddress(
       {Map<String, dynamic>? queryParameters}) async {
@@ -1327,6 +1340,7 @@ class RequestHelper {
       rethrow;
     }
   }
+
 /*
   Future<Customer> postCustomer(
       {String? userId,
@@ -1377,6 +1391,7 @@ class RequestHelper {
       rethrow;
     }
   }
+
 /*
   Future<Customer> getCustomer({
     String? userId,
@@ -2071,7 +2086,7 @@ class RequestHelper {
       rethrow;
     }
   }
-
+*/
   /*
   /// Get list conversation - Better messages
   Future<List<BMConversation>?> getConversationsBM({

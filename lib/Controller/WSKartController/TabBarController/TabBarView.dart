@@ -17,17 +17,11 @@ import 'package:wskart/Controller/WSKartController/TabBarController/HomeControll
 import 'package:wskart/Controller/WSKartController/TabBarController/SearchController/SearchView.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/NotificationController/NotificationView.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/ProfileView.dart';
+import 'HomeController/HomeController.dart';
+import 'HomeController/HomeBinding.dart';
 
 class TabBarView extends GetView<TabBarController> {
   const TabBarView({Key? key}) : super(key: key);
-
-  // static final TextStyle unselectedLabelStyle = TextStyle(
-  //     color: Colors.white.withOpacity(0.5),
-  //     fontWeight: FontWeight.w500,
-  //     fontSize: 12);
-  //
-  // final TextStyle selectedLabelStyle =
-  //     TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
 
   /*buildBottomNavigationMenu(context, TabBarController) {
     return Obx(() => MediaQuery(
@@ -96,7 +90,7 @@ class TabBarView extends GetView<TabBarController> {
 
   @override
   Widget build(BuildContext context) {
-    // final TabBarController tabController = Get.put(TabBarController(), permanent: false);
+    // final TabBarController tabController = Get.put(TabBarController(), permanent: true);
 
     const List<Widget> pages = <Widget>[
       HomeView(),

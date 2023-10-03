@@ -85,8 +85,8 @@ class NetworkModule {
   /// A singleton preference provider.
   ///
   /// Calling it multiple times will return the same instance.
-  RequestHelper provideRequestHelper(DioClient dioClient) =>
-      RequestHelper(dioClient);
+  // RequestHelper provideRequestHelper(DioClient dioClient) =>
+  //     RequestHelper(dioClient);
 }
 
 class DioClient {
