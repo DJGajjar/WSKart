@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wskart/ExtraClass/Routes/AppPages.dart';
+import 'package:wskart/Service/Model/ProductModel/Product.dart';
 import 'ProductDetailController.dart';
 import 'package:wskart/ExtraClass/AppColor.dart';
 import 'package:wskart/ExtraClass/AppImage.dart';
@@ -15,8 +16,16 @@ import 'dart:ui';
 import 'package:badges/src/badge.dart' as badge;
 
 class ProductDetailView extends GetView<ProductDetailController> {
-  const ProductDetailView({Key? key}) : super(key: key);
+  final String productID;
+  const ProductDetailView({Key? key, required this.productID})
+      : super(key: key);
 
+  // ProductDetailView({Key? key}) : super(key: key);
+
+  /*
+  productID: '${shopProductController.products?[index].id}'
+
+   */
   static final GlobalKey<FormState> formGlobalKey = new GlobalKey<FormState>();
 
   @override

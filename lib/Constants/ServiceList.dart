@@ -286,4 +286,12 @@ class AppService {
 
   static const String getBMThreads = "/better-messages/v1/threads";
   static const String getBMThread = "/better-messages/v1/thread";
+
+  // No Image URL: =======================================================================================================
+
+  static const String noImageUrl =
+      "https://cdn.rnlab.io/placeholder-416x416.png";
+
+  static const String noImageUrlBlack =
+      "https://cdn.rnlab.io/placeholder-black-416x416.png";
 }

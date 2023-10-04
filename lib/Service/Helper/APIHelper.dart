@@ -10,6 +10,10 @@ class APIHelper {
       baseUrl: AppService.restUrl,
       connectTimeout: const Duration(milliseconds: 60000),
       receiveTimeout: const Duration(milliseconds: 60000),
+      queryParameters: {
+        'consumer_key': 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835',
+        'consumer_secret': 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc',
+      },
     ),
   );
 

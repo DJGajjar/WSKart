@@ -31,14 +31,11 @@ class RequestHelper {
   // ---------------------------------------------- Product ------------------------------------------------------------
 
   /// Returns list of product in response
-  Future<List<Product>?> getWSKartProductsItemList(
-      {Map<String, dynamic>? queryParameters, CancelToken? cancelToken}) async {
+  Future<List<Product>?> getWSKartProductsItemList() async {
     print('API Method Call in this');
     try {
       final data = await _apiHelper.get(
         AppService.getProducts,
-        queryParameters: queryParameters,
-        cancelToken: cancelToken,
       );
 
       print('Product API Responce : $data');

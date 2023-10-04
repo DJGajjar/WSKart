@@ -250,7 +250,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PROFILEPRODUCTDETAIL,
-      page: () => const ProductDetailView(),
+      page: () => const ProductDetailView(productID: ""),
       binding: ProductDetailBinding(),
     ),
     GetPage(

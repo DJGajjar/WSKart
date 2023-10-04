@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/SearchController/SearchTabController.dart';
 import '../../../../../ExtraClass/Routes/AppPages.dart';
 import 'MyFavoriteController.dart';
 import 'package:wskart/ExtraClass/AppColor.dart';
@@ -22,6 +23,8 @@ class MyFavoriteView extends GetView<MyFavoriteController> {
   @override
   Widget build(BuildContext context) {
     final mobileNumber = GetStorage();
+
+    SearchTabController shopProductController = Get.put(SearchTabController());
 
     var arrMyFavoriteLis = [
       {
@@ -208,7 +211,9 @@ class MyFavoriteView extends GetView<MyFavoriteController> {
                         transitionType: _transitionType,
                         openBuilder:
                             (BuildContext _, VoidCallback openContainer) {
-                          return ProductDetailView(); //Get.toNamed(Routes.PROFILEPRODUCTDETAILROUTES);
+                          return ProductDetailView(
+                              productID:
+                                  '${shopProductController.products?[index].id}'); //Get.toNamed(Routes.PROFILEPRODUCTDETAILROUTES);
                         },
                         closedBuilder:
                             (BuildContext _, VoidCallback openContainer) {

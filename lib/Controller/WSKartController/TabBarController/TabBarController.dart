@@ -6,25 +6,13 @@ import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 import 'SearchController/SearchTabController.dart';
 
 class TabBarController extends GetxController {
+  final getStorage = GetStorage();
+
   var tabIndex = 0.obs;
-  var selectedIndexxxxxxx = 0.obs;
   int selectedIndex = 0;
   var isLoading = false.obs;
 
   var navigationTitle = 'Home'.obs;
-  // RxList<Product> product = (List<Product>.of([])).obs;
-
-  // final List<Tab> myTabs1 = <Tab>[
-  //   HomeTabScreen(),
-  //   SearchTabScreen(),
-  //   NotificationTabScreen(),
-  //   ProfileTabScreen(),
-  // ];
-  //
-  // final List<Tab> myTabs = <Tab>[
-  //   Tab(text: 'LEFT'),
-  //   Tab(text: 'RIGHT'),
-  // ];
 
   void changeTabIndex(int index) {
     tabIndex.value = index;
@@ -34,6 +22,8 @@ class TabBarController extends GetxController {
     print('selectedIndex>>>> $selectedIndex');
 
     print('Check Value of tabbar Controller: ${tabIndex.value}');
+
+    getStorage.write("TabIndex", selectedIndex);
 
     if (index == selectedIndex) {
       if (index == 0) {
@@ -50,6 +40,8 @@ class TabBarController extends GetxController {
           searchScrollController.animateTo(0,
               duration: const Duration(milliseconds: 200),
               curve: Curves.easeInOut);
+
+          // Get.find<SearchTabController>().fetchProductShopData();
           // ignore: empty_catches
         } catch (e) {}
       }
@@ -83,37 +75,12 @@ class TabBarController extends GetxController {
   ScrollController listsScrollController = ScrollController();
   ScrollController profileScrollController = ScrollController();
 
-  // Widget build(BuildContext context) {
-  //   const List<Widget> pages = <Widget>[
-  //     HomeView(),
-  //     SearchView(),
-  //     NotificationView(),
-  //     ProfileView(),
-  //   ];
   @override
   void onInit() {
     super.onInit();
     print("Tab Bar Call");
-    //fetchProductShopData();
-    Get.find<SearchTabController>().fetchProductShopData();
-  }
-
-  fetchProductShopData() async {
-    print('Shop View Opne data Call API Tab>>>>');
-    print("HHHHHHHHHHH");
-    Map<String, String?> queryParams = {
-      'consumer_key': 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835',
-      'consumer_secret': 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc',
-    };
-
-    try {
-      isLoading(true);
-      // _requestHelper?.getWSKartProductsItemList(queryParameters: queryParams);
-    } catch (error) {
-      print('Store Product Error: $error');
-    } finally {
-      isLoading(false);
-    }
+    print('Value Of SelectIndex: $selectedIndex');
+    getStorage.write("TabIndex", selectedIndex);
   }
 
   @override
