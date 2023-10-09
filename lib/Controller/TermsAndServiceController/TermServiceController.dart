@@ -6,6 +6,7 @@ import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 
 class TermServiceController extends GetxController {
   final getStorge = GetStorage();
+
   @override
   void onInit() {
     super.onInit();
@@ -14,16 +15,6 @@ class TermServiceController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    // if (getStorge.read("id") != null) {
-    //   // Future.delayed(const Duration(milliseconds: 3000), () {
-    //   //   Get.offAllNamed(Routes.WELCOME);
-    //   // });
-    // } else {
-    //   // Get.offAllNamed(Routes.LOGIN);
-    //   Future.delayed(const Duration(milliseconds: 3000), () {
-    //     Get.offAllNamed(Routes.WELCOME);
-    //   });
-    // }
   }
 
   @override

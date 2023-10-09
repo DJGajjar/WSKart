@@ -32,7 +32,9 @@ class StartController extends GetxController {
   }
 
   GetStarted() {
+    // getStorge.write("id", 1);
+    // Get.offAllNamed(Routes.SIGNUP);
     getStorge.write("id", 1);
-    Get.offAllNamed(Routes.SIGNUP);
+    Get.offAllNamed(Routes.TABBARROUTES);
   }
 }

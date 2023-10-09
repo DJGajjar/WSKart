@@ -38,7 +38,38 @@ class SignUpView extends GetView<SignUpController> {
             child: Column(
               children: [
                 44.heightBox,
-                Container(
+                Stack(
+                  alignment: AlignmentDirectional.centerStart,
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                            icon: Image.asset(AppImages.BackIcon),
+                            iconSize: 28,
+                            onPressed: () {
+                              Get.back();
+                            },
+                          ),
+                          Spacer(),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: CustomeTextStyle(
+                        text: "WELCOME",
+                        size: 13,
+                        fontWeight: FontWeight.w700,
+                        color: CustomAppColors.lblDarkColor,
+                        wordSpacing: 1,
+                      ),
+                    ),
+                  ],
+                ),
+                /*Container(
                   alignment: Alignment.center,
                   width: (MediaQuery.of(context).size.width - 48),
                   child: CustomeTextStyle(
@@ -48,7 +79,7 @@ class SignUpView extends GetView<SignUpController> {
                     color: CustomAppColors.lblDarkColor,
                     wordSpacing: 4,
                   ),
-                ),
+                ),*/
                 24.heightBox,
                 Container(
                   width: 69,
@@ -701,7 +732,7 @@ class SignUpView extends GetView<SignUpController> {
                   ),
                 ),
                 32.heightBox,
-                Container(
+                /*Container(
                   width: MediaQuery.of(context).size.width - 48,
                   height: 1,
                   color: CustomAppColors.borderColor,
@@ -721,7 +752,7 @@ class SignUpView extends GetView<SignUpController> {
                       wordSpacing: 1,
                     ),
                   ),
-                ),
+                ),*/
               ],
             ),
           ),

@@ -4,6 +4,7 @@ import 'package:wskart/Service/Helper/APIHelper.dart';
 import 'package:wskart/Service/Modules/NetworkModule.dart';
 import 'package:wskart/Constants/ServiceList.dart';
 import 'package:wskart/Service/Model/ProductModel/Product.dart';
+import 'package:wskart/Service/Model/product_review/product_review.dart';
 import 'package:wskart/Service/Model/brand/brand.dart';
 import 'package:wskart/Service/Model/Post/post_category.dart';
 
@@ -49,6 +50,30 @@ class RequestHelper {
 
       print('List Of Product Data: $products');
       return products;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  // ------------------------------------------------ Reviews ----------------------------------------------------------
+  /// Get list review
+  Future<List<ProductReview>?> getWSKartProductReviewsList(
+      {Map<String, dynamic>? queryParameters}) async {
+    print('Review API Call Method: $queryParameters');
+    try {
+      final data = await _apiHelper.get(
+        AppService.getReviews,
+        queryParameters: queryParameters,
+      );
+
+      print('Review Data Print: $data');
+
+      List<ProductReview>? reviews = <ProductReview>[];
+      reviews = data
+          .map((review) => ProductReview.fromJson(review))
+          .toList()
+          .cast<ProductReview>();
+      return reviews;
     } on DioException {
       rethrow;
     }

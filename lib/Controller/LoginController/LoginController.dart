@@ -31,6 +31,10 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
+  SignUpScreen() {
+    Get.toNamed(Routes.SIGNUP);
+  }
+
   VerifyMobileNumber() {
     Get.toNamed(Routes.VERIFY);
   }

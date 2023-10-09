@@ -32,7 +32,8 @@ class VerifyController extends GetxController {
   }
 
   BottomTabBarController() {
-    getStorge.write("id", 2);
-    Get.offAllNamed(Routes.TABBARROUTES);
+    print("Set Code here");
+    // getStorge.write("id", 2);
+    // Get.offAllNamed(Routes.TABBARROUTES);
   }
 }

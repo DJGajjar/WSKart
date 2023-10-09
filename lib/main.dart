@@ -170,8 +170,8 @@ class WelcomeBannerView extends StatelessWidget {
 }
 
 */
-
+// https://www.youtube.com/watch?v=FdsqU02xwsE
 // https://www.youtube.com/watch?v=5ARwxw6-GwQ
-//https://www.youtube.com/watch?v=M0OwOYPFkrM
-//https://blog.logrocket.com/build-an-intuitive-ecommerce-product-gallery-with-flutter/
-//https://blog.logrocket.com/building-shopping-cart-flutter/
+// https://www.youtube.com/watch?v=M0OwOYPFkrM
+// https://blog.logrocket.com/build-an-intuitive-ecommerce-product-gallery-with-flutter/
+// https://blog.logrocket.com/building-shopping-cart-flutter/

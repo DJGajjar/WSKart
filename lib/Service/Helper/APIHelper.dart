@@ -26,6 +26,8 @@ class APIHelper {
     bool isFullResponse = false,
   }) async {
     try {
+      print('response Data uri_1??? : $uri');
+      print('response Data queryParameters_1??? : $queryParameters');
       final Response response = await _dio.get(
         uri,
         queryParameters: queryParameters,
@@ -33,6 +35,9 @@ class APIHelper {
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
+      print('response Data uri??? : $uri');
+      print('response Data queryParameters??? : $queryParameters');
+      print('response Data List??? : $response');
       return isFullResponse ? response : response.data;
     } on DioException {
       rethrow;

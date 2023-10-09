@@ -20,6 +20,8 @@ class LoginView extends GetView<LoginController> {
     String strMobileNumber = '';
     bool isMobileNumberNull = false;
 
+    var screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SingleChildScrollView(
         reverse: true,
@@ -350,6 +352,27 @@ class LoginView extends GetView<LoginController> {
                     },
                   ),
                 ),
+                10.heightBox,
+                InkWell(
+                  onTap: () {
+                    print('Reset Password');
+                    controller.ResetPassword();
+                  },
+                  child: Container(
+                    width: (screenSize.width - 48),
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: CustomeTextStyle(
+                        textAlign: TextAlign.right,
+                        text: "Reset password",
+                        size: 15,
+                        fontWeight: FontWeight.w400,
+                        color: CustomAppColors.lblOrgColor,
+                        wordSpacing: 1,
+                      ),
+                    ),
+                  ),
+                ),
                 32.heightBox,
                 Container(
                   width: MediaQuery.of(context).size.width - 48,
@@ -360,11 +383,11 @@ class LoginView extends GetView<LoginController> {
                 InkWell(
                   onTap: () {
                     print('Reset Password');
-                    controller.ResetPassword();
+                    controller.SignUpScreen();
                   },
                   child: Container(
                     child: CustomeTextStyle(
-                      text: "Reset password",
+                      text: "SignUp",
                       size: 15,
                       fontWeight: FontWeight.w400,
                       color: CustomAppColors.lblOrgColor,
