@@ -24,8 +24,6 @@ class ProductDetailView extends StatefulWidget {
   final Product? product;
   const ProductDetailView({Key? key, this.product}) : super(key: key);
 
-  get productReview => null;
-
   @override
   State<ProductDetailView> createState() => _ProductDetailViewState();
 }
@@ -34,9 +32,9 @@ class _ProductDetailViewState extends State<ProductDetailView>
     with TickerProviderStateMixin {
   static final GlobalKey<FormState> formGlobalKey = new GlobalKey<FormState>();
 
-  var isLoading = false.obs;
+  bool isLoading = true;
+  var intProductReview = 0;
 
-  // final List<ProductReview> productReview;
   List<ProductReview>? productReview = <ProductReview>[];
   final RequestHelper _requestHelper = RequestHelper();
 
@@ -57,15 +55,17 @@ class _ProductDetailViewState extends State<ProductDetailView>
     print('URL Base : ${AppService.restUrl}');
 
     try {
-      // isLoading(true);
+      isLoading = true;
       print('Object call this try block');
       productReview = await _requestHelper.getWSKartProductReviewsList(
           queryParameters: preQueryParameters(reviewParam));
       print('ReviewList Count: ${productReview!.length.toString()}');
+      intProductReview = productReview?.length ?? 0;
     } catch (error) {
+      isLoading = false;
       print('Product Review Error: $error');
     } finally {
-      // isLoading(false);
+      isLoading = false;
     }
   }
 
@@ -90,6 +90,9 @@ class _ProductDetailViewState extends State<ProductDetailView>
     // var isShippingSelect = false.obs;
     var isReviewsSelect = false.obs;
 
+    // var selectDescription = 'Y';
+    // var selectReviews = 'N';
+
     var screenSize = MediaQuery.of(context).size;
 
     /*24 is for notification bar on Android*/
@@ -100,13 +103,16 @@ class _ProductDetailViewState extends State<ProductDetailView>
     RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
     strDescription = '${widget.product?.description}'.replaceAll(exp, ' ');
 
-    String? strProductUrl;
+    // var strProductUrl = "".obs;
+    RxString? strProductUrl = "".obs;
+
     String? price;
 
     if (widget.product?.images?.length == 0) {
-      strProductUrl = AppService.noImageUrl;
+      strProductUrl.value = AppService.noImageUrl;
     } else {
-      strProductUrl = widget.product?.images?[0]['large'].toString();
+      strProductUrl.value = widget.product?.images![0]['large'].toString() ??
+          AppService.noImageUrl;
     }
 
     if (widget.product?.regularPrice != '0') {
@@ -222,7 +228,8 @@ class _ProductDetailViewState extends State<ProductDetailView>
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   image: NetworkImage(
-                                    strProductUrl ?? AppService.noImageUrl,
+                                    strProductUrl?.value ??
+                                        AppService.noImageUrl,
                                   ),
                                   fit: BoxFit.cover,
                                 ),
@@ -267,13 +274,15 @@ class _ProductDetailViewState extends State<ProductDetailView>
                                                           onTap: () {
                                                             print(
                                                                 'Click to Image: $index');
-                                                            strProductUrl =
-                                                                widget
+                                                            strProductUrl
+                                                                .value = widget
                                                                     .product
                                                                     ?.images?[
                                                                         index][
                                                                         'large']
-                                                                    .toString();
+                                                                    .toString() ??
+                                                                AppService
+                                                                    .noImageUrl;
                                                           },
                                                           child: Container(
                                                             width: 40,
@@ -604,49 +613,61 @@ class _ProductDetailViewState extends State<ProductDetailView>
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               24.widthBox,
-                              InkWell(
-                                focusColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                splashColor: Colors.transparent,
-                                onTap: () {
-                                  print('Description: $strProductUrl');
-                                  isDescriptionSelect.value = true;
-                                  // isMoreInfoSelect.value = false;
-                                  // isShippingSelect.value = false;
-                                  isReviewsSelect.value = false;
-                                },
-                                child: Container(
-                                  width: (screenSize.width - 68) / 2,
-                                  // color: Colors.teal,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      10.heightBox,
-                                      Center(
-                                        child: CustomeTextStyle(
-                                          textAlign: TextAlign.center,
-                                          text: "Description",
-                                          size: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: CustomAppColors.lblDarkColor,
-                                          wordSpacing: 0.5,
+                              Obx(
+                                () => InkWell(
+                                  focusColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  splashColor: Colors.transparent,
+                                  onTap: () {
+                                    isDescriptionSelect.value = true;
+                                    isReviewsSelect.value = false;
+                                    print(
+                                        'Value of bool Des: ${isDescriptionSelect.value}');
+                                    print(
+                                        'Value of bool Review: ${isReviewsSelect.value}');
+                                    // setState(() {
+                                    //   print('Description: $strProductUrl');
+                                    //   // selectDescription = 'Y';
+                                    //   // selectReviews = 'N';
+                                    //   // isMoreInfoSelect.value = false;
+                                    //   // isShippingSelect.value = false;
+                                    //
+                                    // });
+                                  },
+                                  child: Container(
+                                    width: (screenSize.width - 68) / 2,
+                                    // color: Colors.teal,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        10.heightBox,
+                                        Center(
+                                          child: CustomeTextStyle(
+                                            textAlign: TextAlign.center,
+                                            text: "Description",
+                                            size: 14,
+                                            fontWeight: FontWeight.w500,
+                                            color: CustomAppColors.lblDarkColor,
+                                            wordSpacing: 0.5,
+                                          ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 8, left: 0),
-                                        child: Container(
-                                          height: 1,
-                                          width: (screenSize.width - 68) / 2,
-                                          color: isDescriptionSelect.value ==
-                                                  true
-                                              ? CustomAppColors.lblOrgColor
-                                              : CustomAppColors.switchOrgColor,
-                                        ),
-                                      )
-                                    ],
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8, left: 0),
+                                          child: Container(
+                                            height: 1,
+                                            width: (screenSize.width - 68) / 2,
+                                            color: isDescriptionSelect.value ==
+                                                    true
+                                                ? CustomAppColors.lblOrgColor
+                                                : CustomAppColors
+                                                    .switchOrgColor,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -741,47 +762,58 @@ class _ProductDetailViewState extends State<ProductDetailView>
                                 ),
                               ),*/
                               28.widthBox,
-                              InkWell(
-                                focusColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                splashColor: Colors.transparent,
-                                onTap: () {
-                                  print('Reviews: $strProductUrl');
-                                  isDescriptionSelect.value = false;
-                                  // isMoreInfoSelect.value = false;
-                                  // isShippingSelect.value = false;
-                                  isReviewsSelect.value = true;
-                                },
-                                child: Container(
-                                  width: (screenSize.width - 68) / 2,
-                                  // color: Colors.teal,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      10.heightBox,
-                                      Center(
-                                        child: CustomeTextStyle(
-                                          text: "Reviews",
-                                          size: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: CustomAppColors.lblDarkColor,
-                                          wordSpacing: 0.5,
+                              Obx(
+                                () => InkWell(
+                                  focusColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  splashColor: Colors.transparent,
+                                  onTap: () {
+                                    isDescriptionSelect.value = false;
+                                    isReviewsSelect.value = true;
+                                    print(
+                                        'Value of bool Des: ${isDescriptionSelect.value}');
+                                    print(
+                                        'Value of bool Review: ${isReviewsSelect.value}');
+                                    // setState(() {
+                                    //   print('Reviews: $strProductUrl');
+                                    //   // selectDescription = 'N';
+                                    //   // selectReviews = 'Y';
+                                    //   // isMoreInfoSelect.value = false;
+                                    //   // isShippingSelect.value = false;
+                                    // });
+                                  },
+                                  child: Container(
+                                    width: (screenSize.width - 68) / 2,
+                                    // color: Colors.teal,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        10.heightBox,
+                                        Center(
+                                          child: CustomeTextStyle(
+                                            text: "Reviews",
+                                            size: 14,
+                                            fontWeight: FontWeight.w500,
+                                            color: CustomAppColors.lblDarkColor,
+                                            wordSpacing: 0.5,
+                                          ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 8, left: 0),
-                                        child: Container(
-                                          height: 1,
-                                          width: (screenSize.width - 68) / 2,
-                                          color: isReviewsSelect.value == true
-                                              ? CustomAppColors.lblOrgColor
-                                              : CustomAppColors.switchOrgColor,
-                                        ),
-                                      )
-                                    ],
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8, left: 0),
+                                          child: Container(
+                                            height: 1,
+                                            width: (screenSize.width - 68) / 2,
+                                            color: isReviewsSelect.value == true
+                                                ? CustomAppColors.lblOrgColor
+                                                : CustomAppColors
+                                                    .switchOrgColor,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -791,7 +823,7 @@ class _ProductDetailViewState extends State<ProductDetailView>
                         ),
                       ),
                     ),
-                    isDescriptionSelect == true
+                    isDescriptionSelect.value == true
                         ? Padding(
                             padding: const EdgeInsets.only(left: 16, top: 32),
                             child: CustomeTextStyle(
@@ -803,7 +835,7 @@ class _ProductDetailViewState extends State<ProductDetailView>
                             ),
                           )
                         : Container(),
-                    isDescriptionSelect == true
+                    isDescriptionSelect.value == true
                         ? Padding(
                             padding: const EdgeInsets.only(
                                 left: 16, top: 20, bottom: 40, right: 16),
@@ -1012,7 +1044,7 @@ class _ProductDetailViewState extends State<ProductDetailView>
                             ),
                           )
                         : Container(),*/
-                    isReviewsSelect == true
+                    isReviewsSelect.value == true
                         ? Padding(
                             padding: const EdgeInsets.only(left: 16, top: 32),
                             child: Container(
@@ -1030,7 +1062,7 @@ class _ProductDetailViewState extends State<ProductDetailView>
                                     wordSpacing: 0.5,
                                   ),
                                   20.heightBox,
-                                  widget.productReview?.length != 0
+                                  intProductReview != 0
                                       ? Container(
                                           height: 36,
                                           child: SingleChildScrollView(
@@ -1239,202 +1271,268 @@ class _ProductDetailViewState extends State<ProductDetailView>
                                         )
                                       : Container(),
                                   20.heightBox,
-                                  Container(
-                                    height: 181,
-                                    // color: Colors.teal,
-                                    child: ListView.separated(
-                                        scrollDirection: Axis.vertical,
-                                        itemCount: arrMyCartList.length,
-                                        shrinkWrap: true,
-                                        itemBuilder: (context, index) {
-                                          return Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                width: (screenSize.width - 198),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
+                                  intProductReview != 0
+                                      ? Container(
+                                          height: 181,
+                                          // color: Colors.teal,
+                                          child: ListView.separated(
+                                              scrollDirection: Axis.vertical,
+                                              itemCount: productReview!
+                                                  .length, //arrMyCartList.length,
+                                              shrinkWrap: true,
+                                              itemBuilder: (context, index) {
+                                                return Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 0),
-                                                      child: Image.asset(
-                                                        AppImages
-                                                            .ProfileSelectRatingIcon,
-                                                        height: 20,
-                                                        width: 20,
+                                                    Container(
+                                                      width: (screenSize.width -
+                                                          198),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left: 0),
+                                                            child: Image.asset(
+                                                              '${productReview?[index].rating ?? '0'}' ==
+                                                                      1
+                                                                  ? AppImages
+                                                                      .ProfileSelectRatingIcon
+                                                                  : AppImages
+                                                                      .ProfileUnSelectRatingIcon,
+                                                              height: 20,
+                                                              width: 20,
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left: 3),
+                                                            child: Image.asset(
+                                                              '${productReview?[index].rating ?? '0'}' ==
+                                                                      2
+                                                                  ? AppImages
+                                                                      .ProfileSelectRatingIcon
+                                                                  : AppImages
+                                                                      .ProfileUnSelectRatingIcon,
+                                                              height: 20,
+                                                              width: 20,
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left: 3),
+                                                            child: Image.asset(
+                                                              '${productReview?[index].rating ?? '0'}' ==
+                                                                      3
+                                                                  ? AppImages
+                                                                      .ProfileSelectRatingIcon
+                                                                  : AppImages
+                                                                      .ProfileUnSelectRatingIcon,
+                                                              height: 20,
+                                                              width: 20,
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left: 3),
+                                                            child: Image.asset(
+                                                              '${productReview?[index].rating ?? '0'}' ==
+                                                                      4
+                                                                  ? AppImages
+                                                                      .ProfileSelectRatingIcon
+                                                                  : AppImages
+                                                                      .ProfileUnSelectRatingIcon,
+                                                              height: 20,
+                                                              width: 20,
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left: 3),
+                                                            child: Image.asset(
+                                                              '${productReview?[index].rating ?? '0'}' ==
+                                                                      5
+                                                                  ? AppImages
+                                                                      .ProfileSelectRatingIcon
+                                                                  : AppImages
+                                                                      .ProfileUnSelectRatingIcon,
+                                                              height: 20,
+                                                              width: 20,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 3),
-                                                      child: Image.asset(
-                                                        AppImages
-                                                            .ProfileSelectRatingIcon,
-                                                        height: 20,
-                                                        width: 20,
-                                                      ),
+                                                    8.heightBox,
+                                                    CustomeTextStyle(
+                                                      text:
+                                                          '${productReview?[index].reviewer ?? ''}',
+                                                      size: 16,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: CustomAppColors
+                                                          .lblDarkColor,
+                                                      wordSpacing: 0.5,
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 3),
-                                                      child: Image.asset(
-                                                        AppImages
-                                                            .ProfileSelectRatingIcon,
-                                                        height: 20,
-                                                        width: 20,
+                                                    16.heightBox,
+                                                    Text(
+                                                      '${productReview?[index].review ?? ''}',
+                                                      textDirection:
+                                                          TextDirection.ltr,
+                                                      style: TextStyle(
+                                                        fontFamily: 'Inter',
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        fontSize: 15,
+                                                        color: CustomAppColors
+                                                            .lblColor,
+                                                        wordSpacing: 0.5,
+                                                        height: 1.2,
                                                       ),
+                                                      maxLines: 100,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 3),
-                                                      child: Image.asset(
-                                                        AppImages
-                                                            .ProfileUnSelectRatingIcon,
-                                                        height: 20,
-                                                        width: 20,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 3),
-                                                      child: Image.asset(
-                                                        AppImages
-                                                            .ProfileUnSelectRatingIcon,
-                                                        height: 20,
-                                                        width: 20,
+                                                    16.heightBox,
+                                                    Container(
+                                                      height: 30,
+                                                      // color: Colors.red,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Container(
+                                                            child:
+                                                                CustomeTextStyle(
+                                                              text:
+                                                                  "24 year old",
+                                                              size: 13,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color: CustomAppColors
+                                                                  .lblDarkColor,
+                                                              wordSpacing: 4,
+                                                            ),
+                                                          ),
+                                                          16.widthBox,
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    top: 1),
+                                                            child: Container(
+                                                              width: 6,
+                                                              height: 6,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                color: CustomAppColors
+                                                                    .switchOrgColor,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          6),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          16.widthBox,
+                                                          Container(
+                                                            child:
+                                                                CustomeTextStyle(
+                                                              text: "Size: M",
+                                                              size: 13,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color: CustomAppColors
+                                                                  .txtPlaceholderColor,
+                                                              wordSpacing: 4,
+                                                            ),
+                                                          ),
+                                                          16.widthBox,
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    top: 1),
+                                                            child: Container(
+                                                              width: 6,
+                                                              height: 6,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                color: CustomAppColors
+                                                                    .switchOrgColor,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          6),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          16.widthBox,
+                                                          Container(
+                                                            child:
+                                                                CustomeTextStyle(
+                                                              text:
+                                                                  "Color: Orange",
+                                                              size: 13,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color: CustomAppColors
+                                                                  .lblDarkColor,
+                                                              wordSpacing: 4,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
                                                   ],
-                                                ),
-                                              ),
-                                              8.heightBox,
-                                              CustomeTextStyle(
-                                                text: "Comfy and Stylish",
-                                                size: 16,
-                                                fontWeight: FontWeight.w600,
-                                                color: CustomAppColors
-                                                    .lblDarkColor,
-                                                wordSpacing: 0.5,
-                                              ),
-                                              16.heightBox,
-                                              Text(
-                                                "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt",
-                                                textDirection:
-                                                    TextDirection.ltr,
-                                                style: TextStyle(
-                                                  fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 15,
-                                                  color:
-                                                      CustomAppColors.lblColor,
-                                                  wordSpacing: 0.5,
-                                                  height: 1.2,
-                                                ),
-                                                maxLines: 100,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                              16.heightBox,
-                                              Container(
-                                                height: 30,
-                                                // color: Colors.red,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      child: CustomeTextStyle(
-                                                        text: "24 year old",
-                                                        size: 13,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        color: CustomAppColors
-                                                            .lblDarkColor,
-                                                        wordSpacing: 4,
-                                                      ),
-                                                    ),
-                                                    16.widthBox,
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 1),
-                                                      child: Container(
-                                                        width: 6,
-                                                        height: 6,
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                          color: CustomAppColors
-                                                              .switchOrgColor,
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                            Radius.circular(6),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    16.widthBox,
-                                                    Container(
-                                                      child: CustomeTextStyle(
-                                                        text: "Size: M",
-                                                        size: 13,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        color: CustomAppColors
-                                                            .txtPlaceholderColor,
-                                                        wordSpacing: 4,
-                                                      ),
-                                                    ),
-                                                    16.widthBox,
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 1),
-                                                      child: Container(
-                                                        width: 6,
-                                                        height: 6,
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                          color: CustomAppColors
-                                                              .switchOrgColor,
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                            Radius.circular(6),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    16.widthBox,
-                                                    Container(
-                                                      child: CustomeTextStyle(
-                                                        text: "Color: Orange",
-                                                        size: 13,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        color: CustomAppColors
-                                                            .lblDarkColor,
-                                                        wordSpacing: 4,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                        separatorBuilder: (context, index) {
-                                          return Divider(
-                                            thickness: 1,
-                                            color: CustomAppColors.borderColor,
-                                          );
-                                        }),
-                                  ),
+                                                );
+                                              },
+                                              separatorBuilder:
+                                                  (context, index) {
+                                                return Divider(
+                                                  thickness: 1,
+                                                  color: CustomAppColors
+                                                      .borderColor,
+                                                );
+                                              }),
+                                        )
+                                      : Container(
+                                          width: (screenSize.width - 48),
+                                          height: 30,
+                                          child: Center(
+                                            child: CustomeTextStyle(
+                                              text: "No Product Review",
+                                              size: 22,
+                                              fontWeight: FontWeight.w800,
+                                              color: CustomAppColors
+                                                  .txtPlaceholderColor,
+                                              wordSpacing: 0.5,
+                                            ),
+                                          ),
+                                        ),
                                 ],
                               ),
                             ),

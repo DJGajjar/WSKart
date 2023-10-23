@@ -1061,6 +1061,8 @@ class SearchView extends GetView<SearchTabController> {
     var isSportswearSelect = false.obs;
     var isSingleSelect = false.obs;
 
+    var catSelectIndex = 0.obs;
+
     var arrMyFavoriteLis = [
       {
         'favoriteID': '1',
@@ -1094,11 +1096,15 @@ class SearchView extends GetView<SearchTabController> {
       },
     ];
 
+    int productListCount = 0;
+
     ContainerTransitionType _transitionType = ContainerTransitionType.fade;
 
     controller.onInit();
 
     final gridController = ScrollController();
+
+    print('Product Count : $productListCount');
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -1113,7 +1119,69 @@ class SearchView extends GetView<SearchTabController> {
                   height: 36,
                   width: (screenSize.width),
                   // color: CustomAppColors.lblOrgColor,
-                  child: SingleChildScrollView(
+                  child: shopProductController.categories!.length == 0
+                      ? Center()
+                      : ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: shopProductController.categories!.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return Obx(() => InkWell(
+                                  focusColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  onTap: () {
+                                    print('Click to Categories Detail: $index');
+                                    catSelectIndex.value = index;
+                                    controller.fetchProductShopData(
+                                        '${shopProductController.categories?[index].id.toString() ?? ''}');
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      10.widthBox,
+                                      catSelectIndex.value == index
+                                          ? Container(
+                                              width: 6,
+                                              height: 6,
+                                              decoration: const BoxDecoration(
+                                                color: CustomAppColors
+                                                    .badgeBGColor,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(6),
+                                                ),
+                                              ),
+                                            )
+                                          : Container(),
+                                      catSelectIndex.value == index
+                                          ? 8.widthBox
+                                          : 0.widthBox,
+                                      Container(
+                                        height: 36,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 10),
+                                          child: Container(
+                                            child: CustomeTextStyle(
+                                              text:
+                                                  '${shopProductController.categories?[index].name ?? ''}',
+                                              size: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color:
+                                                  CustomAppColors.lblDarkColor,
+                                              wordSpacing: 4,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ));
+                          },
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(width: 5);
+                          }),
+                  /*SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -1420,7 +1488,7 @@ class SearchView extends GetView<SearchTabController> {
                         16.widthBox,
                       ],
                     ),
-                  ),
+                  ),*/
                 ),
                 10.heightBox,
                 Container(
@@ -1437,17 +1505,15 @@ class SearchView extends GetView<SearchTabController> {
                               ),
                             )
                           : GridView.builder(
-                              controller: gridController,
                               gridDelegate:
                                   const SliverGridDelegateWithMaxCrossAxisExtent(
                                 maxCrossAxisExtent: 200,
-                                childAspectRatio:
-                                    0.57, //(itemWidth / itemHeight),
+                                childAspectRatio: 0.57,
                                 crossAxisSpacing: 14,
                                 mainAxisSpacing: 24,
                               ),
-                              itemCount: shopProductController
-                                  .products!.length, //arrMyFavoriteLis.length,
+                              itemCount: shopProductController.productListCount,
+                              //shopProductController.products!.length, //,
                               itemBuilder: (context, index) {
                                 String? price;
                                 if (shopProductController
@@ -1477,9 +1543,8 @@ class SearchView extends GetView<SearchTabController> {
                                     shopProductController.products![index];
 
                                 if (index <
-                                    shopProductController.products!.length) {
-                                  final productItem =
-                                      shopProductController.products![index];
+                                    shopProductController.productListCount) {
+                                  // final productItem = shopProductController.products![index];
                                   return OpenContainer<bool>(
                                     closedElevation: 0,
                                     closedColor: Colors.transparent,

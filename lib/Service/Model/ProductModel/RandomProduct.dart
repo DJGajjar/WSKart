@@ -4,10 +4,10 @@ import 'package:wskart/Constants/convert_data.dart';
 import 'product_brand.dart';
 import 'ProductPriceFormat.dart';
 import 'product_category.dart';
-part 'product.g.dart';
+part 'randomproduct.g.dart';
 
 @JsonSerializable(createToJson: false)
-class Product {
+class RandomProduct {
   int? id;
 
   @JsonKey(fromJson: unescape)
@@ -115,7 +115,7 @@ class Product {
 
   Map<String, dynamic>? rawData;
 
-  Product({
+  RandomProduct({
     this.id,
     this.name,
     this.slug,
@@ -193,12 +193,12 @@ class Product {
     return ConvertData.stringToInt(json);
   }
 
-  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson({
+  factory RandomProduct.fromJson(Map<String, dynamic> json) => _$RandomProductFromJson({
         ...json,
         "rawData": json,
       });
 
-  factory Product.fromVariation(Map<String, dynamic> json) =>
+  factory RandomProduct.fromVariation(Map<String, dynamic> json) =>
       _productFromVariation(json);
 
   dynamic toVariable(String variable) {
@@ -236,10 +236,10 @@ class Product {
   ];
 }
 
-Product _productFromVariation(dynamic json) {
+RandomProduct _productFromVariation(dynamic json) {
   Map<String, dynamic> product = Map<String, dynamic>.of(json);
   product.update('attributes', (value) => null, ifAbsent: () => null);
-  return Product.fromJson(product);
+  return RandomProduct.fromJson(product);
 }
 
 class ProductBlocks {

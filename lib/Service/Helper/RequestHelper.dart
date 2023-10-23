@@ -1,12 +1,19 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:wskart/Service/Helper/APIHelper.dart';
+import 'package:wskart/Service/Model/ProductModel/BestProduct.dart';
+import 'package:wskart/Service/Model/ProductModel/NewlyProduct.dart';
+import 'package:wskart/Service/Model/ProductModel/TodayProduct.dart';
+import 'package:wskart/Service/Model/ProductModel/TrendingProduct.dart';
+import 'package:wskart/Service/Model/ProductModel/product_category.dart';
 import 'package:wskart/Service/Modules/NetworkModule.dart';
 import 'package:wskart/Constants/ServiceList.dart';
 import 'package:wskart/Service/Model/ProductModel/Product.dart';
+import 'package:wskart/Service/Model/ProductModel/RandomProduct.dart';
 import 'package:wskart/Service/Model/product_review/product_review.dart';
 import 'package:wskart/Service/Model/brand/brand.dart';
 import 'package:wskart/Service/Model/Post/post_category.dart';
+import 'package:wskart/Service/Model/ProductModel/product_category.dart';
 
 class RequestHelper {
   //final DioClient _dioClient;
@@ -55,6 +62,153 @@ class RequestHelper {
     }
   }
 
+  /// Returns list of product in response
+  Future<List<RandomProduct>?> getWSKartRandomProductsItemList(
+      {Map<String, dynamic>? queryParameters}) async {
+    print('API Method Call in this: ${AppService.getProducts}');
+    try {
+      final data = await _apiHelper.get(
+        AppService.getProducts,
+      );
+
+      print('Rendom Product API Responce : $data');
+
+      List<RandomProduct>? randomProduct = <RandomProduct>[];
+
+      randomProduct = data
+          .map((randomproduct) => RandomProduct.fromJson(randomproduct))
+          .toList()
+          .cast<RandomProduct>();
+
+      print('List Of Product Data: $randomProduct');
+      return randomProduct;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  Future<List<TodayProduct>?> getWSKartTodayProductsItemList(
+      {Map<String, dynamic>? queryParameters}) async {
+    print('API Method Call in this: ${AppService.getProducts}');
+    try {
+      final data = await _apiHelper.get(
+        AppService.getProducts,
+      );
+
+      print('Today Product API Responce : $data');
+
+      List<TodayProduct>? todayProduct = <TodayProduct>[];
+
+      todayProduct = data
+          .map((todayProduct) => TodayProduct.fromJson(todayProduct))
+          .toList()
+          .cast<TodayProduct>();
+
+      print('List Of Product Data: $todayProduct');
+      return todayProduct;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  Future<List<BestProduct>?> getWSKartBestProductsItemList(
+      {Map<String, dynamic>? queryParameters}) async {
+    print('API Method Call in this: ${AppService.getProducts}');
+    try {
+      final data = await _apiHelper.get(
+        AppService.getProducts,
+      );
+
+      print('Today Product API Responce : $data');
+
+      List<BestProduct>? bestProduct = <BestProduct>[];
+
+      bestProduct = data
+          .map((bestProduct) => BestProduct.fromJson(bestProduct))
+          .toList()
+          .cast<BestProduct>();
+
+      print('List Of Product Data: $bestProduct');
+      return bestProduct;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  Future<List<NewlyProduct>?> getWSKartNewlyProductsItemList(
+      {Map<String, dynamic>? queryParameters}) async {
+    print('API Method Call in this: ${AppService.getProducts}');
+    try {
+      final data = await _apiHelper.get(
+        AppService.getProducts,
+      );
+
+      print('Today Product API Responce : $data');
+
+      List<NewlyProduct>? newlyProduct = <NewlyProduct>[];
+
+      newlyProduct = data
+          .map((newlyProduct) => NewlyProduct.fromJson(newlyProduct))
+          .toList()
+          .cast<NewlyProduct>();
+
+      print('List Of Product Data: $newlyProduct');
+      return newlyProduct;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  Future<List<TrendingProduct>?> getWSKartTrendingProductsItemList(
+      {Map<String, dynamic>? queryParameters}) async {
+    print('API Method Call in this: ${AppService.getProducts}');
+    try {
+      final data = await _apiHelper.get(
+        AppService.getProducts,
+      );
+
+      print('Today Product API Responce : $data');
+
+      List<TrendingProduct>? trendingProduct = <TrendingProduct>[];
+
+      trendingProduct = data
+          .map((trendingProduct) => TrendingProduct.fromJson(trendingProduct))
+          .toList()
+          .cast<TrendingProduct>();
+
+      print('List Of Product Data: $trendingProduct');
+      return trendingProduct;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  /// Returns list of product in response
+  Future<List<Product>?> getWSKartProductsCategoryItemList(
+      {Map<String, dynamic>? queryParameters}) async {
+    print('API Method Call in this');
+    try {
+      final data = await _apiHelper.get(
+        AppService.getProducts,
+        queryParameters: queryParameters,
+      );
+
+      print('Product API Responce : $data');
+
+      List<Product>? products = <Product>[];
+
+      products = data
+          .map((product) => Product.fromJson(product))
+          .toList()
+          .cast<Product>();
+
+      print('List Of Product Data: $products');
+      return products;
+    } on DioException {
+      rethrow;
+    }
+  }
+
   // ------------------------------------------------ Reviews ----------------------------------------------------------
   /// Get list review
   Future<List<ProductReview>?> getWSKartProductReviewsList(
@@ -74,6 +228,32 @@ class RequestHelper {
           .toList()
           .cast<ProductReview>();
       return reviews;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  /// Returns list of product category in response
+  Future<dynamic> getProductCategoriesList(
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final data = await _apiHelper.get(
+        AppService.getProductCategories,
+        queryParameters: queryParameters,
+      );
+
+      print('Product Category API Responce : $data');
+
+      List<ProductCategory>? productCategory = <ProductCategory>[];
+
+      productCategory = data
+          .map((productCat) => ProductCategory.fromJson(productCat))
+          .toList()
+          .cast<ProductCategory>();
+
+      print('List Of Category Data: $productCategory');
+
+      return productCategory;
     } on DioException {
       rethrow;
     }

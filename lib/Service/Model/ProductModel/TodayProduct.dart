@@ -4,10 +4,10 @@ import 'package:wskart/Constants/convert_data.dart';
 import 'product_brand.dart';
 import 'ProductPriceFormat.dart';
 import 'product_category.dart';
-part 'product.g.dart';
+part 'todayproduct.g.dart';
 
 @JsonSerializable(createToJson: false)
-class Product {
+class TodayProduct {
   int? id;
 
   @JsonKey(fromJson: unescape)
@@ -115,7 +115,7 @@ class Product {
 
   Map<String, dynamic>? rawData;
 
-  Product({
+  TodayProduct({
     this.id,
     this.name,
     this.slug,
@@ -193,12 +193,13 @@ class Product {
     return ConvertData.stringToInt(json);
   }
 
-  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson({
+  factory TodayProduct.fromJson(Map<String, dynamic> json) =>
+      _$TodayProductFromJson({
         ...json,
         "rawData": json,
       });
 
-  factory Product.fromVariation(Map<String, dynamic> json) =>
+  factory TodayProduct.fromVariation(Map<String, dynamic> json) =>
       _productFromVariation(json);
 
   dynamic toVariable(String variable) {
@@ -236,10 +237,10 @@ class Product {
   ];
 }
 
-Product _productFromVariation(dynamic json) {
+TodayProduct _productFromVariation(dynamic json) {
   Map<String, dynamic> product = Map<String, dynamic>.of(json);
   product.update('attributes', (value) => null, ifAbsent: () => null);
-  return Product.fromJson(product);
+  return TodayProduct.fromJson(product);
 }
 
 class ProductBlocks {
