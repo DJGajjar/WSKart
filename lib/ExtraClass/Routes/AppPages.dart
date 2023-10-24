@@ -5,6 +5,8 @@ import 'package:wskart/Controller/OfferController/OfferBinding.dart';
 import 'package:wskart/Controller/OfferController/OfferView.dart';
 import 'package:wskart/Controller/StartedController/StartBinding.dart';
 import 'package:wskart/Controller/StartedController/StartView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/HomeController/MoreProduct/MoreProductBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/HomeController/MoreProduct/MoreProductView.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyOrder/MyOrderView.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyOrder/ReviewOrder/ReviewOrderBinding.dart';
 import 'package:wskart/Controller/WelcomeController/WelcomeBinding.dart';
@@ -73,6 +75,8 @@ import 'package:wskart/Controller/WSKartController/TabBarController/SearchContro
 import 'package:wskart/Controller/WSKartController/TabBarController/SearchController/FilterProduct/FilterBinding.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/SearchController/SearchResult/SearchResultBinding.dart';
 import 'package:wskart/Controller/WSKartController/TabBarController/SearchController/SearchResult/SearchResultView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/HomeController/MoreProduct/MoreProductBinding.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/HomeController/MoreProduct/MoreProductView.dart';
 
 part 'AppRoutes.dart';
 
@@ -262,6 +266,11 @@ class AppPages {
       name: _Paths.SEARCHRESULT,
       page: () => const SearchResultView(),
       binding: SearchResultBinding(),
+    ),
+    GetPage(
+      name: _Paths.MOREPRODUCTLIST,
+      page: () => const MoreProductView(),
+      binding: MoreProductBinding(),
     ),
   ];
 }

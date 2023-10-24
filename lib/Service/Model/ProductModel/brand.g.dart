@@ -10,9 +10,9 @@ Brand _$BrandFromJson(Map<String, dynamic> json) => Brand(
       id: json['id'] as int?,
       name: json['name'] as String?,
       count: json['count'] as int?,
-      image: Brand._imageFromJson(json['image']),
+      //image: Brand._imageFromJson(json['image']),
       description: json['description'] as String?,
-      parent: json['parent'] as int?,
+      menu_order: json['menu_order'] as int?,
       slug: json['slug'] as String?,
     );
 
@@ -20,8 +20,8 @@ Map<String, dynamic> _$BrandToJson(Brand instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'slug': instance.slug,
-      'parent': instance.parent,
+      'parent': instance.menu_order,
       'description': instance.description,
       'count': instance.count,
-      'image': instance.image,
+      //'image': instance.image,
     };

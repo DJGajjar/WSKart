@@ -1556,8 +1556,8 @@ class SearchView extends GetView<SearchTabController> {
                                         VoidCallback openContainer) {
                                       print('Click At Index: $index');
                                       return ProductDetailView(
-                                          product:
-                                              productDetail); //Get.toNamed(Routes.PROFILEPRODUCTDETAILROUTES);
+                                          product: productDetail);
+                                      //Get.toNamed(Routes.PROFILEPRODUCTDETAILROUTES);
                                     },
                                     closedBuilder: (BuildContext _,
                                         VoidCallback openContainer) {

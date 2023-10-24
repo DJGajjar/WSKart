@@ -40,6 +40,7 @@ abstract class Routes {
   static const PROFILEPRODUCTDETAILROUTES = _Paths.PROFILEPRODUCTDETAIL;
   static const PRODUCTFILTERROUTES = _Paths.PRODUCTFILTER;
   static const SEARCHRESULTROUTES = _Paths.SEARCHRESULT;
+  static const MOREPRODUCTLISTROUTES = _Paths.MOREPRODUCTLIST;
 }
 
 abstract class _Paths {
@@ -81,4 +82,5 @@ abstract class _Paths {
   static const PROFILEPRODUCTDETAIL = '/ProductDetailView';
   static const PRODUCTFILTER = '/FilterView';
   static const SEARCHRESULT = '/SearchResultView';
+  static const MOREPRODUCTLIST = '/MoreProductView';
 }

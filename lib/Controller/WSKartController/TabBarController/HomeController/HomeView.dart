@@ -1,8 +1,11 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:wskart/Constants/convert_data.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/HomeController/MoreProduct/MoreProductView.dart';
+import 'package:wskart/Controller/WSKartController/TabBarController/ProfileController/MyFavorite/ProductDetail/ProductDetailView.dart';
 import 'package:wskart/ExtraClass/Routes/AppPages.dart';
 import '../../../../Constants/ServiceList.dart';
 import 'HomeController.dart';
@@ -55,11 +58,14 @@ class HomeView extends GetView<HomeController> {
 
     var arrMyFavoriteLis = [
       {
-        'favoriteID': '1',
+        'favoriteID': '0',
       },
     ];
 
+    final getStorge = GetStorage();
     final screenSize = MediaQuery.of(context).size;
+
+    ContainerTransitionType _transitionType = ContainerTransitionType.fade;
 
     // final double screenWidth = (screenSize.height / 2);
 
@@ -666,6 +672,9 @@ class HomeView extends GetView<HomeController> {
                                   onTap: () {
                                     print(
                                         'Click to Today Best Deal More Detail');
+                                    getStorge.write(
+                                        "NavTitle", "Today's Best Deal");
+                                    Get.toNamed(Routes.MOREPRODUCTLISTROUTES);
                                   },
                                   child: Container(
                                     width: 100,
@@ -1515,6 +1524,8 @@ class HomeView extends GetView<HomeController> {
                                   hoverColor: Colors.transparent,
                                   onTap: () {
                                     print('Click to Best Selling More Detail');
+                                    getStorge.write("NavTitle", "Best Selling");
+                                    Get.toNamed(Routes.MOREPRODUCTLISTROUTES);
                                   },
                                   child: Container(
                                     width: 100,
@@ -2363,6 +2374,9 @@ class HomeView extends GetView<HomeController> {
                                   hoverColor: Colors.transparent,
                                   onTap: () {
                                     print('Click to Newly Arrival More Detail');
+                                    getStorge.write(
+                                        "NavTitle", "Newly Arrival");
+                                    Get.toNamed(Routes.MOREPRODUCTLISTROUTES);
                                   },
                                   child: Container(
                                     width: 100,
@@ -3200,7 +3214,7 @@ class HomeView extends GetView<HomeController> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 8),
                                     child: CustomeTextStyle(
-                                      text: "Recently Viewed",
+                                      text: "Trending Viewed",
                                       size: 18,
                                       fontWeight: FontWeight.w600,
                                       color: CustomAppColors.lblDarkColor,
@@ -3215,6 +3229,9 @@ class HomeView extends GetView<HomeController> {
                                   onTap: () {
                                     print(
                                         'Click to Recently Viewed More Detail');
+                                    getStorge.write(
+                                        "NavTitle", "Trending Viewed");
+                                    Get.toNamed(Routes.MOREPRODUCTLISTROUTES);
                                   },
                                   child: Container(
                                     width: 100,
@@ -4033,7 +4050,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                     18.heightBox,
                     Container(
-                      height: 250,
+                      height: 306,
                       width: (screenSize.width - 48),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -4055,11 +4072,117 @@ class HomeView extends GetView<HomeController> {
                           16.heightBox,
                           Container(
                             width: (screenSize.width - 48),
-                            height: 194,
-                            child: Column(
+                            height: 250,
+                            // color: Colors.red,
+                            child: homeListController.brandList!.length == 0
+                                ? Center()
+                                : GridView.builder(
+                                    itemCount: homeListController
+                                        .brandList!.length
+                                        .toInt(),
+                                    itemBuilder: (context, index) {
+                                      return Container(
+                                        width: 100,
+                                        height: 56,
+                                        color: Colors.amber,
+                                      );
+                                    },
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      childAspectRatio: 2,
+                                      crossAxisSpacing: 10,
+                                      mainAxisSpacing: 10,
+                                    ),
+                                  ),
+                            /*Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
+                                  height: (screenSize.height - 275),
+                                  color: Colors.blue,
+                                  child: Expanded(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 24, right: 24),
+                                      child: homeListController
+                                                  .brandList!.length ==
+                                              0
+                                          ? Center()
+                                          : GridView.builder(
+                                              gridDelegate:
+                                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 3,
+                                              ),
+                                              itemCount: homeListController
+                                                  .brandList!.length,
+                                              itemBuilder:
+                                                  (BuildContext context,
+                                                      int index) {
+                                                return Card(
+                                                  color: Colors.amber,
+                                                  child: Center(
+                                                      child: Text('$index')),
+                                                );
+                                              }),
+                                      /*
+                                      GridView.builder(
+                                              gridDelegate:
+                                                  const SliverGridDelegateWithMaxCrossAxisExtent(
+                                                maxCrossAxisExtent: 200,
+                                                childAspectRatio: 0.57,
+                                                crossAxisSpacing: 14,
+                                                mainAxisSpacing: 24,
+                                              ),
+                                              itemCount: homeListController
+                                                  .brandList!.length,
+                                              itemBuilder: (context, index) {
+                                                return OpenContainer<bool>(
+                                                  closedElevation: 0,
+                                                  closedColor:
+                                                      Colors.transparent,
+                                                  openColor: Colors.transparent,
+                                                  middleColor:
+                                                      Colors.transparent,
+                                                  openElevation: 0,
+                                                  transitionType:
+                                                      _transitionType,
+                                                  openBuilder: (BuildContext _,
+                                                      VoidCallback
+                                                          openContainer) {
+                                                    print(
+                                                        'Click At Index: $index');
+                                                    return ProductDetailView();
+                                                  },
+                                                  closedBuilder:
+                                                      (BuildContext _,
+                                                          VoidCallback
+                                                              openContainer) {
+                                                    return Card(
+                                                      color: CustomAppColors
+                                                          .cardBGColor,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                .all(
+                                                          Radius.circular(12),
+                                                        ),
+                                                      ),
+                                                      child: Container(
+                                                        width: 120,
+                                                        height: 56,
+                                                        color: Colors.red,
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              }),*/
+                                    ),
+                                  ),
+                                ),
+                                /*Container(
                                   width: (screenSize.width - 48),
                                   height: 56,
                                   // color: Colors.deepPurple,
@@ -4232,8 +4355,9 @@ class HomeView extends GetView<HomeController> {
                                     ],
                                   ),
                                 ),
+            */
                               ],
-                            ),
+                            ),*/
                           ),
                         ],
                       ),

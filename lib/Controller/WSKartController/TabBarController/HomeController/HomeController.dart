@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
@@ -12,6 +13,7 @@ import 'package:wskart/Service/Model/ProductModel/NewlyProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/RandomProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/TodayProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/TrendingProduct.dart';
+import 'package:wskart/Service/Model/ProductModel/brand.dart';
 import 'package:wskart/Service/Model/ProductModel/product_category.dart';
 import 'package:wskart/Constants/query.dart';
 
@@ -21,12 +23,14 @@ class HomeController extends GetxController {
   final getStorage = GetStorage();
   final RequestHelper _requestHelper = RequestHelper();
   final APIHelper _apiHelper = APIHelper();
+
   List<ProductCategory>? categories = <ProductCategory>[];
   List<RandomProduct>? randomProducts = <RandomProduct>[];
   List<TodayProduct>? todayProducts = <TodayProduct>[];
   List<BestProduct>? bestProducts = <BestProduct>[];
   List<NewlyProduct>? newlyProducts = <NewlyProduct>[];
   List<TrendingProduct>? trendingProducts = <TrendingProduct>[];
+  List<Brand>? brandList = <Brand>[];
 
   int productListCount = 0;
 
@@ -72,7 +76,7 @@ class HomeController extends GetxController {
       "status": 'publish',
       "stock_status": 'instock',
       "orderby": 'rand',
-      "on_sale": 'true',
+      "on_sale": true,
     };
 
     print('Home Param Random API Call>>>>: $randomParam');
@@ -127,9 +131,7 @@ class HomeController extends GetxController {
       todayProducts = await _requestHelper.getWSKartTodayProductsItemList(
           queryParameters: preQueryParameters(randomParam));
 
-      print(
-          "Value OF Today Product Data List: ${todayProducts!.length.toInt()}");
-      print('Random Product Data: ${todayProducts![0].name}');
+      print("Today Product Data List: ${todayProducts!.length.toInt()}");
 
       if (todayProducts!.length > 1) {
         if (todayProducts?[0].regularPrice != '0') {
@@ -172,14 +174,13 @@ class HomeController extends GetxController {
       "orderby": 'rand',
     };
 
-    print('Home Param Today API Call>>>>: $randomParam');
+    print('Home Param Best API Call>>>>: $randomParam');
 
     try {
       bestProducts = await _requestHelper.getWSKartBestProductsItemList(
           queryParameters: preQueryParameters(randomParam));
 
-      print("Value OF Data List: ${bestProducts!.length.toInt()}");
-      print('Random Product Data: ${bestProducts![0].name}');
+      print("Best Data List: ${bestProducts!.length.toInt()}");
 
       if (bestProducts!.length > 1) {
         if (bestProducts?[0].regularPrice != '0') {
@@ -219,18 +220,17 @@ class HomeController extends GetxController {
       "per_page": '10',
       "status": 'publish',
       "stock_status": 'instock',
-      "orderby": 'ID',
+      "orderby": 'id',
       "order": 'desc',
     };
 
-    print('Home Param Today API Call>>>>: $randomParam');
+    print('Home Param Newly API Call>>>>: $randomParam');
 
     try {
       newlyProducts = await _requestHelper.getWSKartNewlyProductsItemList(
           queryParameters: preQueryParameters(randomParam));
 
-      print("Value OF Data List: ${newlyProducts!.length.toInt()}");
-      print('Random Product Data: ${newlyProducts![0].name}');
+      print("Newly Data List: ${newlyProducts!.length.toInt()}");
 
       if (newlyProducts!.length > 1) {
         if (newlyProducts?[0].regularPrice != '0') {
@@ -274,16 +274,13 @@ class HomeController extends GetxController {
       "order": 'desc',
     };
 
-    print('Home Param Today API Call>>>>: $randomParam');
+    print('Home Param Trending API Call>>>>: $randomParam');
 
     try {
       trendingProducts = await _requestHelper.getWSKartTrendingProductsItemList(
           queryParameters: preQueryParameters(randomParam));
 
-      print("Value OF Data List: ${trendingProducts!.length.toInt()}");
-      print('Random Product Data: ${trendingProducts![0].name}');
-
-      isHomeLoading(false);
+      print("Trending Data List: ${trendingProducts!.length.toInt()}");
 
       if (trendingProducts!.length > 1) {
         if (trendingProducts?[0].regularPrice != '0') {
@@ -311,28 +308,26 @@ class HomeController extends GetxController {
             .toStringAsFixed(percent2.truncateToDouble() == percent2 ? 0 : 1);
       }
 
-      //fetchBrandDataList();
+      fetchBrandDataList();
     } catch (e) {
       print('Get categories error.');
-      isHomeLoading(false);
-      // fetchBrandDataList();
+      fetchBrandDataList();
     }
   }
 
   fetchBrandDataList() async {
+    print('Brand Api Call');
+
     final randomParam = {
-      "attribute": 'brand',
-      "attribute_term_ids": '5',
+      "consumer_key": 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835',
+      "consumer_secret": 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc',
     };
 
-    print('Home Param Today API Call>>>>: $randomParam');
-
     try {
-      todayProducts = await _requestHelper.getWSKartTodayProductsItemList(
-          queryParameters: preQueryParameters(randomParam));
+      brandList = await _requestHelper.getWSKartBrandProductsList();
 
-      print("Value OF Data List: ${todayProducts!.length.toInt()}");
-      print('Random Product Data: ${todayProducts![0].name}');
+      print("Brand Data List: ${brandList!.length.toInt()}");
+      print("Brnad Name: ${brandList![0].name}");
 
       isHomeLoading(false);
     } catch (e) {
@@ -341,37 +336,4 @@ class HomeController extends GetxController {
       isHomeLoading(false);
     }
   }
-
-  // fetchProductShopData(String? categoryID) async {
-  //   print('CatID:>>>>>> $categoryID');
-  //
-  //   final catID = {
-  //     "category": categoryID,
-  //   };
-  //
-  //   try {
-  //     if (categoryID == "1") {
-  //       products = await _requestHelper.getWSKartProductsItemList();
-  //     } else {
-  //       products = await _requestHelper.getWSKartProductsCategoryItemList(
-  //           queryParameters: preQueryParameters(catID));
-  //     }
-  //     productListCount = products!.length.toInt();
-  //
-  //     print(products!.length.toString());
-  //     print(products?[0].id);
-  //
-  //     isHomeLoading(false);
-  //   } catch (error) {
-  //     print('Store Product Error: $error');
-  //     isHomeLoading(false);
-  //   } finally {
-  //     print('Get categories error.');
-  //     isHomeLoading(false);
-  //   }
-  // }
 }
-
-/*
-
- */

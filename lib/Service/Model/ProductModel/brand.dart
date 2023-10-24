@@ -11,26 +11,26 @@ class Brand {
 
   String? slug;
 
-  int? parent;
+  int? menu_order;
 
   String? description;
 
   int? count;
 
-  @JsonKey(fromJson: _imageFromJson)
-  String? image;
+  // @JsonKey(fromJson: _imageFromJson)
+  // String? image;
 
   Brand({
     this.id,
     this.name,
     this.count,
-    this.image,
+    // this.image,
     this.description,
-    this.parent,
+    this.menu_order,
     this.slug,
   });
 
-  static String? _imageFromJson(dynamic value) => get(value, ['src'], '');
+  //static String? _imageFromJson(dynamic value) => get(value, ['src'], '');
 
   factory Brand.fromJson(Map<String, dynamic> json) => _$BrandFromJson(json);
 

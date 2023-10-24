@@ -26,7 +26,7 @@ class APIHelper {
     bool isFullResponse = false,
   }) async {
     try {
-      print('response Data uri_1??? : $uri');
+      print('response Data uri_1 : $uri');
       print('response Data queryParameters_1??? : $queryParameters');
       final Response response = await _dio.get(
         uri,
@@ -40,6 +40,7 @@ class APIHelper {
       print('response Data List??? : $response');
       return isFullResponse ? response : response.data;
     } on DioException {
+      print('Brnad Data Response URL: $uri');
       rethrow;
     }
   }

@@ -5,13 +5,13 @@ import 'package:wskart/Service/Model/ProductModel/BestProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/NewlyProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/TodayProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/TrendingProduct.dart';
+import 'package:wskart/Service/Model/ProductModel/brand.dart';
 import 'package:wskart/Service/Model/ProductModel/product_category.dart';
 import 'package:wskart/Service/Modules/NetworkModule.dart';
 import 'package:wskart/Constants/ServiceList.dart';
 import 'package:wskart/Service/Model/ProductModel/Product.dart';
 import 'package:wskart/Service/Model/ProductModel/RandomProduct.dart';
 import 'package:wskart/Service/Model/product_review/product_review.dart';
-import 'package:wskart/Service/Model/brand/brand.dart';
 import 'package:wskart/Service/Model/Post/post_category.dart';
 import 'package:wskart/Service/Model/ProductModel/product_category.dart';
 
@@ -55,7 +55,7 @@ class RequestHelper {
           .toList()
           .cast<Product>();
 
-      print('List Of Product Data: $products');
+      print('Product Data: $products');
       return products;
     } on DioException {
       rethrow;
@@ -66,9 +66,11 @@ class RequestHelper {
   Future<List<RandomProduct>?> getWSKartRandomProductsItemList(
       {Map<String, dynamic>? queryParameters}) async {
     print('API Method Call in this: ${AppService.getProducts}');
+
     try {
       final data = await _apiHelper.get(
         AppService.getProducts,
+        queryParameters: queryParameters,
       );
 
       print('Rendom Product API Responce : $data');
@@ -80,7 +82,7 @@ class RequestHelper {
           .toList()
           .cast<RandomProduct>();
 
-      print('List Of Product Data: $randomProduct');
+      print('Random Of Product Data: $randomProduct');
       return randomProduct;
     } on DioException {
       rethrow;
@@ -89,10 +91,11 @@ class RequestHelper {
 
   Future<List<TodayProduct>?> getWSKartTodayProductsItemList(
       {Map<String, dynamic>? queryParameters}) async {
-    print('API Method Call in this: ${AppService.getProducts}');
+    print('Today API Method Call in this: ${AppService.getProducts}');
     try {
       final data = await _apiHelper.get(
         AppService.getProducts,
+        queryParameters: queryParameters,
       );
 
       print('Today Product API Responce : $data');
@@ -104,7 +107,8 @@ class RequestHelper {
           .toList()
           .cast<TodayProduct>();
 
-      print('List Of Product Data: $todayProduct');
+      print('Today Of Product Data: $todayProduct');
+
       return todayProduct;
     } on DioException {
       rethrow;
@@ -117,9 +121,10 @@ class RequestHelper {
     try {
       final data = await _apiHelper.get(
         AppService.getProducts,
+        queryParameters: queryParameters,
       );
 
-      print('Today Product API Responce : $data');
+      print('Best Product API Responce : $data');
 
       List<BestProduct>? bestProduct = <BestProduct>[];
 
@@ -128,7 +133,7 @@ class RequestHelper {
           .toList()
           .cast<BestProduct>();
 
-      print('List Of Product Data: $bestProduct');
+      print('Best Of Product Data: $bestProduct');
       return bestProduct;
     } on DioException {
       rethrow;
@@ -141,9 +146,10 @@ class RequestHelper {
     try {
       final data = await _apiHelper.get(
         AppService.getProducts,
+        queryParameters: queryParameters,
       );
 
-      print('Today Product API Responce : $data');
+      print('Newly Product API Responce : $data');
 
       List<NewlyProduct>? newlyProduct = <NewlyProduct>[];
 
@@ -152,7 +158,7 @@ class RequestHelper {
           .toList()
           .cast<NewlyProduct>();
 
-      print('List Of Product Data: $newlyProduct');
+      print('Newly Of Product Data: $newlyProduct');
       return newlyProduct;
     } on DioException {
       rethrow;
@@ -165,9 +171,10 @@ class RequestHelper {
     try {
       final data = await _apiHelper.get(
         AppService.getProducts,
+        queryParameters: queryParameters,
       );
 
-      print('Today Product API Responce : $data');
+      print('Trending Product API Responce : $data');
 
       List<TrendingProduct>? trendingProduct = <TrendingProduct>[];
 
@@ -176,8 +183,33 @@ class RequestHelper {
           .toList()
           .cast<TrendingProduct>();
 
-      print('List Of Product Data: $trendingProduct');
+      print('Trending Of Product Data: $trendingProduct');
       return trendingProduct;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  Future<List<Brand>?> getWSKartBrandProductsList() async {
+    print('Brand API Method Call in this: ${AppService.getBrands}');
+
+    try {
+      final data = await _apiHelper.get(
+        AppService.getBrands,
+      );
+
+      print('Brand API Responce : $data');
+
+      List<Brand>? brandList = <Brand>[];
+
+      brandList = data
+          .map((brandList) => Brand.fromJson(brandList))
+          .toList()
+          .cast<Brand>();
+
+      print('Brand list Data: $brandList');
+
+      return brandList;
     } on DioException {
       rethrow;
     }

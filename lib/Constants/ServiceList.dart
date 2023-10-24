@@ -54,7 +54,7 @@ class AppService {
   static const String getTermProductCount = "/wc/v3/term-product-counts";
 
   // Get brand
-  static const String getBrands = "/wc/v2/products/brands";
+  static const String getBrands = "/wc/v3/products/attributes/5/terms/?";
 
   // Like video product
   static const String likeProductVideo =
