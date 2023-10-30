@@ -15,19 +15,23 @@ import 'package:wskart/Constants/query.dart';
 
 class SearchTabController extends GetxController {
   var isLoading = false.obs;
+  var isPageEnd = false.obs;
+
+  String? selectCatID;
+  String? clickCatID = "Yes";
 
   final getStorage = GetStorage();
   final RequestHelper _requestHelper = RequestHelper();
   final APIHelper _apiHelper = APIHelper();
   final TabBarController _tabController = TabBarController();
+
   List<Product>? products = <Product>[];
+  var productList = List<Product>.empty(growable: true).obs;
+
   List<ProductCategory>? categories = <ProductCategory>[];
 
-  // ObservableList<ProductCategory> _categories = ObservableList<ProductCategory>.from([]);
-
-  // ObservableList<ProductCategory> get categories => _categories;
-
   int productListCount = 0;
+  int perPageCount = 1;
 
   @override
   Future<void> onInit() async {
@@ -43,32 +47,47 @@ class SearchTabController extends GetxController {
   }
 
   fetchProductShopData(String? categoryID) async {
-    // Map<String, String?> queryParams = {
-    //   'consumer_key': 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835',
-    //   'consumer_secret': 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc',
-    // };
-    //
     print('CatID:>>>>>> $categoryID');
 
     final catID = {
       "category": categoryID,
+      "page": perPageCount.toString(),
+      "per_page": '10',
     };
+
+    final catAllID = {
+      "page": perPageCount.toString(),
+      "per_page": '10',
+    };
+
+    print('CatAllID: $catAllID');
+    print('catID: $catID');
 
     try {
       isLoading(true);
-      // List<Product>? avb = await _requestHelper.getWSKartProductsItemList();
 
       if (categoryID == "1") {
-        products = await _requestHelper.getWSKartProductsItemList();
+        products = await _requestHelper.getWSKartProductsCategoryItemList(
+            queryParameters: preQueryParameters(catAllID));
       } else {
         products = await _requestHelper.getWSKartProductsCategoryItemList(
             queryParameters: preQueryParameters(catID));
       }
-      productListCount = products!.length.toInt();
-      print(products!.length.toString());
-      print(products?[0].id);
+
+      if (products?.length != 0) {
+        productList.addAll(products!);
+        print('Product ADD : ${productList.length}');
+      }
+
+      print('Product DataList : ${productList.length}');
+      print("Product Data List: ${products!.length.toInt()}");
+
+      clickCatID = "No";
+
+      productListCount = productList.length.toInt();
     } catch (error) {
       print('Store Product Error: $error');
+      isLoading(false);
     } finally {
       getCategoriesDataList();
     }

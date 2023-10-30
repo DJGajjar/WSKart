@@ -14,19 +14,19 @@ import 'package:wskart/Service/Helper/APIHelper.dart';
 import 'package:wskart/Service/Helper/RequestHelper.dart';
 
 class MoreProductController extends GetxController {
-  var isShowCartIcon = false.obs;
-
-  var isSlowAnimations = true.obs;
-
-  var isHomeLoading = false.obs;
+  var isHomeLoading = true.obs;
+  var isAddLoading = false.obs;
+  var isPageEnd = false.obs;
 
   final RequestHelper _requestHelper = RequestHelper();
   final APIHelper _apiHelper = APIHelper();
   final getStorage = GetStorage();
 
   List<Product>? products = <Product>[];
+  var productList = List<Product>.empty(growable: true).obs;
 
   int productListCount = 0;
+  int perPageCount = 1;
 
   @override
   void onInit() {
@@ -41,22 +41,36 @@ class MoreProductController extends GetxController {
     } else if (getStorage.read("NavTitle") == "Trending Viewed") {
       fetchTrendingProductDataList();
     }
+
+    print('On init State');
   }
 
   @override
   void onReady() {
     super.onReady();
+
+    print('On Ready State');
   }
 
   @override
   void onClose() {
     super.onClose();
+
+    print('On Close Event');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    print('Dispose State Call');
   }
 
   fetchTodayProductDataList() async {
     isHomeLoading(true);
 
     final randomParam = {
+      "page": perPageCount.toString(),
       "per_page": '10',
       "status": 'publish',
       "stock_status": 'instock',
@@ -69,9 +83,15 @@ class MoreProductController extends GetxController {
       products = await _requestHelper.getWSKartProductsCategoryItemList(
           queryParameters: preQueryParameters(randomParam));
 
+      if (products?.length != 0) {
+        productList.addAll(products!);
+        print('Product ADD : ${productList.length}');
+      }
+
+      print('Product DataList : ${productList.length}');
       print("Today Product Data List: ${products!.length.toInt()}");
 
-      productListCount = products!.length.toInt();
+      productListCount = productList.length.toInt();
 
       isHomeLoading(false);
     } catch (e) {
@@ -84,6 +104,7 @@ class MoreProductController extends GetxController {
     isHomeLoading(true);
 
     final randomParam = {
+      "page": perPageCount.toString(),
       "per_page": '10',
       "status": 'publish',
       "stock_status": 'instock',
@@ -98,7 +119,15 @@ class MoreProductController extends GetxController {
 
       print("Best Data List: ${products!.length.toInt()}");
 
-      productListCount = products!.length.toInt();
+      if (products?.length != 0) {
+        productList.addAll(products!);
+        print('Best Product ADD : ${productList.length}');
+      }
+
+      print('Best Product DataList : ${productList.length}');
+      print("Best Product Data List: ${products!.length.toInt()}");
+
+      productListCount = productList.length.toInt();
 
       isHomeLoading(false);
     } catch (e) {
@@ -111,6 +140,7 @@ class MoreProductController extends GetxController {
     isHomeLoading(true);
 
     final randomParam = {
+      "page": perPageCount.toString(),
       "per_page": '10',
       "status": 'publish',
       "stock_status": 'instock',
@@ -124,9 +154,15 @@ class MoreProductController extends GetxController {
       products = await _requestHelper.getWSKartProductsCategoryItemList(
           queryParameters: preQueryParameters(randomParam));
 
-      print("Newly Data List: ${products!.length.toInt()}");
+      if (products?.length != 0) {
+        productList.addAll(products!);
+        print('Newly Product ADD : ${productList.length}');
+      }
 
-      productListCount = products!.length.toInt();
+      print('Newly Product DataList : ${productList.length}');
+      print("Newly Product Data List: ${products!.length.toInt()}");
+
+      productListCount = productList.length.toInt();
 
       isHomeLoading(false);
     } catch (e) {
@@ -140,6 +176,7 @@ class MoreProductController extends GetxController {
     isHomeLoading(true);
 
     final randomParam = {
+      "page": perPageCount.toString(),
       "per_page": '10',
       "status": 'publish',
       "orderby": 'date',
@@ -152,9 +189,15 @@ class MoreProductController extends GetxController {
       products = await _requestHelper.getWSKartProductsCategoryItemList(
           queryParameters: preQueryParameters(randomParam));
 
-      print("Trending Data List: ${products!.length.toInt()}");
+      if (products?.length != 0) {
+        productList.addAll(products!);
+        print('Trending Product ADD : ${productList.length}');
+      }
 
-      productListCount = products!.length.toInt();
+      print('Trending Product DataList : ${productList.length}');
+      print("Trending Product Data List: ${products!.length.toInt()}");
+
+      productListCount = productList.length.toInt();
 
       isHomeLoading(false);
     } catch (e) {
