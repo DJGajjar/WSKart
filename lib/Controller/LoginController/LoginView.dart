@@ -274,7 +274,7 @@ class LoginView extends GetView<LoginController> {
                     ),
                     callback: () async {
                       if (formGlobalKey.currentState!.validate()) {
-                        print('Enter mobile number: $strMobileNumber');
+                        print('Enter mobile number: ${strMobileNumber.length}');
                         if (isMobileNumberNull == false) {
                           Get.defaultDialog(
                             title: 'Validation',
@@ -299,8 +299,34 @@ class LoginView extends GetView<LoginController> {
                           );
                         } else {
                           if (strMobileNumber.trim() != '') {
-                            mobileNumber.write('MobileNumber', strMobileNumber);
-                            controller.VerifyMobileNumber();
+                            if (strMobileNumber.length == 10) {
+                              mobileNumber.write(
+                                  'MobileNumber', strMobileNumber);
+                              controller.getMobileOTPAPICall(strMobileNumber);
+                              // controller.VerifyMobileNumber();
+                            } else {
+                              Get.defaultDialog(
+                                title: 'Validation',
+                                backgroundColor: CustomAppColors.appWhiteColor,
+                                middleText: 'Please Enter Valid Phone Number',
+                                middleTextStyle: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 16,
+                                  color: CustomAppColors.lblDarkColor,
+                                  wordSpacing: 1,
+                                  height: 1.2,
+                                ),
+                                titleStyle: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: CustomAppColors.lblOrgColor,
+                                  wordSpacing: 1,
+                                  height: 1.2,
+                                ),
+                              );
+                            }
                           } else {
                             Get.defaultDialog(
                               title: 'Validation',

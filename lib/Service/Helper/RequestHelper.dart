@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:wskart/Service/Helper/APIHelper.dart';
 import 'package:wskart/Service/Model/ProductModel/BestProduct.dart';
+import 'package:wskart/Service/Model/ProductModel/LoginOtp.dart';
 import 'package:wskart/Service/Model/ProductModel/NewlyProduct.dart';
+import 'package:wskart/Service/Model/ProductModel/Register.dart';
 import 'package:wskart/Service/Model/ProductModel/TodayProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/TrendingProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/brand.dart';
@@ -286,6 +288,57 @@ class RequestHelper {
       print('List Of Category Data: $productCategory');
 
       return productCategory;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  Future<dynamic> getLoginOtpAPI(
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final data = await _apiHelper.get(
+        AppService.login,
+        queryParameters: queryParameters,
+      );
+
+      print('Product Category API Responce : $data');
+      print('Value Of Res: ${LoginOtp.fromJson(data)}');
+
+      return LoginOtp.fromJson(data);
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  Future<dynamic> getRegisterOtpAPI(
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final data = await _apiHelper.get(
+        AppService.registerUser,
+        queryParameters: queryParameters,
+      );
+
+      print('Register API Responce : $data');
+      print('Value Of Register User: ${RegisterUser.fromJson(data)}');
+
+      return RegisterUser.fromJson(data);
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  Future<dynamic> getOTPVerifyAPI(
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final data = await _apiHelper.get(
+        AppService.OTPVerify,
+        queryParameters: queryParameters,
+      );
+
+      print('Register OTP API Responce : $data');
+      print('Register Of Verify: ${RegisterUser.fromJson(data)}');
+
+      return RegisterUser.fromJson(data);
     } on DioException {
       rethrow;
     }

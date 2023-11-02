@@ -54,7 +54,7 @@ class AppService {
   static const String getTermProductCount = "/wc/v3/term-product-counts";
 
   // Get brand
-  static const String getBrands = "/wc/v3/products/attributes/5/terms/?";
+  static const String getBrands = "/wc/v3/get_brands";
 
   // Like video product
   static const String likeProductVideo =
@@ -71,7 +71,13 @@ class AppService {
   static const String getTemplates = "/app-builder/v1/template-mobile";
 
   // Login with Email and Username
-  static const String login = "/app-builder/v1/login";
+  static const String login = "/wcs/v1/login_otp";
+
+  // Verify OTP
+  static const String OTPVerify = "/wcs/v1/process_otp_verify";
+
+  // Register User
+  static const String registerUser = "/wcs/v1/register_otp";
 
   // Login with Facebook
   static const String loginFacebook = "/app-builder/v1/facebook";

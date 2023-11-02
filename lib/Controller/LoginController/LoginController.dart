@@ -3,9 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wskart/ExtraClass/Routes/AppPages.dart';
+import 'package:wskart/Service/Model/ProductModel/LoginOtp.dart';
+
+import '../../Constants/query.dart';
+import '../../Service/Helper/RequestHelper.dart';
+import '../../Service/Model/ProductModel/LoginOtp.dart';
+import '../../Service/Model/ProductModel/Product.dart';
 
 class LoginController extends GetxController {
+  var isLoading = true.obs;
+
   final getStorge = GetStorage();
+  final RequestHelper _requestHelper = RequestHelper();
+
   @override
   void onInit() {
     super.onInit();
@@ -14,21 +24,43 @@ class LoginController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    // if (getStorge.read("id") != null) {
-    //   // Future.delayed(const Duration(milliseconds: 3000), () {
-    //   //   Get.offAllNamed(Routes.WELCOME);
-    //   // });
-    // } else {
-    //   // Get.offAllNamed(Routes.LOGIN);
-    //   Future.delayed(const Duration(milliseconds: 3000), () {
-    //     Get.offAllNamed(Routes.WELCOME);
-    //   });
-    // }
   }
 
   @override
   void onClose() {
     super.onClose();
+  }
+
+  void getMobileOTPAPICall(String strMobile) async {
+    isLoading(true);
+
+    print('Mobile Number: $strMobile');
+
+    final loginParam = {
+      "wc-ml-reg-phone-cc": "+91",
+      "wc-ml-reg-phone": strMobile,
+    };
+
+    print('Param: $loginParam');
+
+    try {
+      //  categories = await _requestHelper.getProductCategoriesList(
+      //           queryParameters: preQueryParameters(catParam));
+
+      LoginOtp loginInfo = await _requestHelper.getLoginOtpAPI(
+          queryParameters: preQueryParameters(loginParam));
+
+      if (loginInfo.otp_sent == 1) {
+        getStorge.write("VerifyOTP", loginInfo.otp);
+        VerifyMobileNumber();
+      } else {}
+      print('Login Info DataList : ${loginInfo.phone_code}');
+
+      isLoading(false);
+    } catch (e) {
+      print('Get categories error.');
+      isLoading(false);
+    }
   }
 
   SignUpScreen() {

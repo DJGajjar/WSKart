@@ -38,24 +38,6 @@ class HomeView extends GetView<HomeController> {
       },
     ];
 
-    var arrCategoriesList = [
-      {
-        'categoriesName': 'Electronics',
-      },
-      {
-        'categoriesName': 'Hardware',
-      },
-      {
-        'categoriesName': 'Bathroom',
-      },
-      {
-        'categoriesName': 'Fashion',
-      },
-      {
-        'categoriesName': 'Health',
-      },
-    ];
-
     var arrMyFavoriteLis = [
       {
         'favoriteID': '0',
@@ -66,8 +48,6 @@ class HomeView extends GetView<HomeController> {
     final screenSize = MediaQuery.of(context).size;
 
     ContainerTransitionType _transitionType = ContainerTransitionType.fade;
-
-    // final double screenWidth = (screenSize.height / 2);
 
     double deviceHeight(BuildContext context) => screenSize.height / 2;
     print('VAlue if Height: ${deviceHeight(context)}');
@@ -641,7 +621,6 @@ class HomeView extends GetView<HomeController> {
                     Container(
                       height: 338,
                       width: (screenSize.width - 48),
-                      // color: Colors.red,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -672,6 +651,7 @@ class HomeView extends GetView<HomeController> {
                                   onTap: () {
                                     print(
                                         'Click to Today Best Deal More Detail');
+                                    getStorge.write("BrandProduct", "No");
                                     getStorge.write(
                                         "NavTitle", "Today's Best Deal");
                                     Get.toNamed(Routes.MOREPRODUCTLISTROUTES);
@@ -998,28 +978,50 @@ class HomeView extends GetView<HomeController> {
                                                       ),
                                                     ),
                                                   ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 7, top: 2),
-                                              child: Container(
-                                                height: 30,
-                                                width: 142,
-                                                decoration: BoxDecoration(
-                                                  color: CustomAppColors
-                                                      .lblOrgColor,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(8)),
-                                                ),
-                                                child: Center(
-                                                  child: Container(
-                                                    width: 16,
-                                                    height: 16,
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      image: DecorationImage(
-                                                        image: AssetImage(AppImages
-                                                            .ProfileAddToCart),
+                                            InkWell(
+                                              focusColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              splashColor: Colors.transparent,
+                                              onTap: () {
+                                                print(
+                                                    'Today Add To Cart Item: ${homeListController.todayProducts?[0].id ?? 0}');
+                                                if (getStorge.read("isLogin") ==
+                                                    null) {
+                                                  Future.delayed(
+                                                      const Duration(
+                                                          milliseconds: 100),
+                                                      () {
+                                                    Get.find<HomeController>()
+                                                        .LoginScreen();
+                                                  });
+                                                }
+                                              },
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 7, top: 2),
+                                                child: Container(
+                                                  height: 30,
+                                                  width: 142,
+                                                  decoration: BoxDecoration(
+                                                    color: CustomAppColors
+                                                        .lblOrgColor,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(8)),
+                                                  ),
+                                                  child: Center(
+                                                    child: Container(
+                                                      width: 16,
+                                                      height: 16,
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                        image: DecorationImage(
+                                                          image: AssetImage(
+                                                              AppImages
+                                                                  .ProfileAddToCart),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -1297,188 +1299,208 @@ class HomeView extends GetView<HomeController> {
                                                       ),
                                                     ),
                                                   ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 7, top: 2),
-                                              child: Container(
-                                                height: 30,
-                                                width: 142,
-                                                decoration: BoxDecoration(
-                                                  color: CustomAppColors
-                                                      .lblOrgColor,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(8)),
-                                                ),
-                                                child: arrMyFavoriteLis[0]
-                                                                ['favoriteID']
-                                                            .toString() ==
-                                                        '1'
-                                                    ? Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Expanded(
-                                                            flex: 1,
-                                                            child: Container(
-                                                              height: 30,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: CustomAppColors
-                                                                    .cartCountBGColor,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          8),
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          8),
+                                            InkWell(
+                                              focusColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              splashColor: Colors.transparent,
+                                              onTap: () {
+                                                print(
+                                                    'Today Add To Cart Item: ${homeListController.todayProducts?[1].id ?? 0}');
+                                                if (getStorge.read("isLogin") ==
+                                                    null) {
+                                                  Future.delayed(
+                                                      const Duration(
+                                                          milliseconds: 100),
+                                                      () {
+                                                    Get.find<HomeController>()
+                                                        .LoginScreen();
+                                                  });
+                                                }
+                                              },
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 7, top: 2),
+                                                child: Container(
+                                                  height: 30,
+                                                  width: 142,
+                                                  decoration: BoxDecoration(
+                                                    color: CustomAppColors
+                                                        .lblOrgColor,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(8)),
+                                                  ),
+                                                  child: arrMyFavoriteLis[0]
+                                                                  ['favoriteID']
+                                                              .toString() ==
+                                                          '1'
+                                                      ? Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: Container(
+                                                                height: 30,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: CustomAppColors
+                                                                      .cartCountBGColor,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            8),
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            8),
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          30,
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Expanded(
+                                                                      flex: 1,
                                                                       child:
-                                                                          Center(
+                                                                          Container(
+                                                                        height:
+                                                                            30,
                                                                         child:
-                                                                            CustomeTextStyle(
-                                                                          text:
-                                                                              "-",
-                                                                          size:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              CustomAppColors.appWhiteColor,
-                                                                          wordSpacing:
-                                                                              0.5,
+                                                                            Center(
+                                                                          child:
+                                                                              CustomeTextStyle(
+                                                                            text:
+                                                                                "-",
+                                                                            size:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w800,
+                                                                            color:
+                                                                                CustomAppColors.appWhiteColor,
+                                                                            wordSpacing:
+                                                                                0.5,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          30,
+                                                                    Expanded(
+                                                                      flex: 1,
                                                                       child:
-                                                                          Center(
+                                                                          Container(
+                                                                        height:
+                                                                            30,
                                                                         child:
-                                                                            CustomeTextStyle(
-                                                                          text:
-                                                                              "1",
-                                                                          size:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              CustomAppColors.appWhiteColor,
-                                                                          wordSpacing:
-                                                                              0.5,
+                                                                            Center(
+                                                                          child:
+                                                                              CustomeTextStyle(
+                                                                            text:
+                                                                                "1",
+                                                                            size:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w800,
+                                                                            color:
+                                                                                CustomAppColors.appWhiteColor,
+                                                                            wordSpacing:
+                                                                                0.5,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          30,
+                                                                    Expanded(
+                                                                      flex: 1,
                                                                       child:
-                                                                          Center(
+                                                                          Container(
+                                                                        height:
+                                                                            30,
                                                                         child:
-                                                                            CustomeTextStyle(
-                                                                          text:
-                                                                              "+",
-                                                                          size:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              CustomAppColors.appWhiteColor,
-                                                                          wordSpacing:
-                                                                              0.5,
+                                                                            Center(
+                                                                          child:
+                                                                              CustomeTextStyle(
+                                                                            text:
+                                                                                "+",
+                                                                            size:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w800,
+                                                                            color:
+                                                                                CustomAppColors.appWhiteColor,
+                                                                            wordSpacing:
+                                                                                0.5,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          Expanded(
-                                                            flex: 1,
-                                                            child: Container(
-                                                              height: 30,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: CustomAppColors
-                                                                    .lblOrgColor,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          8),
-                                                                  bottomRight: Radius
-                                                                      .circular(
-                                                                          8),
-                                                                ),
-                                                              ),
-                                                              child: Center(
-                                                                child:
-                                                                    Container(
-                                                                  width: 16,
-                                                                  height: 16,
-                                                                  decoration:
-                                                                      const BoxDecoration(
-                                                                    image:
-                                                                        DecorationImage(
-                                                                      image: AssetImage(
-                                                                          AppImages
-                                                                              .ProfileAddToCart),
-                                                                    ),
-                                                                  ),
+                                                                  ],
                                                                 ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    : Center(
-                                                        child: Container(
-                                                          width: 16,
-                                                          height: 16,
-                                                          decoration:
-                                                              const BoxDecoration(
-                                                            image:
-                                                                DecorationImage(
-                                                              image: AssetImage(
-                                                                  AppImages
-                                                                      .ProfileAddToCart),
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: Container(
+                                                                height: 30,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: CustomAppColors
+                                                                      .lblOrgColor,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            8),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            8),
+                                                                  ),
+                                                                ),
+                                                                child: Center(
+                                                                  child:
+                                                                      Container(
+                                                                    width: 16,
+                                                                    height: 16,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      image:
+                                                                          DecorationImage(
+                                                                        image: AssetImage(
+                                                                            AppImages.ProfileAddToCart),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      : Center(
+                                                          child: Container(
+                                                            width: 16,
+                                                            height: 16,
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              image:
+                                                                  DecorationImage(
+                                                                image: AssetImage(
+                                                                    AppImages
+                                                                        .ProfileAddToCart),
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
+                                                ),
                                               ),
                                             )
                                           ],
@@ -1524,6 +1546,7 @@ class HomeView extends GetView<HomeController> {
                                   hoverColor: Colors.transparent,
                                   onTap: () {
                                     print('Click to Best Selling More Detail');
+                                    getStorge.write("BrandProduct", "No");
                                     getStorge.write("NavTitle", "Best Selling");
                                     Get.toNamed(Routes.MOREPRODUCTLISTROUTES);
                                   },
@@ -1849,28 +1872,50 @@ class HomeView extends GetView<HomeController> {
                                                       ),
                                                     ),
                                                   ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 7, top: 2),
-                                              child: Container(
-                                                height: 30,
-                                                width: 142,
-                                                decoration: BoxDecoration(
-                                                  color: CustomAppColors
-                                                      .lblOrgColor,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(8)),
-                                                ),
-                                                child: Center(
-                                                  child: Container(
-                                                    width: 16,
-                                                    height: 16,
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      image: DecorationImage(
-                                                        image: AssetImage(AppImages
-                                                            .ProfileAddToCart),
+                                            InkWell(
+                                              focusColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              splashColor: Colors.transparent,
+                                              onTap: () {
+                                                print(
+                                                    'Best Add To Cart Item: ${homeListController.bestProducts?[0].id ?? 0}');
+                                                if (getStorge.read("isLogin") ==
+                                                    null) {
+                                                  Future.delayed(
+                                                      const Duration(
+                                                          milliseconds: 100),
+                                                      () {
+                                                    Get.find<HomeController>()
+                                                        .LoginScreen();
+                                                  });
+                                                }
+                                              },
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 7, top: 2),
+                                                child: Container(
+                                                  height: 30,
+                                                  width: 142,
+                                                  decoration: BoxDecoration(
+                                                    color: CustomAppColors
+                                                        .lblOrgColor,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(8)),
+                                                  ),
+                                                  child: Center(
+                                                    child: Container(
+                                                      width: 16,
+                                                      height: 16,
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                        image: DecorationImage(
+                                                          image: AssetImage(
+                                                              AppImages
+                                                                  .ProfileAddToCart),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -2148,188 +2193,208 @@ class HomeView extends GetView<HomeController> {
                                                       ),
                                                     ),
                                                   ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 7, top: 2),
-                                              child: Container(
-                                                height: 30,
-                                                width: 142,
-                                                decoration: BoxDecoration(
-                                                  color: CustomAppColors
-                                                      .lblOrgColor,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(8)),
-                                                ),
-                                                child: arrMyFavoriteLis[0]
-                                                                ['favoriteID']
-                                                            .toString() ==
-                                                        '1'
-                                                    ? Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Expanded(
-                                                            flex: 1,
-                                                            child: Container(
-                                                              height: 30,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: CustomAppColors
-                                                                    .cartCountBGColor,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          8),
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          8),
+                                            InkWell(
+                                              focusColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              splashColor: Colors.transparent,
+                                              onTap: () {
+                                                print(
+                                                    'Best Add To Cart Item: ${homeListController.bestProducts?[1].id ?? 0}');
+                                                if (getStorge.read("isLogin") ==
+                                                    null) {
+                                                  Future.delayed(
+                                                      const Duration(
+                                                          milliseconds: 100),
+                                                      () {
+                                                    Get.find<HomeController>()
+                                                        .LoginScreen();
+                                                  });
+                                                }
+                                              },
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 7, top: 2),
+                                                child: Container(
+                                                  height: 30,
+                                                  width: 142,
+                                                  decoration: BoxDecoration(
+                                                    color: CustomAppColors
+                                                        .lblOrgColor,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(8)),
+                                                  ),
+                                                  child: arrMyFavoriteLis[0]
+                                                                  ['favoriteID']
+                                                              .toString() ==
+                                                          '1'
+                                                      ? Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: Container(
+                                                                height: 30,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: CustomAppColors
+                                                                      .cartCountBGColor,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            8),
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            8),
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          30,
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Expanded(
+                                                                      flex: 1,
                                                                       child:
-                                                                          Center(
+                                                                          Container(
+                                                                        height:
+                                                                            30,
                                                                         child:
-                                                                            CustomeTextStyle(
-                                                                          text:
-                                                                              "-",
-                                                                          size:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              CustomAppColors.appWhiteColor,
-                                                                          wordSpacing:
-                                                                              0.5,
+                                                                            Center(
+                                                                          child:
+                                                                              CustomeTextStyle(
+                                                                            text:
+                                                                                "-",
+                                                                            size:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w800,
+                                                                            color:
+                                                                                CustomAppColors.appWhiteColor,
+                                                                            wordSpacing:
+                                                                                0.5,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          30,
+                                                                    Expanded(
+                                                                      flex: 1,
                                                                       child:
-                                                                          Center(
+                                                                          Container(
+                                                                        height:
+                                                                            30,
                                                                         child:
-                                                                            CustomeTextStyle(
-                                                                          text:
-                                                                              "1",
-                                                                          size:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              CustomAppColors.appWhiteColor,
-                                                                          wordSpacing:
-                                                                              0.5,
+                                                                            Center(
+                                                                          child:
+                                                                              CustomeTextStyle(
+                                                                            text:
+                                                                                "1",
+                                                                            size:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w800,
+                                                                            color:
+                                                                                CustomAppColors.appWhiteColor,
+                                                                            wordSpacing:
+                                                                                0.5,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          30,
+                                                                    Expanded(
+                                                                      flex: 1,
                                                                       child:
-                                                                          Center(
+                                                                          Container(
+                                                                        height:
+                                                                            30,
                                                                         child:
-                                                                            CustomeTextStyle(
-                                                                          text:
-                                                                              "+",
-                                                                          size:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              CustomAppColors.appWhiteColor,
-                                                                          wordSpacing:
-                                                                              0.5,
+                                                                            Center(
+                                                                          child:
+                                                                              CustomeTextStyle(
+                                                                            text:
+                                                                                "+",
+                                                                            size:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w800,
+                                                                            color:
+                                                                                CustomAppColors.appWhiteColor,
+                                                                            wordSpacing:
+                                                                                0.5,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          Expanded(
-                                                            flex: 1,
-                                                            child: Container(
-                                                              height: 30,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: CustomAppColors
-                                                                    .lblOrgColor,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          8),
-                                                                  bottomRight: Radius
-                                                                      .circular(
-                                                                          8),
-                                                                ),
-                                                              ),
-                                                              child: Center(
-                                                                child:
-                                                                    Container(
-                                                                  width: 16,
-                                                                  height: 16,
-                                                                  decoration:
-                                                                      const BoxDecoration(
-                                                                    image:
-                                                                        DecorationImage(
-                                                                      image: AssetImage(
-                                                                          AppImages
-                                                                              .ProfileAddToCart),
-                                                                    ),
-                                                                  ),
+                                                                  ],
                                                                 ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    : Center(
-                                                        child: Container(
-                                                          width: 16,
-                                                          height: 16,
-                                                          decoration:
-                                                              const BoxDecoration(
-                                                            image:
-                                                                DecorationImage(
-                                                              image: AssetImage(
-                                                                  AppImages
-                                                                      .ProfileAddToCart),
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: Container(
+                                                                height: 30,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: CustomAppColors
+                                                                      .lblOrgColor,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            8),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            8),
+                                                                  ),
+                                                                ),
+                                                                child: Center(
+                                                                  child:
+                                                                      Container(
+                                                                    width: 16,
+                                                                    height: 16,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      image:
+                                                                          DecorationImage(
+                                                                        image: AssetImage(
+                                                                            AppImages.ProfileAddToCart),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      : Center(
+                                                          child: Container(
+                                                            width: 16,
+                                                            height: 16,
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              image:
+                                                                  DecorationImage(
+                                                                image: AssetImage(
+                                                                    AppImages
+                                                                        .ProfileAddToCart),
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
+                                                ),
                                               ),
                                             )
                                           ],
@@ -2374,6 +2439,7 @@ class HomeView extends GetView<HomeController> {
                                   hoverColor: Colors.transparent,
                                   onTap: () {
                                     print('Click to Newly Arrival More Detail');
+                                    getStorge.write("BrandProduct", "No");
                                     getStorge.write(
                                         "NavTitle", "Newly Arrival");
                                     Get.toNamed(Routes.MOREPRODUCTLISTROUTES);
@@ -2700,28 +2766,50 @@ class HomeView extends GetView<HomeController> {
                                                       ),
                                                     ),
                                                   ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 7, top: 2),
-                                              child: Container(
-                                                height: 30,
-                                                width: 142,
-                                                decoration: BoxDecoration(
-                                                  color: CustomAppColors
-                                                      .lblOrgColor,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(8)),
-                                                ),
-                                                child: Center(
-                                                  child: Container(
-                                                    width: 16,
-                                                    height: 16,
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      image: DecorationImage(
-                                                        image: AssetImage(AppImages
-                                                            .ProfileAddToCart),
+                                            InkWell(
+                                              focusColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              splashColor: Colors.transparent,
+                                              onTap: () {
+                                                print(
+                                                    'Newly Add To Cart Item: ${homeListController.newlyProducts?[0].id ?? 0}');
+                                                if (getStorge.read("isLogin") ==
+                                                    null) {
+                                                  Future.delayed(
+                                                      const Duration(
+                                                          milliseconds: 100),
+                                                      () {
+                                                    Get.find<HomeController>()
+                                                        .LoginScreen();
+                                                  });
+                                                }
+                                              },
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 7, top: 2),
+                                                child: Container(
+                                                  height: 30,
+                                                  width: 142,
+                                                  decoration: BoxDecoration(
+                                                    color: CustomAppColors
+                                                        .lblOrgColor,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(8)),
+                                                  ),
+                                                  child: Center(
+                                                    child: Container(
+                                                      width: 16,
+                                                      height: 16,
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                        image: DecorationImage(
+                                                          image: AssetImage(
+                                                              AppImages
+                                                                  .ProfileAddToCart),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -3001,188 +3089,208 @@ class HomeView extends GetView<HomeController> {
                                                       ),
                                                     ),
                                                   ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 7, top: 2),
-                                              child: Container(
-                                                height: 30,
-                                                width: 142,
-                                                decoration: BoxDecoration(
-                                                  color: CustomAppColors
-                                                      .lblOrgColor,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(8)),
-                                                ),
-                                                child: arrMyFavoriteLis[0]
-                                                                ['favoriteID']
-                                                            .toString() ==
-                                                        '1'
-                                                    ? Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Expanded(
-                                                            flex: 1,
-                                                            child: Container(
-                                                              height: 30,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: CustomAppColors
-                                                                    .cartCountBGColor,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          8),
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          8),
+                                            InkWell(
+                                              focusColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              splashColor: Colors.transparent,
+                                              onTap: () {
+                                                print(
+                                                    'Best Add To Cart Item: ${homeListController.newlyProducts?[1].id ?? 0}');
+                                                if (getStorge.read("isLogin") ==
+                                                    null) {
+                                                  Future.delayed(
+                                                      const Duration(
+                                                          milliseconds: 100),
+                                                      () {
+                                                    Get.find<HomeController>()
+                                                        .LoginScreen();
+                                                  });
+                                                }
+                                              },
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 7, top: 2),
+                                                child: Container(
+                                                  height: 30,
+                                                  width: 142,
+                                                  decoration: BoxDecoration(
+                                                    color: CustomAppColors
+                                                        .lblOrgColor,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(8)),
+                                                  ),
+                                                  child: arrMyFavoriteLis[0]
+                                                                  ['favoriteID']
+                                                              .toString() ==
+                                                          '1'
+                                                      ? Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: Container(
+                                                                height: 30,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: CustomAppColors
+                                                                      .cartCountBGColor,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            8),
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            8),
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          30,
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Expanded(
+                                                                      flex: 1,
                                                                       child:
-                                                                          Center(
+                                                                          Container(
+                                                                        height:
+                                                                            30,
                                                                         child:
-                                                                            CustomeTextStyle(
-                                                                          text:
-                                                                              "-",
-                                                                          size:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              CustomAppColors.appWhiteColor,
-                                                                          wordSpacing:
-                                                                              0.5,
+                                                                            Center(
+                                                                          child:
+                                                                              CustomeTextStyle(
+                                                                            text:
+                                                                                "-",
+                                                                            size:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w800,
+                                                                            color:
+                                                                                CustomAppColors.appWhiteColor,
+                                                                            wordSpacing:
+                                                                                0.5,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          30,
+                                                                    Expanded(
+                                                                      flex: 1,
                                                                       child:
-                                                                          Center(
+                                                                          Container(
+                                                                        height:
+                                                                            30,
                                                                         child:
-                                                                            CustomeTextStyle(
-                                                                          text:
-                                                                              "1",
-                                                                          size:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              CustomAppColors.appWhiteColor,
-                                                                          wordSpacing:
-                                                                              0.5,
+                                                                            Center(
+                                                                          child:
+                                                                              CustomeTextStyle(
+                                                                            text:
+                                                                                "1",
+                                                                            size:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w800,
+                                                                            color:
+                                                                                CustomAppColors.appWhiteColor,
+                                                                            wordSpacing:
+                                                                                0.5,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          30,
+                                                                    Expanded(
+                                                                      flex: 1,
                                                                       child:
-                                                                          Center(
+                                                                          Container(
+                                                                        height:
+                                                                            30,
                                                                         child:
-                                                                            CustomeTextStyle(
-                                                                          text:
-                                                                              "+",
-                                                                          size:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              CustomAppColors.appWhiteColor,
-                                                                          wordSpacing:
-                                                                              0.5,
+                                                                            Center(
+                                                                          child:
+                                                                              CustomeTextStyle(
+                                                                            text:
+                                                                                "+",
+                                                                            size:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w800,
+                                                                            color:
+                                                                                CustomAppColors.appWhiteColor,
+                                                                            wordSpacing:
+                                                                                0.5,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          Expanded(
-                                                            flex: 1,
-                                                            child: Container(
-                                                              height: 30,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: CustomAppColors
-                                                                    .lblOrgColor,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          8),
-                                                                  bottomRight: Radius
-                                                                      .circular(
-                                                                          8),
-                                                                ),
-                                                              ),
-                                                              child: Center(
-                                                                child:
-                                                                    Container(
-                                                                  width: 16,
-                                                                  height: 16,
-                                                                  decoration:
-                                                                      const BoxDecoration(
-                                                                    image:
-                                                                        DecorationImage(
-                                                                      image: AssetImage(
-                                                                          AppImages
-                                                                              .ProfileAddToCart),
-                                                                    ),
-                                                                  ),
+                                                                  ],
                                                                 ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    : Center(
-                                                        child: Container(
-                                                          width: 16,
-                                                          height: 16,
-                                                          decoration:
-                                                              const BoxDecoration(
-                                                            image:
-                                                                DecorationImage(
-                                                              image: AssetImage(
-                                                                  AppImages
-                                                                      .ProfileAddToCart),
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: Container(
+                                                                height: 30,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: CustomAppColors
+                                                                      .lblOrgColor,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            8),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            8),
+                                                                  ),
+                                                                ),
+                                                                child: Center(
+                                                                  child:
+                                                                      Container(
+                                                                    width: 16,
+                                                                    height: 16,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      image:
+                                                                          DecorationImage(
+                                                                        image: AssetImage(
+                                                                            AppImages.ProfileAddToCart),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      : Center(
+                                                          child: Container(
+                                                            width: 16,
+                                                            height: 16,
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              image:
+                                                                  DecorationImage(
+                                                                image: AssetImage(
+                                                                    AppImages
+                                                                        .ProfileAddToCart),
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
+                                                ),
                                               ),
                                             )
                                           ],
@@ -3229,6 +3337,7 @@ class HomeView extends GetView<HomeController> {
                                   onTap: () {
                                     print(
                                         'Click to Recently Viewed More Detail');
+                                    getStorge.write("BrandProduct", "No");
                                     getStorge.write(
                                         "NavTitle", "Trending Viewed");
                                     Get.toNamed(Routes.MOREPRODUCTLISTROUTES);
@@ -3555,28 +3664,50 @@ class HomeView extends GetView<HomeController> {
                                                       ),
                                                     ),
                                                   ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 7, top: 2),
-                                              child: Container(
-                                                height: 30,
-                                                width: 142,
-                                                decoration: BoxDecoration(
-                                                  color: CustomAppColors
-                                                      .lblOrgColor,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(8)),
-                                                ),
-                                                child: Center(
-                                                  child: Container(
-                                                    width: 16,
-                                                    height: 16,
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      image: DecorationImage(
-                                                        image: AssetImage(AppImages
-                                                            .ProfileAddToCart),
+                                            InkWell(
+                                              focusColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              splashColor: Colors.transparent,
+                                              onTap: () {
+                                                print(
+                                                    'Best Add To Cart Item: ${homeListController.trendingProducts?[0].id ?? 0}');
+                                                if (getStorge.read("isLogin") ==
+                                                    null) {
+                                                  Future.delayed(
+                                                      const Duration(
+                                                          milliseconds: 100),
+                                                      () {
+                                                    Get.find<HomeController>()
+                                                        .LoginScreen();
+                                                  });
+                                                }
+                                              },
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 7, top: 2),
+                                                child: Container(
+                                                  height: 30,
+                                                  width: 142,
+                                                  decoration: BoxDecoration(
+                                                    color: CustomAppColors
+                                                        .lblOrgColor,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(8)),
+                                                  ),
+                                                  child: Center(
+                                                    child: Container(
+                                                      width: 16,
+                                                      height: 16,
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                        image: DecorationImage(
+                                                          image: AssetImage(
+                                                              AppImages
+                                                                  .ProfileAddToCart),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -3855,188 +3986,208 @@ class HomeView extends GetView<HomeController> {
                                                       ),
                                                     ),
                                                   ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 7, top: 2),
-                                              child: Container(
-                                                height: 30,
-                                                width: 142,
-                                                decoration: BoxDecoration(
-                                                  color: CustomAppColors
-                                                      .lblOrgColor,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(8)),
-                                                ),
-                                                child: arrMyFavoriteLis[0]
-                                                                ['favoriteID']
-                                                            .toString() ==
-                                                        '1'
-                                                    ? Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Expanded(
-                                                            flex: 1,
-                                                            child: Container(
-                                                              height: 30,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: CustomAppColors
-                                                                    .cartCountBGColor,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          8),
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          8),
+                                            InkWell(
+                                              focusColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              splashColor: Colors.transparent,
+                                              onTap: () {
+                                                print(
+                                                    'Trending Add To Cart Item: ${homeListController.trendingProducts?[1].id ?? 0}');
+                                                if (getStorge.read("isLogin") ==
+                                                    null) {
+                                                  Future.delayed(
+                                                      const Duration(
+                                                          milliseconds: 100),
+                                                      () {
+                                                    Get.find<HomeController>()
+                                                        .LoginScreen();
+                                                  });
+                                                }
+                                              },
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 7, top: 2),
+                                                child: Container(
+                                                  height: 30,
+                                                  width: 142,
+                                                  decoration: BoxDecoration(
+                                                    color: CustomAppColors
+                                                        .lblOrgColor,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(8)),
+                                                  ),
+                                                  child: arrMyFavoriteLis[0]
+                                                                  ['favoriteID']
+                                                              .toString() ==
+                                                          '1'
+                                                      ? Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: Container(
+                                                                height: 30,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: CustomAppColors
+                                                                      .cartCountBGColor,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            8),
+                                                                    bottomLeft:
+                                                                        Radius.circular(
+                                                                            8),
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          30,
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Expanded(
+                                                                      flex: 1,
                                                                       child:
-                                                                          Center(
+                                                                          Container(
+                                                                        height:
+                                                                            30,
                                                                         child:
-                                                                            CustomeTextStyle(
-                                                                          text:
-                                                                              "-",
-                                                                          size:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              CustomAppColors.appWhiteColor,
-                                                                          wordSpacing:
-                                                                              0.5,
+                                                                            Center(
+                                                                          child:
+                                                                              CustomeTextStyle(
+                                                                            text:
+                                                                                "-",
+                                                                            size:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w800,
+                                                                            color:
+                                                                                CustomAppColors.appWhiteColor,
+                                                                            wordSpacing:
+                                                                                0.5,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          30,
+                                                                    Expanded(
+                                                                      flex: 1,
                                                                       child:
-                                                                          Center(
+                                                                          Container(
+                                                                        height:
+                                                                            30,
                                                                         child:
-                                                                            CustomeTextStyle(
-                                                                          text:
-                                                                              "1",
-                                                                          size:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              CustomAppColors.appWhiteColor,
-                                                                          wordSpacing:
-                                                                              0.5,
+                                                                            Center(
+                                                                          child:
+                                                                              CustomeTextStyle(
+                                                                            text:
+                                                                                "1",
+                                                                            size:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w800,
+                                                                            color:
+                                                                                CustomAppColors.appWhiteColor,
+                                                                            wordSpacing:
+                                                                                0.5,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                  Expanded(
-                                                                    flex: 1,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          30,
+                                                                    Expanded(
+                                                                      flex: 1,
                                                                       child:
-                                                                          Center(
+                                                                          Container(
+                                                                        height:
+                                                                            30,
                                                                         child:
-                                                                            CustomeTextStyle(
-                                                                          text:
-                                                                              "+",
-                                                                          size:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              CustomAppColors.appWhiteColor,
-                                                                          wordSpacing:
-                                                                              0.5,
+                                                                            Center(
+                                                                          child:
+                                                                              CustomeTextStyle(
+                                                                            text:
+                                                                                "+",
+                                                                            size:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w800,
+                                                                            color:
+                                                                                CustomAppColors.appWhiteColor,
+                                                                            wordSpacing:
+                                                                                0.5,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          Expanded(
-                                                            flex: 1,
-                                                            child: Container(
-                                                              height: 30,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: CustomAppColors
-                                                                    .lblOrgColor,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          8),
-                                                                  bottomRight: Radius
-                                                                      .circular(
-                                                                          8),
-                                                                ),
-                                                              ),
-                                                              child: Center(
-                                                                child:
-                                                                    Container(
-                                                                  width: 16,
-                                                                  height: 16,
-                                                                  decoration:
-                                                                      const BoxDecoration(
-                                                                    image:
-                                                                        DecorationImage(
-                                                                      image: AssetImage(
-                                                                          AppImages
-                                                                              .ProfileAddToCart),
-                                                                    ),
-                                                                  ),
+                                                                  ],
                                                                 ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    : Center(
-                                                        child: Container(
-                                                          width: 16,
-                                                          height: 16,
-                                                          decoration:
-                                                              const BoxDecoration(
-                                                            image:
-                                                                DecorationImage(
-                                                              image: AssetImage(
-                                                                  AppImages
-                                                                      .ProfileAddToCart),
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: Container(
+                                                                height: 30,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: CustomAppColors
+                                                                      .lblOrgColor,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    topRight: Radius
+                                                                        .circular(
+                                                                            8),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            8),
+                                                                  ),
+                                                                ),
+                                                                child: Center(
+                                                                  child:
+                                                                      Container(
+                                                                    width: 16,
+                                                                    height: 16,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      image:
+                                                                          DecorationImage(
+                                                                        image: AssetImage(
+                                                                            AppImages.ProfileAddToCart),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      : Center(
+                                                          child: Container(
+                                                            width: 16,
+                                                            height: 16,
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              image:
+                                                                  DecorationImage(
+                                                                image: AssetImage(
+                                                                    AppImages
+                                                                        .ProfileAddToCart),
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
+                                                ),
                                               ),
                                             )
                                           ],
@@ -4081,10 +4232,44 @@ class HomeView extends GetView<HomeController> {
                                         .brandList!.length
                                         .toInt(),
                                     itemBuilder: (context, index) {
-                                      return Container(
-                                        width: 100,
-                                        height: 56,
-                                        color: Colors.amber,
+                                      return InkWell(
+                                        focusColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        splashColor: Colors.transparent,
+                                        onTap: () {
+                                          print('Click Action: $index');
+                                          getStorge.write(
+                                              "BrandProduct", "Yes");
+                                          getStorge.write(
+                                              "BrandID",
+                                              homeListController
+                                                  .brandList?[index].id
+                                                  .toString());
+                                          getStorge.write(
+                                              "NavTitle",
+                                              homeListController
+                                                          .brandList?[index]
+                                                          .name ==
+                                                      ''
+                                                  ? "Top Brand"
+                                                  : homeListController
+                                                      .brandList?[index].name);
+                                          Get.toNamed(
+                                              Routes.MOREPRODUCTLISTROUTES);
+                                        },
+                                        child: Container(
+                                          width: 100,
+                                          height: 56,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              fit: BoxFit.fitWidth,
+                                              image: NetworkImage(
+                                                '${homeListController.brandList?[index].image_url == '' ? AppService.noImageUrl : homeListController.brandList?[index].image_url}',
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       );
                                     },
                                     gridDelegate:

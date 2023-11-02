@@ -17,6 +17,8 @@ import 'package:wskart/Service/Model/ProductModel/brand.dart';
 import 'package:wskart/Service/Model/ProductModel/product_category.dart';
 import 'package:wskart/Constants/query.dart';
 
+import '../../../../ExtraClass/Routes/AppPages.dart';
+
 class HomeController extends GetxController {
   var isHomeLoading = false.obs;
 
@@ -335,5 +337,9 @@ class HomeController extends GetxController {
 
       isHomeLoading(false);
     }
+  }
+
+  LoginScreen() {
+    Get.toNamed(Routes.LOGIN);
   }
 }

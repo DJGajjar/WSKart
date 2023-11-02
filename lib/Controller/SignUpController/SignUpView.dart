@@ -254,7 +254,7 @@ class SignUpView extends GetView<SignUpController> {
                 ),
                 Obx(
                   () => Container(
-                    height: controller.isDisplayOTP.value == true ? 124 : 0,
+                    height: controller.isDisplayOTP.value == true ? 72 : 0,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -311,8 +311,7 @@ class SignUpView extends GetView<SignUpController> {
                             ),
                           ),
                         ),
-                        16.heightBox,
-                        Container(
+                        /*Container(
                           height: 35,
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -350,7 +349,66 @@ class SignUpView extends GetView<SignUpController> {
                                     ),
                                     onPressed: () {
                                       print('Click E Verify');
-                                      controller.isOTPVerify.value = true;
+                                      String strStoreOTP =
+                                          mobileNumber.read('VerifyOTP');
+
+                                      if (strStoreOTP == strOTP) {
+                                        controller
+                                            .getRegisterOTPVerificationAPICall(
+                                                strMobileNumber,
+                                                strOTP,
+                                                strEmailAddress);
+                                      } else {
+                                        if (isOTPNull == false) {
+                                          Get.defaultDialog(
+                                            title: 'Validation',
+                                            backgroundColor:
+                                                CustomAppColors.appWhiteColor,
+                                            middleText: 'Please Enter OTP',
+                                            middleTextStyle: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 16,
+                                              color:
+                                                  CustomAppColors.lblDarkColor,
+                                              wordSpacing: 1,
+                                              height: 1.2,
+                                            ),
+                                            titleStyle: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16,
+                                              color:
+                                                  CustomAppColors.lblOrgColor,
+                                              wordSpacing: 1,
+                                              height: 1.2,
+                                            ),
+                                          );
+                                        }
+                                        Get.defaultDialog(
+                                          title: 'Validation',
+                                          backgroundColor:
+                                              CustomAppColors.appWhiteColor,
+                                          middleText: 'Please Enter Valid OTP',
+                                          middleTextStyle: TextStyle(
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 16,
+                                            color: CustomAppColors.lblDarkColor,
+                                            wordSpacing: 1,
+                                            height: 1.2,
+                                          ),
+                                          titleStyle: TextStyle(
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16,
+                                            color: CustomAppColors.lblOrgColor,
+                                            wordSpacing: 1,
+                                            height: 1.2,
+                                          ),
+                                        );
+                                      }
+                                      // controller.isOTPVerify.value = true;
                                     },
                                     child: Text(
                                       'Verify',
@@ -369,7 +427,7 @@ class SignUpView extends GetView<SignUpController> {
                               ),
                             ],
                           ),
-                        ),
+                        ),*/
                       ],
                     ),
                   ),
@@ -515,176 +573,75 @@ class SignUpView extends GetView<SignUpController> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width - 48,
                   height: 56,
-                  child: RoundedButton(
-                    btnName: 'Sign up',
-                    btnBGColor: Colors.transparent,
-                    btnStyle: TextStyle(
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                      color: CustomAppColors.appWhiteColor,
-                      wordSpacing: 1,
-                      height: 1.2,
-                    ),
-                    callback: () async {
-                      if (formGlobalKey.currentState!.validate()) {
-                        print('Enter mobile number: $strMobileNumber');
-                        if (isMobileNumberNull == false) {
-                          Get.defaultDialog(
-                            title: 'Validation',
-                            backgroundColor: CustomAppColors.appWhiteColor,
-                            middleText: 'Please Enter Valid Phone Number',
-                            middleTextStyle: TextStyle(
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16,
-                              color: CustomAppColors.lblDarkColor,
-                              wordSpacing: 1,
-                              height: 1.2,
-                            ),
-                            titleStyle: TextStyle(
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: CustomAppColors.lblOrgColor,
-                              wordSpacing: 1,
-                              height: 1.2,
-                            ),
-                          );
-                        } else {
-                          if (strMobileNumber.trim() != '') {
-                            if (controller.isDisplayOTP.value == false) {
-                              controller.isDisplayOTP.value = true;
-                            } else {
-                              if (isOTPNull == false) {
-                                Get.defaultDialog(
-                                  title: 'Validation',
-                                  backgroundColor:
-                                      CustomAppColors.appWhiteColor,
-                                  middleText: 'Please Enter Verify OTP',
-                                  middleTextStyle: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 14,
-                                    color: CustomAppColors.lblDarkColor,
-                                    wordSpacing: 1,
-                                    height: 1.2,
-                                  ),
-                                  titleStyle: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: CustomAppColors.lblOrgColor,
-                                    wordSpacing: 1,
-                                    height: 1.2,
-                                  ),
-                                );
-                              } else if (controller.isOTPVerify.value ==
-                                  false) {
-                                Get.defaultDialog(
-                                  title: 'Validation',
-                                  backgroundColor:
-                                      CustomAppColors.appWhiteColor,
-                                  middleText: 'First Verify OTP.',
-                                  middleTextStyle: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 14,
-                                    color: CustomAppColors.lblDarkColor,
-                                    wordSpacing: 1,
-                                    height: 1.2,
-                                  ),
-                                  titleStyle: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: CustomAppColors.lblOrgColor,
-                                    wordSpacing: 1,
-                                    height: 1.2,
-                                  ),
-                                );
-                              } else if (isEmailAddressNull == false) {
-                                Get.defaultDialog(
-                                  title: 'Validation',
-                                  backgroundColor:
-                                      CustomAppColors.appWhiteColor,
-                                  middleText: 'Please Enter Email Address',
-                                  middleTextStyle: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 14,
-                                    color: CustomAppColors.lblDarkColor,
-                                    wordSpacing: 1,
-                                    height: 1.2,
-                                  ),
-                                  titleStyle: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: CustomAppColors.lblOrgColor,
-                                    wordSpacing: 1,
-                                    height: 1.2,
-                                  ),
-                                );
-                              } else if (GetUtils.isEmail(strEmailAddress!) ==
-                                  false) {
-                                Get.defaultDialog(
-                                  title: 'Validation',
-                                  backgroundColor:
-                                      CustomAppColors.appWhiteColor,
-                                  middleText:
-                                      'Please Enter Valid Email Address',
-                                  middleTextStyle: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 14,
-                                    color: CustomAppColors.lblDarkColor,
-                                    wordSpacing: 1,
-                                    height: 1.2,
-                                  ),
-                                  titleStyle: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: CustomAppColors.lblOrgColor,
-                                    wordSpacing: 1,
-                                    height: 1.2,
-                                  ),
-                                );
-                              } else if (controller
-                                      .isConditionCheckMark.value ==
-                                  false) {
-                                Get.defaultDialog(
-                                  title: 'Validation',
-                                  backgroundColor:
-                                      CustomAppColors.appWhiteColor,
-                                  middleText: 'Please Check Terms & Privacy',
-                                  middleTextStyle: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 14,
-                                    color: CustomAppColors.lblDarkColor,
-                                    wordSpacing: 1,
-                                    height: 1.2,
-                                  ),
-                                  titleStyle: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: CustomAppColors.lblOrgColor,
-                                    wordSpacing: 1,
-                                    height: 1.2,
-                                  ),
-                                );
-                              } else {
-                                controller.LoginScreen();
-                              }
-                            }
-                          } else {
+                  child: Obx(
+                    () => RoundedButton(
+                      btnName: controller.btnTitle.value,
+                      btnBGColor: Colors.transparent,
+                      btnStyle: TextStyle(
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: CustomAppColors.appWhiteColor,
+                        wordSpacing: 1,
+                        height: 1.2,
+                      ),
+                      callback: () async {
+                        if (formGlobalKey.currentState!.validate()) {
+                          print('Enter mobile number: $strMobileNumber');
+                          print('Enter OTP: $strOTP');
+
+                          String strStoreOTP = mobileNumber.read('VerifyOTP');
+
+                          if (isMobileNumberNull == false) {
                             Get.defaultDialog(
                               title: 'Validation',
                               backgroundColor: CustomAppColors.appWhiteColor,
                               middleText: 'Please Enter Valid Phone Number',
+                              middleTextStyle: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.normal,
+                                fontSize: 16,
+                                color: CustomAppColors.lblDarkColor,
+                                wordSpacing: 1,
+                                height: 1.2,
+                              ),
+                              titleStyle: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: CustomAppColors.lblOrgColor,
+                                wordSpacing: 1,
+                                height: 1.2,
+                              ),
+                            );
+                          } else if (strMobileNumber.length != 10) {
+                            Get.defaultDialog(
+                              title: 'Validation',
+                              backgroundColor: CustomAppColors.appWhiteColor,
+                              middleText:
+                                  'Please Enter Atlist 10 Digit Of Number',
+                              middleTextStyle: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.normal,
+                                fontSize: 16,
+                                color: CustomAppColors.lblDarkColor,
+                                wordSpacing: 1,
+                                height: 1.2,
+                              ),
+                              titleStyle: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: CustomAppColors.lblOrgColor,
+                                wordSpacing: 1,
+                                height: 1.2,
+                              ),
+                            );
+                          } else if (isEmailAddressNull == false) {
+                            Get.defaultDialog(
+                              title: 'Validation',
+                              backgroundColor: CustomAppColors.appWhiteColor,
+                              middleText: 'Please Enter Email Address',
                               middleTextStyle: TextStyle(
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.normal,
@@ -702,33 +659,185 @@ class SignUpView extends GetView<SignUpController> {
                                 height: 1.2,
                               ),
                             );
+                          } else if (GetUtils.isEmail(strEmailAddress!) ==
+                              false) {
+                            Get.defaultDialog(
+                              title: 'Validation',
+                              backgroundColor: CustomAppColors.appWhiteColor,
+                              middleText: 'Please Enter Valid Email Address',
+                              middleTextStyle: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.normal,
+                                fontSize: 14,
+                                color: CustomAppColors.lblDarkColor,
+                                wordSpacing: 1,
+                                height: 1.2,
+                              ),
+                              titleStyle: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: CustomAppColors.lblOrgColor,
+                                wordSpacing: 1,
+                                height: 1.2,
+                              ),
+                            );
+                          } else {
+                            if (strMobileNumber.trim() != '' &&
+                                strEmailAddress.trim() != '') {
+                              if (controller.isDisplayOTP.value == false) {
+                                controller.getRegisterOTPAPICall(
+                                    strMobileNumber, strEmailAddress);
+                              } else {
+                                if (isOTPNull == false) {
+                                  Get.defaultDialog(
+                                    title: 'Validation',
+                                    backgroundColor:
+                                        CustomAppColors.appWhiteColor,
+                                    middleText: 'Please Enter OTP',
+                                    middleTextStyle: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 14,
+                                      color: CustomAppColors.lblDarkColor,
+                                      wordSpacing: 1,
+                                      height: 1.2,
+                                    ),
+                                    titleStyle: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                      color: CustomAppColors.lblOrgColor,
+                                      wordSpacing: 1,
+                                      height: 1.2,
+                                    ),
+                                  );
+                                } else if (strOTP.trim() == '') {
+                                  Get.defaultDialog(
+                                    title: 'Validation',
+                                    backgroundColor:
+                                        CustomAppColors.appWhiteColor,
+                                    middleText: 'Please Enter Verify OTP',
+                                    middleTextStyle: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 14,
+                                      color: CustomAppColors.lblDarkColor,
+                                      wordSpacing: 1,
+                                      height: 1.2,
+                                    ),
+                                    titleStyle: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                      color: CustomAppColors.lblOrgColor,
+                                      wordSpacing: 1,
+                                      height: 1.2,
+                                    ),
+                                  );
+                                } else if (strStoreOTP != strOTP) {
+                                  Get.defaultDialog(
+                                    title: 'Validation',
+                                    backgroundColor:
+                                        CustomAppColors.appWhiteColor,
+                                    middleText: 'Please Enter Valid OTP',
+                                    middleTextStyle: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 14,
+                                      color: CustomAppColors.lblDarkColor,
+                                      wordSpacing: 1,
+                                      height: 1.2,
+                                    ),
+                                    titleStyle: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                      color: CustomAppColors.lblOrgColor,
+                                      wordSpacing: 1,
+                                      height: 1.2,
+                                    ),
+                                  );
+                                } else if (controller
+                                        .isConditionCheckMark.value ==
+                                    false) {
+                                  Get.defaultDialog(
+                                    title: 'Validation',
+                                    backgroundColor:
+                                        CustomAppColors.appWhiteColor,
+                                    middleText: 'Please Check Terms & Privacy',
+                                    middleTextStyle: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 14,
+                                      color: CustomAppColors.lblDarkColor,
+                                      wordSpacing: 1,
+                                      height: 1.2,
+                                    ),
+                                    titleStyle: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                      color: CustomAppColors.lblOrgColor,
+                                      wordSpacing: 1,
+                                      height: 1.2,
+                                    ),
+                                  );
+                                } else {
+                                  controller.getRegisterOTPVerificationAPICall(
+                                      strMobileNumber, strOTP, strEmailAddress);
+                                }
+                              }
+                            } else {
+                              Get.defaultDialog(
+                                title: 'Validation',
+                                backgroundColor: CustomAppColors.appWhiteColor,
+                                middleText: 'Please Enter Valid Phone Number',
+                                middleTextStyle: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 14,
+                                  color: CustomAppColors.lblDarkColor,
+                                  wordSpacing: 1,
+                                  height: 1.2,
+                                ),
+                                titleStyle: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                  color: CustomAppColors.lblOrgColor,
+                                  wordSpacing: 1,
+                                  height: 1.2,
+                                ),
+                              );
+                            }
                           }
+                        } else {
+                          print('Validation mobile number');
+                          Get.defaultDialog(
+                            title: 'Validation',
+                            backgroundColor: CustomAppColors.appWhiteColor,
+                            middleText: 'Please Enter Valid Phone Number',
+                            middleTextStyle: TextStyle(
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.normal,
+                              fontSize: 14,
+                              color: CustomAppColors.lblDarkColor,
+                              wordSpacing: 1,
+                              height: 1.2,
+                            ),
+                            titleStyle: TextStyle(
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              color: CustomAppColors.lblOrgColor,
+                              wordSpacing: 1,
+                              height: 1.2,
+                            ),
+                          );
                         }
-                      } else {
-                        print('Validation mobile number');
-                        Get.defaultDialog(
-                          title: 'Validation',
-                          backgroundColor: CustomAppColors.appWhiteColor,
-                          middleText: 'Please Enter Valid Phone Number',
-                          middleTextStyle: TextStyle(
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.normal,
-                            fontSize: 14,
-                            color: CustomAppColors.lblDarkColor,
-                            wordSpacing: 1,
-                            height: 1.2,
-                          ),
-                          titleStyle: TextStyle(
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: CustomAppColors.lblOrgColor,
-                            wordSpacing: 1,
-                            height: 1.2,
-                          ),
-                        );
-                      }
-                    },
+                      },
+                    ),
                   ),
                 ),
                 32.heightBox,

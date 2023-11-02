@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,6 +23,7 @@ class MoreProductController extends GetxController {
   final RequestHelper _requestHelper = RequestHelper();
   final APIHelper _apiHelper = APIHelper();
   final getStorage = GetStorage();
+  Map<String, String>? randomParam;
 
   List<Product>? products = <Product>[];
   var productList = List<Product>.empty(growable: true).obs;
@@ -40,6 +43,8 @@ class MoreProductController extends GetxController {
       fetchNewlyProductDataList();
     } else if (getStorage.read("NavTitle") == "Trending Viewed") {
       fetchTrendingProductDataList();
+    } else if (getStorage.read("BrandProduct") == "Yes") {
+      fetchBrandProductDataList();
     }
 
     print('On init State');
@@ -76,8 +81,6 @@ class MoreProductController extends GetxController {
       "stock_status": 'instock',
       "orderby": 'rand',
     };
-
-    print('Home Param Today API Call>>>>: $randomParam');
 
     try {
       products = await _requestHelper.getWSKartProductsCategoryItemList(
@@ -196,6 +199,47 @@ class MoreProductController extends GetxController {
 
       print('Trending Product DataList : ${productList.length}');
       print("Trending Product Data List: ${products!.length.toInt()}");
+
+      productListCount = productList.length.toInt();
+
+      isHomeLoading(false);
+    } catch (e) {
+      print('Get categories error.');
+      isHomeLoading(false);
+    }
+  }
+
+  fetchBrandProductDataList() async {
+    print('Value Of Brand : ${perPageCount.toString()}');
+
+    isHomeLoading(true);
+
+    String strBrandID = getStorage.read("BrandID");
+
+    print('Brand ID: $strBrandID');
+
+    final randomParam = {
+      "page": perPageCount.toString(),
+      "per_page": '10',
+      "status": 'publish',
+      "stock_status": 'instock',
+      "attribute": 'pa_brand',
+      "attribute_term": int.parse(strBrandID),
+    };
+
+    print('Param: $randomParam');
+
+    try {
+      products = await _requestHelper.getWSKartProductsCategoryItemList(
+          queryParameters: preQueryParameters(randomParam));
+
+      if (products?.length != 0) {
+        productList.addAll(products!);
+        print('Product ADD : ${productList.length}');
+      }
+
+      print('Product DataList : ${productList.length}');
+      print("Brand Product Data List: ${products!.length.toInt()}");
 
       productListCount = productList.length.toInt();
 
