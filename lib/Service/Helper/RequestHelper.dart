@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:wskart/Service/Helper/APIHelper.dart';
+import 'package:wskart/Service/Model/AddRemoveWishlist/AddRemoveWishlist.dart';
 import 'package:wskart/Service/Model/ProductModel/BestProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/LoginOtp.dart';
 import 'package:wskart/Service/Model/ProductModel/NewlyProduct.dart';
@@ -344,6 +345,104 @@ class RequestHelper {
     }
   }
 
+  Future<List<RandomProduct>?> addWishlistProduct(
+      {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final data = await _apiHelper.get(
+        AppService.wishlistAddRemover,
+        queryParameters: queryParameters,
+      );
+
+      print('Add Wishlist API Responce : $data');
+
+      List<RandomProduct>? randomProduct = <RandomProduct>[];
+
+      randomProduct = data
+          .map((randomproduct) => RandomProduct.fromJson(randomproduct))
+          .toList()
+          .cast<RandomProduct>();
+
+      print('Random Of Product Data: $randomProduct');
+      return randomProduct;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  // Future<Map<String, dynamic>> addWishlistProduct(
+  //     {Map<String, dynamic>? queryParameters}) async {
+  //   final randomParam = {
+  //     "product_id": '37935', //productID,
+  //     "user_id": '4079', //intStoreUserID.toString(),
+  //     "ws_action": 'add', //action,
+  //     'consumer_key': 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835',
+  //     'consumer_secret': 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc',
+  //   };
+  //
+  //   try {
+  //     final res = await _apiHelper.get(AppService.wishlistAddRemover +
+  //         'product_id=37935&user_id=4079&ws_action=add');
+  //
+  //     if (res is String) {
+  //       return jsonDecode(res);
+  //     }
+  //
+  //     print('Daata List: $res');
+  //     return res;
+  //   } on DioException {
+  //     rethrow;
+  //   }
+  // }
+
+  Future<dynamic> addProductWishlist(
+      {Map<String, dynamic>? queryParameters}) async {
+    print('URL>>>>>: ${AppService.wishlistAddRemover}');
+    try {
+      final data = await _apiHelper.get(
+        AppService.wishlistAddRemover,
+        queryParameters: queryParameters,
+      );
+
+      print('Register OTP API Responce : $data');
+      print('Register Of Verify: ${AddRemoveWishlist.fromJson(data)}');
+
+      return AddRemoveWishlist.fromJson(data);
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  // Future<String> addProductWishlist() async {
+  //   var formData = FormData.fromMap({
+  //     "product_id": '37935', //productID,
+  //     "user_id": '4079', //intStoreUserID.toString(),
+  //     "ws_action": 'add', //action,
+  //     'consumer_key': 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835',
+  //     'consumer_secret': 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc',
+  //   });
+  //   //final prefs = await SharedPreferences.getInstance();
+  //
+  //   Dio dio = Dio();
+  //   Response responce;
+  //   try {
+  //     responce = await dio.get(
+  //       AppService.wishlistAddRemover,
+  //       data: formData,
+  //     );
+  //
+  //     print("response data " + responce.toString());
+  //
+  //     if (responce.data['error'] == false) {
+  //       print('Error Data: ${responce.data}');
+  //     } else {
+  //       print('Error Else Data: ${responce.data}');
+  //     }
+  //   } catch (e) {
+  //     print('E: $e');
+  //     return 'some thing wrong';
+  //   }
+  //   return 'No data 404';
+  // }
   /*
   /// Retrieve a product in response
   Future<Product> getProduct(

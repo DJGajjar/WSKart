@@ -801,29 +801,45 @@ class HomeView extends GetView<HomeController> {
                                                               const EdgeInsets
                                                                   .only(
                                                                   right: 6),
-                                                          child: Container(
-                                                            width: 28,
-                                                            height: 28,
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              color: CustomAppColors
-                                                                  .appWhiteColor,
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          28)),
-                                                            ),
-                                                            child: Center(
-                                                              child: Container(
-                                                                width: 16,
-                                                                height: 16,
-                                                                decoration:
-                                                                    const BoxDecoration(
-                                                                  image:
-                                                                      DecorationImage(
-                                                                    image: AssetImage(
-                                                                        AppImages
-                                                                            .ProfileFavoriteIcon),
+                                                          child: InkWell(
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            onTap: () {
+                                                              print(
+                                                                  'Today Wishlist Click: ${homeListController.todayProducts?[0].id ?? 0}');
+                                                            },
+                                                            child: Container(
+                                                              width: 28,
+                                                              height: 28,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                color: CustomAppColors
+                                                                    .appWhiteColor,
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            28)),
+                                                              ),
+                                                              child: Center(
+                                                                child:
+                                                                    Container(
+                                                                  width: 16,
+                                                                  height: 16,
+                                                                  decoration:
+                                                                      const BoxDecoration(
+                                                                    image:
+                                                                        DecorationImage(
+                                                                      image: AssetImage(
+                                                                          AppImages
+                                                                              .ProfileFavoriteIcon),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1122,29 +1138,64 @@ class HomeView extends GetView<HomeController> {
                                                               const EdgeInsets
                                                                   .only(
                                                                   right: 6),
-                                                          child: Container(
-                                                            width: 28,
-                                                            height: 28,
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              color: CustomAppColors
-                                                                  .appWhiteColor,
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          28)),
-                                                            ),
-                                                            child: Center(
-                                                              child: Container(
-                                                                width: 16,
-                                                                height: 16,
-                                                                decoration:
-                                                                    const BoxDecoration(
-                                                                  image:
-                                                                      DecorationImage(
-                                                                    image: AssetImage(
-                                                                        AppImages
-                                                                            .ProfileFavoriteIcon),
+                                                          child: InkWell(
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            onTap: () {
+                                                              int intStoreUserID =
+                                                                  mobileNumber.read(
+                                                                      'UserID');
+                                                              print(
+                                                                  'UserID: $intStoreUserID');
+                                                              print(
+                                                                  'Today Wishlist Click: ${homeListController.todayProducts?[1].id ?? 0}');
+
+                                                              String
+                                                                  strProductID =
+                                                                  homeListController
+                                                                          .todayProducts?[
+                                                                              1]
+                                                                          .id
+                                                                          .toString() ??
+                                                                      '0';
+                                                              Get.find<
+                                                                      HomeController>()
+                                                                  .fetchAddRemoveProduct(
+                                                                      strProductID,
+                                                                      'add');
+                                                            },
+                                                            child: Container(
+                                                              width: 28,
+                                                              height: 28,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                color: CustomAppColors
+                                                                    .appWhiteColor,
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            28)),
+                                                              ),
+                                                              child: Center(
+                                                                child:
+                                                                    Container(
+                                                                  width: 16,
+                                                                  height: 16,
+                                                                  decoration:
+                                                                      const BoxDecoration(
+                                                                    image:
+                                                                        DecorationImage(
+                                                                      image: AssetImage(
+                                                                          AppImages
+                                                                              .ProfileFavoriteIcon),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1695,29 +1746,45 @@ class HomeView extends GetView<HomeController> {
                                                               const EdgeInsets
                                                                   .only(
                                                                   right: 6),
-                                                          child: Container(
-                                                            width: 28,
-                                                            height: 28,
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              color: CustomAppColors
-                                                                  .appWhiteColor,
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          28)),
-                                                            ),
-                                                            child: Center(
-                                                              child: Container(
-                                                                width: 16,
-                                                                height: 16,
-                                                                decoration:
-                                                                    const BoxDecoration(
-                                                                  image:
-                                                                      DecorationImage(
-                                                                    image: AssetImage(
-                                                                        AppImages
-                                                                            .ProfileFavoriteIcon),
+                                                          child: InkWell(
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            onTap: () {
+                                                              print(
+                                                                  'Best Wishlist Click: ${homeListController.bestProducts?[0].id ?? 0}');
+                                                            },
+                                                            child: Container(
+                                                              width: 28,
+                                                              height: 28,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                color: CustomAppColors
+                                                                    .appWhiteColor,
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            28)),
+                                                              ),
+                                                              child: Center(
+                                                                child:
+                                                                    Container(
+                                                                  width: 16,
+                                                                  height: 16,
+                                                                  decoration:
+                                                                      const BoxDecoration(
+                                                                    image:
+                                                                        DecorationImage(
+                                                                      image: AssetImage(
+                                                                          AppImages
+                                                                              .ProfileFavoriteIcon),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -2016,29 +2083,45 @@ class HomeView extends GetView<HomeController> {
                                                               const EdgeInsets
                                                                   .only(
                                                                   right: 6),
-                                                          child: Container(
-                                                            width: 28,
-                                                            height: 28,
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              color: CustomAppColors
-                                                                  .appWhiteColor,
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          28)),
-                                                            ),
-                                                            child: Center(
-                                                              child: Container(
-                                                                width: 16,
-                                                                height: 16,
-                                                                decoration:
-                                                                    const BoxDecoration(
-                                                                  image:
-                                                                      DecorationImage(
-                                                                    image: AssetImage(
-                                                                        AppImages
-                                                                            .ProfileFavoriteIcon),
+                                                          child: InkWell(
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            onTap: () {
+                                                              print(
+                                                                  'Best Wishlist Click: ${homeListController.bestProducts?[1].id ?? 0}');
+                                                            },
+                                                            child: Container(
+                                                              width: 28,
+                                                              height: 28,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                color: CustomAppColors
+                                                                    .appWhiteColor,
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            28)),
+                                                              ),
+                                                              child: Center(
+                                                                child:
+                                                                    Container(
+                                                                  width: 16,
+                                                                  height: 16,
+                                                                  decoration:
+                                                                      const BoxDecoration(
+                                                                    image:
+                                                                        DecorationImage(
+                                                                      image: AssetImage(
+                                                                          AppImages
+                                                                              .ProfileFavoriteIcon),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -2551,34 +2634,49 @@ class HomeView extends GetView<HomeController> {
                                                                         top: 0,
                                                                         left:
                                                                             6),
-                                                                child:
-                                                                    Container(
-                                                                  width: 36,
-                                                                  height: 16,
-                                                                  // color: CustomAppColors.lblOrgColor,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: CustomAppColors
-                                                                        .lblOrgColor,
-                                                                    borderRadius:
-                                                                        BorderRadius.all(
-                                                                            Radius.circular(8)),
-                                                                  ),
-                                                                  child: Center(
-                                                                    child:
-                                                                        CustomeTextStyle(
-                                                                      text: homeListController
-                                                                              .discountNewlyPercentage1
-                                                                              .toString() +
-                                                                          '%',
-                                                                      size: 10,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
+                                                                child: InkWell(
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap: () {
+                                                                    print(
+                                                                        'Newly Wishlist Click: ${homeListController.newlyProducts?[0].id ?? 0}');
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    width: 36,
+                                                                    height: 16,
+                                                                    // color: CustomAppColors.lblOrgColor,
+                                                                    decoration:
+                                                                        BoxDecoration(
                                                                       color: CustomAppColors
-                                                                          .appWhiteColor,
-                                                                      wordSpacing:
-                                                                          0.5,
+                                                                          .lblOrgColor,
+                                                                      borderRadius:
+                                                                          BorderRadius.all(
+                                                                              Radius.circular(8)),
+                                                                    ),
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          CustomeTextStyle(
+                                                                        text: homeListController.discountNewlyPercentage1.toString() +
+                                                                            '%',
+                                                                        size:
+                                                                            10,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                        color: CustomAppColors
+                                                                            .appWhiteColor,
+                                                                        wordSpacing:
+                                                                            0.5,
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
@@ -2589,29 +2687,45 @@ class HomeView extends GetView<HomeController> {
                                                               const EdgeInsets
                                                                   .only(
                                                                   right: 6),
-                                                          child: Container(
-                                                            width: 28,
-                                                            height: 28,
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              color: CustomAppColors
-                                                                  .appWhiteColor,
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          28)),
-                                                            ),
-                                                            child: Center(
-                                                              child: Container(
-                                                                width: 16,
-                                                                height: 16,
-                                                                decoration:
-                                                                    const BoxDecoration(
-                                                                  image:
-                                                                      DecorationImage(
-                                                                    image: AssetImage(
-                                                                        AppImages
-                                                                            .ProfileFavoriteIcon),
+                                                          child: InkWell(
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            onTap: () {
+                                                              print(
+                                                                  'Newly Wishlist Click: ${homeListController.newlyProducts?[1].id ?? 0}');
+                                                            },
+                                                            child: Container(
+                                                              width: 28,
+                                                              height: 28,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                color: CustomAppColors
+                                                                    .appWhiteColor,
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            28)),
+                                                              ),
+                                                              child: Center(
+                                                                child:
+                                                                    Container(
+                                                                  width: 16,
+                                                                  height: 16,
+                                                                  decoration:
+                                                                      const BoxDecoration(
+                                                                    image:
+                                                                        DecorationImage(
+                                                                      image: AssetImage(
+                                                                          AppImages
+                                                                              .ProfileFavoriteIcon),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -2910,30 +3024,48 @@ class HomeView extends GetView<HomeController> {
                                                                         .only(
                                                                         right:
                                                                             6),
-                                                                child:
-                                                                    Container(
-                                                                  width: 28,
-                                                                  height: 28,
-                                                                  decoration:
-                                                                      const BoxDecoration(
-                                                                    color: CustomAppColors
-                                                                        .appWhiteColor,
-                                                                    borderRadius:
-                                                                        BorderRadius.all(
-                                                                            Radius.circular(28)),
-                                                                  ),
-                                                                  child: Center(
+                                                                child: InkWell(
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap: () {
+                                                                    print(
+                                                                        'Newly Wishlist Click: ${homeListController.newlyProducts?[1].id ?? 0}');
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    width: 28,
+                                                                    height: 28,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      color: CustomAppColors
+                                                                          .appWhiteColor,
+                                                                      borderRadius:
+                                                                          BorderRadius.all(
+                                                                              Radius.circular(28)),
+                                                                    ),
                                                                     child:
-                                                                        Container(
-                                                                      width: 16,
-                                                                      height:
-                                                                          16,
-                                                                      decoration:
-                                                                          const BoxDecoration(
-                                                                        image:
-                                                                            DecorationImage(
+                                                                        Center(
+                                                                      child:
+                                                                          Container(
+                                                                        width:
+                                                                            16,
+                                                                        height:
+                                                                            16,
+                                                                        decoration:
+                                                                            const BoxDecoration(
                                                                           image:
-                                                                              AssetImage(AppImages.ProfileFavoriteIcon),
+                                                                              DecorationImage(
+                                                                            image:
+                                                                                AssetImage(AppImages.ProfileFavoriteIcon),
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
@@ -3486,29 +3618,45 @@ class HomeView extends GetView<HomeController> {
                                                               const EdgeInsets
                                                                   .only(
                                                                   right: 6),
-                                                          child: Container(
-                                                            width: 28,
-                                                            height: 28,
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              color: CustomAppColors
-                                                                  .appWhiteColor,
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          28)),
-                                                            ),
-                                                            child: Center(
-                                                              child: Container(
-                                                                width: 16,
-                                                                height: 16,
-                                                                decoration:
-                                                                    const BoxDecoration(
-                                                                  image:
-                                                                      DecorationImage(
-                                                                    image: AssetImage(
-                                                                        AppImages
-                                                                            .ProfileFavoriteIcon),
+                                                          child: InkWell(
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            onTap: () {
+                                                              print(
+                                                                  'Trending Wishlist Click: ${homeListController.trendingProducts?[0].id ?? 0}');
+                                                            },
+                                                            child: Container(
+                                                              width: 28,
+                                                              height: 28,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                color: CustomAppColors
+                                                                    .appWhiteColor,
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            28)),
+                                                              ),
+                                                              child: Center(
+                                                                child:
+                                                                    Container(
+                                                                  width: 16,
+                                                                  height: 16,
+                                                                  decoration:
+                                                                      const BoxDecoration(
+                                                                    image:
+                                                                        DecorationImage(
+                                                                      image: AssetImage(
+                                                                          AppImages
+                                                                              .ProfileFavoriteIcon),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -3808,29 +3956,45 @@ class HomeView extends GetView<HomeController> {
                                                               const EdgeInsets
                                                                   .only(
                                                                   right: 6),
-                                                          child: Container(
-                                                            width: 28,
-                                                            height: 28,
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              color: CustomAppColors
-                                                                  .appWhiteColor,
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          28)),
-                                                            ),
-                                                            child: Center(
-                                                              child: Container(
-                                                                width: 16,
-                                                                height: 16,
-                                                                decoration:
-                                                                    const BoxDecoration(
-                                                                  image:
-                                                                      DecorationImage(
-                                                                    image: AssetImage(
-                                                                        AppImages
-                                                                            .ProfileFavoriteIcon),
+                                                          child: InkWell(
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            onTap: () {
+                                                              print(
+                                                                  'Trending Wishlist Click: ${homeListController.trendingProducts?[1].id ?? 0}');
+                                                            },
+                                                            child: Container(
+                                                              width: 28,
+                                                              height: 28,
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                color: CustomAppColors
+                                                                    .appWhiteColor,
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            28)),
+                                                              ),
+                                                              child: Center(
+                                                                child:
+                                                                    Container(
+                                                                  width: 16,
+                                                                  height: 16,
+                                                                  decoration:
+                                                                      const BoxDecoration(
+                                                                    image:
+                                                                        DecorationImage(
+                                                                      image: AssetImage(
+                                                                          AppImages
+                                                                              .ProfileFavoriteIcon),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),

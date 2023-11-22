@@ -225,6 +225,10 @@ class AppService {
   // Remove cart
   static const String gateways = "/wc/v3/payment_gateways";
 
+  //Wishlist
+
+  static const String wishlistAddRemover = "wc/v3/add_to_wishlist";
+
   // Clean cart
   static const String cleanCart = "/app-builder/v1/clean-cart";
 

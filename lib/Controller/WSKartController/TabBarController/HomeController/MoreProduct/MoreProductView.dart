@@ -279,30 +279,44 @@ class _MoreProductViewState extends State<MoreProductView>
                                                                 const EdgeInsets
                                                                     .only(
                                                                     right: 6),
-                                                            child: Container(
-                                                              width: 28,
-                                                              height: 28,
-                                                              decoration:
-                                                                  const BoxDecoration(
-                                                                color: CustomAppColors
-                                                                    .appWhiteColor,
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            28)),
-                                                              ),
-                                                              child: Center(
-                                                                child:
-                                                                    Container(
-                                                                  width: 16,
-                                                                  height: 16,
-                                                                  decoration:
-                                                                      const BoxDecoration(
-                                                                    image:
-                                                                        DecorationImage(
-                                                                      image: AssetImage(
-                                                                          AppImages
-                                                                              .ProfileFavoriteIcon),
+                                                            child: InkWell(
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              onTap: () {
+                                                                print(
+                                                                    'Product Wishlist Click: ${moreProductController.productList?[index].id ?? 0}');
+                                                              },
+                                                              child: Container(
+                                                                width: 28,
+                                                                height: 28,
+                                                                decoration:
+                                                                    const BoxDecoration(
+                                                                  color: CustomAppColors
+                                                                      .appWhiteColor,
+                                                                  borderRadius:
+                                                                      BorderRadius.all(
+                                                                          Radius.circular(
+                                                                              28)),
+                                                                ),
+                                                                child: Center(
+                                                                  child:
+                                                                      Container(
+                                                                    width: 16,
+                                                                    height: 16,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      image:
+                                                                          DecorationImage(
+                                                                        image: AssetImage(
+                                                                            AppImages.ProfileFavoriteIcon),
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),

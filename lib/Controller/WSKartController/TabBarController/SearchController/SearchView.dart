@@ -1061,7 +1061,7 @@ class _SearchViewState extends State<SearchView> with TickerProviderStateMixin {
           Get.find<SearchTabController>().productList.length % 10 == 0) {
         isPageEnd = true;
         Get.find<SearchTabController>().perPageCount++;
-        Get.find<SearchTabController>()..fetchProductShopData('1');
+        Get.find<SearchTabController>().fetchProductShopData('1');
       }
     });
   }
@@ -1659,30 +1659,48 @@ class _SearchViewState extends State<SearchView> with TickerProviderStateMixin {
                                                                         .only(
                                                                         right:
                                                                             6),
-                                                                child:
-                                                                    Container(
-                                                                  width: 28,
-                                                                  height: 28,
-                                                                  decoration:
-                                                                      const BoxDecoration(
-                                                                    color: CustomAppColors
-                                                                        .appWhiteColor,
-                                                                    borderRadius:
-                                                                        BorderRadius.all(
-                                                                            Radius.circular(28)),
-                                                                  ),
-                                                                  child: Center(
+                                                                child: InkWell(
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap: () {
+                                                                    print(
+                                                                        'Product Wishlist Click: ${moreProductController.productList?[index].id ?? 0}');
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    width: 28,
+                                                                    height: 28,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                      color: CustomAppColors
+                                                                          .appWhiteColor,
+                                                                      borderRadius:
+                                                                          BorderRadius.all(
+                                                                              Radius.circular(28)),
+                                                                    ),
                                                                     child:
-                                                                        Container(
-                                                                      width: 16,
-                                                                      height:
-                                                                          16,
-                                                                      decoration:
-                                                                          const BoxDecoration(
-                                                                        image:
-                                                                            DecorationImage(
+                                                                        Center(
+                                                                      child:
+                                                                          Container(
+                                                                        width:
+                                                                            16,
+                                                                        height:
+                                                                            16,
+                                                                        decoration:
+                                                                            const BoxDecoration(
                                                                           image:
-                                                                              AssetImage(AppImages.ProfileFavoriteIcon),
+                                                                              DecorationImage(
+                                                                            image:
+                                                                                AssetImage(AppImages.ProfileFavoriteIcon),
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),

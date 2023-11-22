@@ -8,6 +8,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:wskart/Constants/convert_data.dart';
 import 'package:wskart/Service/Helper/APIHelper.dart';
 import 'package:wskart/Service/Helper/RequestHelper.dart';
+import 'package:wskart/Service/Model/AddRemoveWishlist/AddRemoveWishlist.dart';
 import 'package:wskart/Service/Model/ProductModel/BestProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/NewlyProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/RandomProduct.dart';
@@ -16,6 +17,7 @@ import 'package:wskart/Service/Model/ProductModel/TrendingProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/brand.dart';
 import 'package:wskart/Service/Model/ProductModel/product_category.dart';
 import 'package:wskart/Constants/query.dart';
+import 'package:dio/dio.dart';
 
 import '../../../../ExtraClass/Routes/AppPages.dart';
 
@@ -336,6 +338,47 @@ class HomeController extends GetxController {
       print('Get categories error.');
 
       isHomeLoading(false);
+    }
+  }
+
+  fetchAddRemoveProduct(String? productID, String? action) async {
+    int intStoreUserID = getStorage.read('UserID');
+    print('UserID: $intStoreUserID');
+
+    getWishlistDio(productID, action);
+
+    // final randomParam = {
+    //   "product_id": productID,
+    //   "user_id": intStoreUserID.toString(),
+    //   "ws_action": action,
+    //   // 'consumer_key': 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835',
+    //   // 'consumer_secret': 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc',
+    // };
+    //
+    // print('Home Param Random API Call>>>>: $randomParam');
+    //
+    // try {
+    //   AddRemoveWishlist addRemove = await _requestHelper.addProductWishlist();
+    //
+    //   print('Darta List: $addRemove');
+    // } catch (e) {
+    //   print('Wishlist Error: $e');
+    // }
+  }
+
+  void getWishlistDio(String? productID, String? action) async {
+    int intStoreUserID = getStorage.read('UserID');
+    print('UserID: $intStoreUserID');
+
+    try {
+      var response = await Dio(
+          BaseOptions(
+              headers: {"Content-Type": "application/json"})).get(
+          'https://wskart.in/wp-json/wc/v3/add_to_wishlist?consumer_key=ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835&consumer_secret=cs_ec0d804850aed2c78ef589e31b40ad08521831fc&product_id=${productID}&user_id=${intStoreUserID.toString()}&ws_action=${action}');
+      // users = response.data["users"];
+      print('Responce: ${response.data['status']}');
+    } catch (e) {
+      print(e);
     }
   }
 
