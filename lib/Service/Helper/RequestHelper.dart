@@ -10,6 +10,7 @@ import 'package:wskart/Service/Model/ProductModel/TodayProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/TrendingProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/brand.dart';
 import 'package:wskart/Service/Model/ProductModel/product_category.dart';
+import 'package:wskart/Service/Model/WishlistModel/Wishlist.dart';
 import 'package:wskart/Service/Modules/NetworkModule.dart';
 import 'package:wskart/Constants/ServiceList.dart';
 import 'package:wskart/Service/Model/ProductModel/Product.dart';
@@ -238,6 +239,32 @@ class RequestHelper {
           .cast<Product>();
 
       print('List Of Product Data: $products');
+      return products;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  /// Returns list of wishlist product in response
+  Future<List<Product>?> getWSKartWishlistProductsItem(
+      {Map<String, dynamic>? queryParameters}) async {
+    print('API Method Call in this');
+    try {
+      final data = await _apiHelper.get(
+        AppService.getWishlistProducts,
+        queryParameters: queryParameters,
+      );
+
+      print('Wishlist Product API Responce : $data');
+
+      List<Product>? products = <Product>[];
+
+      products = data
+          .map((product) => Product.fromJson(product))
+          .toList()
+          .cast<Product>();
+
+      print('List Of Wishlist Product Data: $products');
       return products;
     } on DioException {
       rethrow;

@@ -32,6 +32,10 @@ class AppService {
 
   // products endpoints
   static const String getProducts = "/wc/v3/products";
+
+  //Product Wishlist
+  static const String getWishlistProducts = "wc/v3/wishlist_products";
+
   // get appointment time stamp
   static const String getAppointmentTimeStamp = "/wc-appointments/v1/slots";
 
