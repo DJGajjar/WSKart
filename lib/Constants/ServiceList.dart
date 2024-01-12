@@ -34,7 +34,7 @@ class AppService {
   static const String getProducts = "/wc/v3/products";
 
   //Product Wishlist
-  static const String getWishlistProducts = "wc/v3/wishlist_products";
+  static const String getWishlistProducts = "/wc/v3/wishlist_products";
 
   // get appointment time stamp
   static const String getAppointmentTimeStamp = "/wc-appointments/v1/slots";
@@ -206,6 +206,8 @@ class AppService {
   // Add to cart
   static const String addToCart = "/wc/store/cart/add-item";
 
+  static const String productAddToCart = "/ade-woocart/v1/cart";
+
   // Apply coupon
   static const String applyCoupon = "/wc/store/cart/apply-coupon";
 
@@ -238,6 +240,8 @@ class AppService {
 
   // Update cart
   static const String updateCart = "/wc/store/cart/update-item";
+
+  static const String productUpdateCart = "ade-woocart/v1/cart/update";
 
   /// shipping cart
   static const String shippingCart = '/wc/store/cart/select-shipping-rate';

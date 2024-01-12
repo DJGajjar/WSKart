@@ -22,7 +22,7 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final mobileNumber = GetStorage();
+    final getStorage = GetStorage();
 
     HomeController homeListController = Get.put(HomeController());
 
@@ -813,7 +813,7 @@ class HomeView extends GetView<HomeController> {
                                                                 .transparent,
                                                             onTap: () {
                                                               print(
-                                                                  'Today Wishlist Click: ${homeListController.todayProducts?[0].id ?? 0}');
+                                                                  'Today Wishlist Click+++++++: ${homeListController.todayProducts?[0].id ?? 0}');
                                                             },
                                                             child: Container(
                                                               width: 28,
@@ -1012,6 +1012,8 @@ class HomeView extends GetView<HomeController> {
                                                     Get.find<HomeController>()
                                                         .LoginScreen();
                                                   });
+                                                } else {
+                                                  print("Today add to cart 1");
                                                 }
                                               },
                                               child: Padding(
@@ -1150,12 +1152,12 @@ class HomeView extends GetView<HomeController> {
                                                                 .transparent,
                                                             onTap: () {
                                                               int intStoreUserID =
-                                                                  mobileNumber.read(
+                                                                  getStorage.read(
                                                                       'UserID');
                                                               print(
                                                                   'UserID: $intStoreUserID');
                                                               print(
-                                                                  'Today Wishlist Click: ${homeListController.todayProducts?[1].id ?? 0}');
+                                                                  'Today Wishlist Click>>>>: ${homeListController.todayProducts?[1].id ?? 0}');
 
                                                               String
                                                                   strProductID =
@@ -1165,6 +1167,8 @@ class HomeView extends GetView<HomeController> {
                                                                           .id
                                                                           .toString() ??
                                                                       '0';
+                                                              print(
+                                                                  "ProductID: $strProductID");
                                                               Get.find<
                                                                       HomeController>()
                                                                   .fetchAddRemoveProduct(
@@ -1368,6 +1372,8 @@ class HomeView extends GetView<HomeController> {
                                                     Get.find<HomeController>()
                                                         .LoginScreen();
                                                   });
+                                                } else {
+                                                  print("Today add to cart 2");
                                                 }
                                               },
                                               child: Padding(
@@ -1957,6 +1963,8 @@ class HomeView extends GetView<HomeController> {
                                                     Get.find<HomeController>()
                                                         .LoginScreen();
                                                   });
+                                                } else {
+                                                  print("BEst Add To Cart 1");
                                                 }
                                               },
                                               child: Padding(
@@ -2294,6 +2302,8 @@ class HomeView extends GetView<HomeController> {
                                                     Get.find<HomeController>()
                                                         .LoginScreen();
                                                   });
+                                                } else {
+                                                  print("BEst Add To Cart 2");
                                                 }
                                               },
                                               child: Padding(
@@ -2898,6 +2908,8 @@ class HomeView extends GetView<HomeController> {
                                                     Get.find<HomeController>()
                                                         .LoginScreen();
                                                   });
+                                                } else {
+                                                  print("Newly Add To Cart 1");
                                                 }
                                               },
                                               child: Padding(
@@ -3229,7 +3241,7 @@ class HomeView extends GetView<HomeController> {
                                               splashColor: Colors.transparent,
                                               onTap: () {
                                                 print(
-                                                    'Best Add To Cart Item: ${homeListController.newlyProducts?[1].id ?? 0}');
+                                                    'Newly Add To Cart Item: ${homeListController.newlyProducts?[1].id ?? 0}');
                                                 if (getStorge.read("isLogin") ==
                                                     null) {
                                                   Future.delayed(
@@ -3239,6 +3251,8 @@ class HomeView extends GetView<HomeController> {
                                                     Get.find<HomeController>()
                                                         .LoginScreen();
                                                   });
+                                                } else {
+                                                  print("Newly Add To Cart 2");
                                                 }
                                               },
                                               child: Padding(
@@ -3820,7 +3834,7 @@ class HomeView extends GetView<HomeController> {
                                               splashColor: Colors.transparent,
                                               onTap: () {
                                                 print(
-                                                    'Best Add To Cart Item: ${homeListController.trendingProducts?[0].id ?? 0}');
+                                                    'Trending Add To Cart Item: ${homeListController.trendingProducts?[0].id ?? 0}');
                                                 if (getStorge.read("isLogin") ==
                                                     null) {
                                                   Future.delayed(
@@ -3830,6 +3844,18 @@ class HomeView extends GetView<HomeController> {
                                                     Get.find<HomeController>()
                                                         .LoginScreen();
                                                   });
+                                                } else {
+                                                  print(
+                                                      "Trending Add To Cart 1");
+
+                                                  homeListController
+                                                      .productAddToCart(
+                                                          homeListController
+                                                                  .trendingProducts?[
+                                                                      0]
+                                                                  .id
+                                                                  .toString() ??
+                                                              "0");
                                                 }
                                               },
                                               child: Padding(
@@ -4168,6 +4194,9 @@ class HomeView extends GetView<HomeController> {
                                                     Get.find<HomeController>()
                                                         .LoginScreen();
                                                   });
+                                                } else {
+                                                  print(
+                                                      "Trending Add To Cart 2");
                                                 }
                                               },
                                               child: Padding(

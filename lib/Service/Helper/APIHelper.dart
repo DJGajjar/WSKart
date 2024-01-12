@@ -55,6 +55,7 @@ class APIHelper {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
+    print("BASE URL>>>>>>>>>>>: $uri");
     try {
       final Response response = await _dio.post(
         uri,

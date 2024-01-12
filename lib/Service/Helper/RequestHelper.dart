@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:wskart/Service/Helper/APIHelper.dart';
 import 'package:wskart/Service/Model/AddRemoveWishlist/AddRemoveWishlist.dart';
+import 'package:wskart/Service/Model/AddToCart/AddCart.dart';
 import 'package:wskart/Service/Model/ProductModel/BestProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/LoginOtp.dart';
 import 'package:wskart/Service/Model/ProductModel/NewlyProduct.dart';
@@ -240,6 +241,48 @@ class RequestHelper {
 
       print('List Of Product Data: $products');
       return products;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  /// Add to cart
+  Future<Map<String, dynamic>> addToCart({
+    required Map<String, dynamic> queryParameters,
+  }) async {
+    print("Cart API CALL ACTION:  ${AppService.productAddToCart}");
+    try {
+      final res = await _apiHelper.post(
+        // AppService.productAddToCart,
+        "https://wskart.in/wp-json/ade-woocart/v1/cart",
+        queryParameters: queryParameters,
+      );
+
+      print("Responce Add To Cart: $res");
+
+      print('Responce>>>>>status>>>>>  ${res.data['status']}');
+
+      return res;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  /// Update quantity
+  Future<Map<String, dynamic>> updateQuantity({
+    String? cartKey,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? header,
+  }) async {
+    try {
+      final res = await _apiHelper.post(
+        AppService.productUpdateCart,
+        queryParameters: queryParameters,
+        options: Options(
+          headers: header,
+        ),
+      );
+      return res;
     } on DioException {
       rethrow;
     }

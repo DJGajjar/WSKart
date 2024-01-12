@@ -18,6 +18,8 @@ import 'package:wskart/Service/Model/ProductModel/brand.dart';
 import 'package:wskart/Service/Model/ProductModel/product_category.dart';
 import 'package:wskart/Constants/query.dart';
 import 'package:dio/dio.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
 
 import '../../../../ExtraClass/Routes/AppPages.dart';
 
@@ -75,6 +77,11 @@ class HomeController extends GetxController {
   fetchRendomProductDataList() async {
     isHomeLoading(true);
 
+    print("API : 1");
+
+    // int intStoreUserID = getStorage.read('UserID');
+    // print('UserID FIRST TIME CHECK>>>>>: $intStoreUserID');
+
     final randomParam = {
       "per_page": '10',
       "status": 'publish',
@@ -105,6 +112,8 @@ class HomeController extends GetxController {
       "parent": '0',
     };
 
+    print("API : 2");
+
     print('Home Param Cat API Call>>>>: $catParam');
 
     try {
@@ -128,6 +137,8 @@ class HomeController extends GetxController {
       "stock_status": 'instock',
       "orderby": 'rand',
     };
+
+    print("API : 3");
 
     print('Home Param Today API Call>>>>: $randomParam');
 
@@ -177,6 +188,8 @@ class HomeController extends GetxController {
       "stock_status": 'instock',
       "orderby": 'rand',
     };
+
+    print("API : 4");
 
     print('Home Param Best API Call>>>>: $randomParam');
 
@@ -228,6 +241,8 @@ class HomeController extends GetxController {
       "order": 'desc',
     };
 
+    print("API : 5");
+
     print('Home Param Newly API Call>>>>: $randomParam');
 
     try {
@@ -278,6 +293,8 @@ class HomeController extends GetxController {
       "order": 'desc',
     };
 
+    print("API : 6");
+
     print('Home Param Trending API Call>>>>: $randomParam');
 
     try {
@@ -327,6 +344,8 @@ class HomeController extends GetxController {
       "consumer_secret": 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc',
     };
 
+    print("API : 7");
+
     try {
       brandList = await _requestHelper.getWSKartBrandProductsList();
 
@@ -342,8 +361,10 @@ class HomeController extends GetxController {
   }
 
   fetchAddRemoveProduct(String? productID, String? action) async {
-    int intStoreUserID = getStorage.read('UserID');
-    print('UserID: $intStoreUserID');
+    // int intStoreUserID = getStorage.read('UserID');
+    // print('UserID: $intStoreUserID');
+
+    print("API : 7");
 
     getWishlistDio(productID, action);
 
@@ -366,6 +387,34 @@ class HomeController extends GetxController {
     // }
   }
 
+  productAddToCart(String? productID) async {
+    final addToCartParam = {
+      "product_id": productID,
+      "quantity": "1",
+    };
+
+    print("Add To Cart: $addToCartParam");
+
+    String username = 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835';
+    String password = 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc';
+
+    String basicAuth =
+        'Basic ' + base64.encode(utf8.encode('$username:$password'));
+    print(basicAuth);
+
+    try {
+      var response = await Dio(BaseOptions(
+              headers: <String, String>{'authorization': basicAuth}))
+          .post('https://wskart.in/wp-json/ade-woocart/v1/cart',
+              queryParameters: addToCartParam);
+
+      print('Responce: ${response.data}');
+      print('Responce: ${response.data['status']}');
+    } catch (error) {
+      print(error);
+    }
+  }
+
   void getWishlistDio(String? productID, String? action) async {
     int intStoreUserID = getStorage.read('UserID');
     print('UserID: $intStoreUserID');
@@ -375,8 +424,8 @@ class HomeController extends GetxController {
           BaseOptions(
               headers: {"Content-Type": "application/json"})).get(
           'https://wskart.in/wp-json/wc/v3/add_to_wishlist?consumer_key=ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835&consumer_secret=cs_ec0d804850aed2c78ef589e31b40ad08521831fc&product_id=${productID}&user_id=${intStoreUserID.toString()}&ws_action=${action}');
-      // users = response.data["users"];
       print('Responce: ${response.data['status']}');
+      print('Responce Data: ${response.data}');
     } catch (e) {
       print(e);
     }

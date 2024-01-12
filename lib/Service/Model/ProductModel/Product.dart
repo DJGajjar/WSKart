@@ -13,6 +13,8 @@ class Product {
   @JsonKey(fromJson: unescape)
   String? name;
 
+  String? title;
+
   String? slug;
 
   String? type;
@@ -118,6 +120,7 @@ class Product {
   Product({
     this.id,
     this.name,
+    this.title,
     this.slug,
     this.type,
     this.status,
@@ -247,6 +250,7 @@ class ProductBlocks {
 
   static const String category = 'Category';
   static const String name = 'Name';
+  static const String title = 'title';
   static const String rating = 'Rating';
   static const String price = 'Price';
   static const String status = 'Status';

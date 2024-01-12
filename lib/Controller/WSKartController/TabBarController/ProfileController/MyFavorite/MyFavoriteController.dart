@@ -32,6 +32,8 @@ class MyFavoriteController extends GetxController {
     int intStoreUserID = getStorage.read('UserID');
     print('UserID: $intStoreUserID');
 
+    print("Method Call");
+
     final userID = {
       "user_id": intStoreUserID.toString(),
     };
