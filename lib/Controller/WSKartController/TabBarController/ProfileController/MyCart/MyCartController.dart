@@ -1,16 +1,18 @@
 import 'package:get/get.dart';
 import 'package:dio/dio.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:wskart/Service/Helper/RequestHelper.dart';
 import 'dart:convert';
 
-import 'package:wskart/Service/Model/AddToCart/AddCart.dart';
+import 'package:wskart/Service/Model/AddToCart/cart.dart';
 
 class MyCartController extends GetxController {
   var isShowCartIcon = false.obs;
 
-  List<AddToCart>? addToCartList = <AddToCart>[];
+  List<CartData>? addToCartList = <CartData>[];
 
   final RequestHelper _requestHelper = RequestHelper();
+  final getStorage = GetStorage();
 
   @override
   void onInit() {
@@ -21,6 +23,13 @@ class MyCartController extends GetxController {
   listOfMyCartProduct() async {
     isShowCartIcon = true.obs;
 
+    String strUName = getStorage.read('username');
+    print("Username: $strUName");
+
+    final cartParam = {
+      "username": strUName,
+    };
+
     String username = 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835';
     String password = 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc';
 
@@ -29,7 +38,8 @@ class MyCartController extends GetxController {
     print(basicAuth);
 
     try {
-      addToCartList = await getListOfMyCartProduct();
+      addToCartList = await _requestHelper.getListOfMyCartProduct(
+          queryParameters: cartParam);
 
       print('CAlue OD: ${addToCartList}');
 
@@ -82,7 +92,7 @@ class MyCartController extends GetxController {
     }
   }*/
 
-  Future<List<AddToCart>?> getListOfMyCartProduct() async {
+  Future<List<CartData>?> getListOfMyCartProduct() async {
     String username = 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835';
     String password = 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc';
 
@@ -95,12 +105,15 @@ class MyCartController extends GetxController {
               headers: <String, String>{'authorization': basicAuth}))
           .get('https://wskart.in/wp-json/ade-woocart/v1/cart');
 
-      List<AddToCart>? cartList = <AddToCart>[];
+      print('Responce: ${response.data}');
+      print('Responce message: ${response.data['message']}');
+
+      List<CartData>? cartList = <CartData>[];
 
       cartList = response.data
-          .map((cartAddList) => AddToCart.fromJson(cartAddList))
+          .map((cartList) => CartData.fromJson(cartList))
           .toList()
-          .cast<AddToCart>();
+          .cast<CartData>();
 
       print("Valllll>>>> ${cartList}");
       return cartList;

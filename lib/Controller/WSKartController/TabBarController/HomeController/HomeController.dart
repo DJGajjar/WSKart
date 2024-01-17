@@ -388,9 +388,13 @@ class HomeController extends GetxController {
   }
 
   productAddToCart(String? productID) async {
+    String strUName = getStorage.read('username');
+    print("Username: $strUName");
+
     final addToCartParam = {
       "product_id": productID,
       "quantity": "1",
+      "username": strUName,
     };
 
     print("Add To Cart: $addToCartParam");

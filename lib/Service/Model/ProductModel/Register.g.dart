@@ -12,6 +12,7 @@ RegisterUser _$BrandFromJson(Map<String, dynamic> json) => RegisterUser(
       phone: json['phone'] as String?,
       phone_no: json['phone_no'] as String?,
       email: json['email'] as String?,
+      username: json['username'] as String?,
       phone_code: json['phone_code'] as String?,
       error: json['error'] as int?,
       user_id: json['user_id'] as int?,

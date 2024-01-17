@@ -17,6 +17,8 @@ class RegisterUser {
 
   String? phone_code;
 
+  String? username;
+
   int? error;
 
   int? user_id;
@@ -32,6 +34,7 @@ class RegisterUser {
     this.otp,
     this.phone,
     this.phone_no,
+    this.username,
     this.email,
     this.phone_code,
     this.error,

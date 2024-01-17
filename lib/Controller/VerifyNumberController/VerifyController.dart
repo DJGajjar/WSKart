@@ -114,6 +114,7 @@ class VerifyController extends GetxController {
 
       if (registerInfo.status == true) {
         getStorge.write("UserID", registerInfo.user_id);
+        getStorge.write("username", registerInfo.username);
         getStorge.write("isLogin", "Yes");
         int intStoreUserID = getStorge.read('UserID');
         print('UserID: $intStoreUserID');

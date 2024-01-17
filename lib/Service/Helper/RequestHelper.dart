@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:wskart/Service/Helper/APIHelper.dart';
 import 'package:wskart/Service/Model/AddRemoveWishlist/AddRemoveWishlist.dart';
-import 'package:wskart/Service/Model/AddToCart/AddCart.dart';
+import 'package:wskart/Service/Model/AddToCart/cart.dart';
 import 'package:wskart/Service/Model/ProductModel/BestProduct.dart';
 import 'package:wskart/Service/Model/ProductModel/LoginOtp.dart';
 import 'package:wskart/Service/Model/ProductModel/NewlyProduct.dart';
@@ -309,6 +309,54 @@ class RequestHelper {
 
       print('List Of Wishlist Product Data: $products');
       return products;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  Future<List<CartData>?> getListOfMyCartProduct(
+      {Map<String, dynamic>? queryParameters}) async {
+    String username = 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835';
+    String password = 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc';
+
+    String basicAuth =
+        'Basic ' + base64.encode(utf8.encode('$username:$password'));
+    print(basicAuth);
+
+    try {
+      final data = await _apiHelper.get(
+        'https://wskart.in/wp-json/ade-woocart/v1/cart?username=9904550306',
+        // queryParameters: queryParameters,
+        options: Options(
+          headers: {
+            'authorization': basicAuth, // set content-length
+          },
+        ),
+      );
+
+      print('Cart Data API Responce : $data');
+
+      // var response = await Dio(BaseOptions(
+      //         headers: <String, String>{'authorization': basicAuth}))
+      //     .get('https://wskart.in/wp-json/ade-woocart/v1/cart');
+
+      // print('Responce: ${response.data}');
+      // print('Responce message: ${response.data['message']}');
+
+      List<CartData>? cartList = <CartData>[];
+
+      cartList = data
+          .map((cartList) => CartData.fromJson(cartList))
+          .toList()
+          .cast<CartData>();
+
+      // cartList = response.data
+      //     .map((cartAddList) => CartData.fromJson(cartAddList))
+      //     .toList()
+      //     .cast<CartData>();
+
+      print("Valllll>>>> ${cartList}");
+      return cartList;
     } on DioException {
       rethrow;
     }
