@@ -22,6 +22,7 @@ import 'package:http/http.dart';
 import 'dart:convert';
 
 import '../../../../ExtraClass/Routes/AppPages.dart';
+import '../../../../Service/Model/AddToCart/cart.dart';
 
 class HomeController extends GetxController {
   var isHomeLoading = false.obs;
@@ -37,6 +38,7 @@ class HomeController extends GetxController {
   List<NewlyProduct>? newlyProducts = <NewlyProduct>[];
   List<TrendingProduct>? trendingProducts = <TrendingProduct>[];
   List<Brand>? brandList = <Brand>[];
+  // List<Store>? addToCartList = <Store>[];
 
   int productListCount = 0;
 

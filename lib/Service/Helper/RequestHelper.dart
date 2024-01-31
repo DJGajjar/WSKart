@@ -314,7 +314,7 @@ class RequestHelper {
     }
   }
 
-  Future<List<CartData>?> getListOfMyCartProduct(
+  Future<dynamic> getListOfMyCartProduct(
       {Map<String, dynamic>? queryParameters}) async {
     String username = 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835';
     String password = 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc';
@@ -325,8 +325,8 @@ class RequestHelper {
 
     try {
       final data = await _apiHelper.get(
-        'https://wskart.in/wp-json/ade-woocart/v1/cart?username=9904550306',
-        // queryParameters: queryParameters,
+        AppService.productAddToCart,
+        queryParameters: queryParameters,
         options: Options(
           headers: {
             'authorization': basicAuth, // set content-length
@@ -343,20 +343,39 @@ class RequestHelper {
       // print('Responce: ${response.data}');
       // print('Responce message: ${response.data['message']}');
 
-      List<CartData>? cartList = <CartData>[];
+      // List<Store>? products = <Store>[];
+      //
+      // products =
+      //     data.map((product) => Store.fromJson(product)).toList().cast<Store>();
+      //
+      // print('List Of Wishlist Product Data: $products');
+      // return products;
 
-      cartList = data
-          .map((cartList) => CartData.fromJson(cartList))
-          .toList()
-          .cast<CartData>();
+      print('Register OTP API Responce : $data');
+      print('Register Of Verify: ${CartProductList.fromJson(data)}');
+
+      // List storeFromJson(String str) =>
+      //     List.from(json.decode(str).map((e) => Store.fromJson(e)));
+      // String storeToJson(List data) =>
+      //     json.encode(List.from(data.map((e) => e.toJson())));
+      //
+      // print("Value Of Data: $storeToJson");
+      return CartProductList.fromJson(data);
+
+      // List<CartProductData>? cartList = <CartProductData>[];
+      //
+      // cartList = data
+      //     .map((cartList) => CartProductData.fromJson(cartList))
+      //     .toList()
+      //     .cast<CartProductData>();
 
       // cartList = response.data
       //     .map((cartAddList) => CartData.fromJson(cartAddList))
       //     .toList()
       //     .cast<CartData>();
 
-      print("Valllll>>>> ${cartList}");
-      return cartList;
+      // print("Valllll>>>> ${cartList}");
+      // return cartList;
     } on DioException {
       rethrow;
     }

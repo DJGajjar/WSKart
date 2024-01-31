@@ -7,12 +7,16 @@ import 'dart:convert';
 import 'package:wskart/Service/Model/AddToCart/cart.dart';
 
 class MyCartController extends GetxController {
-  var isShowCartIcon = false.obs;
+  var isShowCartIcon = true.obs;
 
-  List<CartData>? addToCartList = <CartData>[];
+  // List<Store>? addToCartList = <Store>[];
 
   final RequestHelper _requestHelper = RequestHelper();
   final getStorage = GetStorage();
+
+  late CartProductList addToCartList;
+
+  RxInt cartItemCount = 0.obs;
 
   @override
   void onInit() {
@@ -21,6 +25,48 @@ class MyCartController extends GetxController {
   }
 
   listOfMyCartProduct() async {
+    // String strUName = getStorage.read('username');
+    // print("Username: $strUName");
+
+    isShowCartIcon = true.obs;
+
+    print("Valie Cehck?>>../>>");
+
+    final cartParam = {
+      "username": "9904550306", //strUName,
+    };
+
+    print("Value OF User: $cartParam");
+
+    String username = 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835';
+    String password = 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc';
+
+    String basicAuth =
+        'Basic ' + base64.encode(utf8.encode('$username:$password'));
+
+    print("Basic URL Create: $basicAuth");
+
+    try {
+      addToCartList = await _requestHelper.getListOfMyCartProduct(
+          queryParameters: cartParam);
+
+      print('CAlue OD: ${addToCartList.message}');
+      print('Total Item List: ${addToCartList.cartItems?.length}');
+      print('Total Msg: ${addToCartList.cartTotals?.subtotal}');
+
+      if (addToCartList.cartItems?.length != 0) {
+        print("Value CJec lascal;df afkljadkls");
+        cartItemCount.value = addToCartList.cartItems!.length;
+        isShowCartIcon.value = false;
+        print("Calea: $cartItemCount");
+      }
+    } catch (error) {
+      print(error);
+      isShowCartIcon = false.obs;
+    }
+  }
+
+  /*listOfMyCartProduct() async {
     isShowCartIcon = true.obs;
 
     String strUName = getStorage.read('username');
@@ -38,10 +84,10 @@ class MyCartController extends GetxController {
     print(basicAuth);
 
     try {
-      addToCartList = await _requestHelper.getListOfMyCartProduct(
-          queryParameters: cartParam);
-
-      print('CAlue OD: ${addToCartList}');
+      // addToCartList = await _requestHelper.getListOfMyCartProduct(
+      //     queryParameters: cartParam);
+      //
+      // print('CAlue OD: ${addToCartList}');
 
       // var response = await Dio(BaseOptions(
       //         headers: <String, String>{'authorization': basicAuth}))
@@ -52,7 +98,7 @@ class MyCartController extends GetxController {
     } catch (error) {
       print(error);
     }
-  }
+  }*/
 
   /*Future<List<AddToCart>> getListOfMyCartProduct() async {
 
@@ -92,7 +138,7 @@ class MyCartController extends GetxController {
     }
   }*/
 
-  Future<List<CartData>?> getListOfMyCartProduct() async {
+  /*Future<List<CartProductData>?> getListOfMyCartProduct() async {
     String username = 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835';
     String password = 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc';
 
@@ -108,7 +154,7 @@ class MyCartController extends GetxController {
       print('Responce: ${response.data}');
       print('Responce message: ${response.data['message']}');
 
-      List<CartData>? cartList = <CartData>[];
+      List<CartProductData>? cartList = <CartProductData>[];
 
       cartList = response.data
           .map((cartList) => CartData.fromJson(cartList))
@@ -120,7 +166,7 @@ class MyCartController extends GetxController {
     } on DioException {
       rethrow;
     }
-  }
+  }*/
 
   @override
   void onReady() {
