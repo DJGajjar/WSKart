@@ -19,6 +19,9 @@ class CartProductList {
   @JsonKey(name: 'cart_items')
   List<CartList?>? cartItems;
 
+  @JsonKey(name: 'user_data')
+  UserData? userData;
+
   CartProductList({
     this.cart_count,
     this.message,
@@ -26,6 +29,7 @@ class CartProductList {
     this.time,
     this.cartItems,
     this.cartTotals,
+    this.userData,
   });
 
   factory CartProductList.fromJson(Map<String, dynamic> json) =>
@@ -98,68 +102,54 @@ class CartTotal {
   Map<String, dynamic> toJson() => _$CartTotalToJson(this);
 }
 
-/*
-class Store {
-  Store({
-    required this.cart_count,
-    required this.message,
-    required this.data,
-    required this.time,
-    required this.cart_items,
+class UserData {
+  String? full_name;
+  String? first_name;
+  String? last_name;
+
+  @JsonKey(name: 'shipping')
+  ShippingInfo? shippingData;
+
+  UserData({
+    this.full_name,
+    this.first_name,
+    this.last_name,
+    this.shippingData,
   });
-  int cart_count;
-  String message;
-  String data;
-  String time;
-  List cart_items;
-  factory Store.fromJson(Map json) => Store(
-        cart_count: json["cart_count"],
-        message: json["message"],
-        data: json["data"],
-        time: json["time"],
-        cart_items: List.from(json["cart_items"].map((x) => Datum.fromJson(x))),
-      );
-  Map toJson() => {
-        "cart_count": cart_count,
-        "message": message,
-        "data": data,
-        "time": time,
-        "cart_items": List.from(cart_items.map((x) => x.toJson())),
-      };
+
+  factory UserData.fromJson(Map<String, dynamic> json) =>
+      _$UserDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserDataToJson(this);
 }
 
-class Datum {
-  Datum({
-    required this.key,
-    required this.product_id,
-    required this.product_name,
-    required this.product_price,
-    required this.product_image,
-    required this.quantity,
+class ShippingInfo {
+  String? first_name;
+  String? last_name;
+  String? company;
+  String? address_1;
+  String? address_2;
+  String? city;
+  String? postcode;
+  String? country;
+  String? state;
+  String? phone;
+
+  ShippingInfo({
+    this.first_name,
+    this.last_name,
+    this.company,
+    this.address_1,
+    this.address_2,
+    this.city,
+    this.postcode,
+    this.country,
+    this.state,
+    this.phone,
   });
-  String key;
-  String product_id;
-  String product_name;
-  String product_price;
-  String product_image;
-  String quantity;
 
-  factory Datum.fromJson(Map json) => Datum(
-        key: json["key"],
-        product_id: json["product_id"],
-        product_name: json["product_name"],
-        product_price: json["product_price"],
-        product_image: json["product_image"],
-        quantity: json["quantity"],
-      );
-  Map toJson() => {
-        "key": key,
-        "product_id": product_id,
-        "product_name": product_name,
-        "product_price": product_price,
-        "product_image": product_image,
-        "quantity": quantity,
-      };
+  factory ShippingInfo.fromJson(Map<String, dynamic> json) =>
+      _$ShippingInfoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ShippingInfoToJson(this);
 }
-
-*/

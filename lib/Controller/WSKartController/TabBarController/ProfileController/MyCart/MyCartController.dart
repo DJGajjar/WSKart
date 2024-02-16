@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:wskart/Service/Helper/RequestHelper.dart';
 import 'dart:convert';
-
 import 'package:wskart/Service/Model/AddToCart/cart.dart';
 
 class MyCartController extends GetxController {
@@ -25,15 +24,15 @@ class MyCartController extends GetxController {
   }
 
   listOfMyCartProduct() async {
-    // String strUName = getStorage.read('username');
-    // print("Username: $strUName");
+    String strUName = getStorage.read('username');
+    print("Username: $strUName");
 
     isShowCartIcon = true.obs;
 
     print("Valie Cehck?>>../>>");
 
     final cartParam = {
-      "username": "9904550306", //strUName,
+      "username": strUName,
     };
 
     print("Value OF User: $cartParam");
@@ -53,6 +52,8 @@ class MyCartController extends GetxController {
       print('CAlue OD: ${addToCartList.message}');
       print('Total Item List: ${addToCartList.cartItems?.length}');
       print('Total Msg: ${addToCartList.cartTotals?.subtotal}');
+      print('UserData: ${addToCartList.userData?.full_name}');
+      print('Shipping Data: ${addToCartList.userData?.shippingData?.country}');
 
       if (addToCartList.cartItems?.length != 0) {
         print("Value CJec lascal;df afkljadkls");

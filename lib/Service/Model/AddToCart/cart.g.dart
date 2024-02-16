@@ -13,6 +13,7 @@ CartProductList _$CartProductFromJson(Map<String, dynamic> json) =>
       data: json['data'],
       time: json['time'],
       cartTotals: CartTotal.fromJson(json['cart_totals']),
+      userData: UserData.fromJson(json['user_data']),
       cartItems: (json['cart_items'] as List<dynamic>?)
           ?.map((e) =>
               e == null ? null : CartList.fromJson(e as Map<String, dynamic>))
@@ -65,4 +66,44 @@ Map<String, dynamic> _$CartTotalToJson(CartTotal instance) => <String, dynamic>{
       'fee_tax': instance.fee_tax,
       'total': instance.total,
       'total_tax': instance.total_tax,
+    };
+
+UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
+      full_name: json['full_name'] as String?,
+      first_name: json['first_name'] as String?,
+      last_name: json['last_name'] as String?,
+      shippingData: ShippingInfo.fromJson(json['shipping']),
+    );
+
+Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
+      'full_name': instance.full_name,
+      'first_name': instance.first_name,
+      'last_name': instance.last_name,
+    };
+
+ShippingInfo _$ShippingInfoFromJson(Map<String, dynamic> json) => ShippingInfo(
+      first_name: json['first_name'] as String?,
+      last_name: json['last_name'] as String?,
+      company: json['company'] as String?,
+      address_1: json['address_1'] as String?,
+      address_2: json['address_2'] as String?,
+      city: json['city'] as String?,
+      postcode: json['postcode'] as String?,
+      country: json['country'] as String?,
+      state: json['state'] as String?,
+      phone: json['phone'] as String?,
+    );
+
+Map<String, dynamic> _$ShippingInfoToJson(ShippingInfo instance) =>
+    <String, dynamic>{
+      'first_name': instance.first_name,
+      'last_name': instance.last_name,
+      'company': instance.company,
+      'address_1': instance.address_1,
+      'address_2': instance.address_2,
+      'city': instance.city,
+      'postcode': instance.postcode,
+      'country': instance.country,
+      'state': instance.state,
+      'phone': instance.phone,
     };

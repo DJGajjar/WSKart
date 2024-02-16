@@ -58,7 +58,7 @@ class HomeView extends GetView<HomeController> {
 
     return Scaffold(
       body: SingleChildScrollView(
-        reverse: true,
+        // reverse: true,
         child: Form(
           key: formGlobalKey,
           child: Obx(() => homeListController.isHomeLoading.value

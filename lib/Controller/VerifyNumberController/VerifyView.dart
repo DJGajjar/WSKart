@@ -219,7 +219,7 @@ class VerifyView extends GetView<VerifyController> {
                     callback: () async {
                       print('Verify Completed');
                       if (formGlobalKey.currentState!.validate()) {
-                        print('Enter mobile number: $strOTP');
+                        print('OTP: $strOTP');
                         if (isOTPNull == false) {
                           Get.defaultDialog(
                             title: 'Validation',

@@ -369,24 +369,6 @@ class HomeController extends GetxController {
     print("API : 7");
 
     getWishlistDio(productID, action);
-
-    // final randomParam = {
-    //   "product_id": productID,
-    //   "user_id": intStoreUserID.toString(),
-    //   "ws_action": action,
-    //   // 'consumer_key': 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835',
-    //   // 'consumer_secret': 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc',
-    // };
-    //
-    // print('Home Param Random API Call>>>>: $randomParam');
-    //
-    // try {
-    //   AddRemoveWishlist addRemove = await _requestHelper.addProductWishlist();
-    //
-    //   print('Darta List: $addRemove');
-    // } catch (e) {
-    //   print('Wishlist Error: $e');
-    // }
   }
 
   productAddToCart(String? productID) async {

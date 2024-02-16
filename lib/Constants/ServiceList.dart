@@ -211,6 +211,8 @@ class AppService {
   // Apply coupon
   static const String applyCoupon = "/wc/store/cart/apply-coupon";
 
+  static const String applyCouponCode = "/ade-woocart/v1/cart/apply_coupon";
+
   // List coupon
   static const String coupons = "/wc/store/cart/coupons";
 

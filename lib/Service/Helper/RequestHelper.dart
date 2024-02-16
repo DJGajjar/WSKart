@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:wskart/Service/Helper/APIHelper.dart';
 import 'package:wskart/Service/Model/AddRemoveWishlist/AddRemoveWishlist.dart';
 import 'package:wskart/Service/Model/AddToCart/cart.dart';
@@ -19,6 +20,8 @@ import 'package:wskart/Service/Model/ProductModel/RandomProduct.dart';
 import 'package:wskart/Service/Model/product_review/product_review.dart';
 import 'package:wskart/Service/Model/Post/post_category.dart';
 import 'package:wskart/Service/Model/ProductModel/product_category.dart';
+
+enum ConfirmAction { Cancel, Accept }
 
 class RequestHelper {
   //final DioClient _dioClient;
@@ -379,6 +382,52 @@ class RequestHelper {
     } on DioException {
       rethrow;
     }
+  }
+
+  Future<Map<String, dynamic>> applyCouponCode({
+    required Map<String, dynamic> queryParameters,
+  }) async {
+    String username = 'ck_75f0fb4f01d40ba1d3a929ecad0e945ad4a45835';
+    String password = 'cs_ec0d804850aed2c78ef589e31b40ad08521831fc';
+
+    String basicAuth =
+        'Basic ' + base64.encode(utf8.encode('$username:$password'));
+    print(basicAuth);
+
+    print("Cart API CALL ACTION:  ${AppService.applyCouponCode}");
+    try {
+      final res = await _apiHelper.post(
+        AppService.applyCouponCode,
+        queryParameters: queryParameters,
+        options: Options(
+          headers: {
+            'authorization': basicAuth,
+          },
+        ),
+      );
+
+      print("Responce Add To Cart: $res");
+
+      // _showNewVersionAvailableDialog(context as BuildContext);
+      return res;
+    } on DioException {
+      rethrow;
+    }
+  }
+
+  void _showNewVersionAvailableDialog(BuildContext context) {
+    final alert = AlertDialog(
+      title: Text("Error"),
+      content: Text("There was an error during login."),
+      actions: [TextButton(child: Text("OK"), onPressed: () {})],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
   // ------------------------------------------------ Reviews ----------------------------------------------------------

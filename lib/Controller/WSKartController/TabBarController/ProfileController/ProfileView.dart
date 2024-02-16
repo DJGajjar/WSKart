@@ -105,13 +105,13 @@ class ProfileView extends GetView<ProfileController> {
                                     width: 20,
                                     height: 20,
                                     decoration: const BoxDecoration(
-                                      color: CustomAppColors.lblOrgColor,
+                                      //color: CustomAppColors.lblOrgColor,
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(20)),
                                     ),
                                     child: Center(
                                       child: CustomeTextStyle(
-                                        text: "5",
+                                        text: "",
                                         size: 10,
                                         fontWeight: FontWeight.w600,
                                         color: CustomAppColors.appWhiteColor,
@@ -199,13 +199,13 @@ class ProfileView extends GetView<ProfileController> {
                                     width: 20,
                                     height: 20,
                                     decoration: const BoxDecoration(
-                                      color: CustomAppColors.lblOrgColor,
+                                      //color: CustomAppColors.lblOrgColor,
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(20)),
                                     ),
                                     child: Center(
                                       child: CustomeTextStyle(
-                                        text: "5",
+                                        text: "",
                                         size: 10,
                                         fontWeight: FontWeight.w600,
                                         color: CustomAppColors.appWhiteColor,
@@ -307,13 +307,13 @@ class ProfileView extends GetView<ProfileController> {
                                     width: 20,
                                     height: 20,
                                     decoration: const BoxDecoration(
-                                      color: CustomAppColors.lblOrgColor,
+                                      //color: CustomAppColors.lblOrgColor,
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(20)),
                                     ),
                                     child: Center(
                                       child: CustomeTextStyle(
-                                        text: "4",
+                                        text: "",
                                         size: 10,
                                         fontWeight: FontWeight.w600,
                                         color: CustomAppColors.appWhiteColor,

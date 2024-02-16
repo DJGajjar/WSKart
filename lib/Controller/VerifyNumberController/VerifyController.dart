@@ -41,7 +41,7 @@ class VerifyController extends GetxController {
       "wc-ml-reg-phone": strMobile,
     };
 
-    print('Param: $loginParam');
+    print('Param>>>>>+++++>>>>: $loginParam');
 
     try {
       LoginOtp loginInfo = await _requestHelper.getLoginOtpAPI(
